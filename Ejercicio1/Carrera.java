@@ -8,4 +8,11 @@ public abstract class Carrera {
         this.bicicletas = bicicletas;
     }
 
+    public ArrayList<Bicicleta> getBicicletas() {
+        return bicicletas;
+    }
+
+    public void setBicicletas(ArrayList<Bicicleta> bicicletas) {
+        this.bicicletas = bicicletas;
+    }
 }
