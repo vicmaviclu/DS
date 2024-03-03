@@ -6,14 +6,13 @@ public class FactoriaCarretera implements FactoriaCarreraYBicicleta{
 
     @Override
     public Bicicleta crearBicicleta() {
-        Bicicleta bici = new BicicletaCarretera();
-        return bici;
+        return new BicicletaCarretera();
+        
     }
 
     @Override
     public Carrera crearCarrera(ArrayList<Bicicleta> bicis) {
-        Carrera carrera = new CarreraCarretera(bicis);
-        return carrera;
+        return new CarreraCarretera(bicis);
     }
 
 }

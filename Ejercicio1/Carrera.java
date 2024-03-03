@@ -15,4 +15,6 @@ public abstract class Carrera {
     public void setBicicletas(ArrayList<Bicicleta> bicicletas) {
         this.bicicletas = bicicletas;
     }
+
+    public abstract void empezarCarrera() throws InterruptedException;
 }

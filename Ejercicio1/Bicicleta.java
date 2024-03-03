@@ -13,4 +13,6 @@ public abstract class Bicicleta {
     public void setIdCarrera(int idCarrera) {
         this.idCarrera = idCarrera;
     }
+
+    public abstract String toString();
 }

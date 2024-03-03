@@ -6,4 +6,9 @@ public class BicicletaMontaña extends Bicicleta {
         super(id);
         ++id;
     }
+
+    @Override
+    public String toString() {
+        return ("Bicicleta de montaña con identificador de carrera " + getIdCarrera());
+    }
 }

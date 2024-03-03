@@ -7,4 +7,10 @@ public class CarreraMontaña  extends Carrera{
         super(bicicletas);
     }
 
+    @Override
+    public void empezarCarrera() throws InterruptedException{
+        // Dormir durante 60 segundos
+        Thread.sleep(60000);
+        // Eliminar el 20% de las bicis
+    }
 }
