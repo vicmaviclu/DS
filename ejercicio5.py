@@ -69,3 +69,18 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+
+def display_data():
+# Read data from JSON file
+    with open("stock_data.json", "r") as file:
+        data = json.load(file)
+    
+    # Display the data
+    print("Stock Data:")
+    for key, value in data.items():
+        print(f"{key}: {value}")
+
+# Luego de guardar los datos en el archivo JSON, llama a esta función para mostrarlos
+display_data()
