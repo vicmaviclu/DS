@@ -35,7 +35,7 @@ public class ejercicio1 {
         Carrera carreraMontaña = factoriaMontaña.crearCarrera(bicicletasMontaña);
 
         // Iniciar Carreras a la vez (no se como ayuda)
-        Thread carrera1 = new Thread();
-        Thread carrera2 = new Thread();
+        Thread threadCarretera = new Thread();
+        Thread threadMontaña = new Thread();
     }
 }
