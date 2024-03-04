@@ -48,10 +48,6 @@ public class ejercicio1 {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
-        System.out.println(carreraCarretera.getBicicletas().size());
-        System.out.println(carreraMontaña.getBicicletas().size());
-
     }
 }
 
