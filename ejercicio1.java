@@ -34,8 +34,27 @@ public class ejercicio1 {
         // Crear Carrera Montaña
         Carrera carreraMontaña = factoriaMontaña.crearCarrera(bicicletasMontaña);
 
-        // Iniciar Carreras a la vez (no se como ayuda)
-        Thread threadCarretera = new Thread();
-        Thread threadMontaña = new Thread();
+        // Iniciar Carreras a la vez (no se como ayuda, tranquilo pookie, ya llegué)
+        Thread threadCarretera = new Thread(() -> {
+            // Lógica de la carrera de carretera
+            try {
+                carreraCarretera.empezarCarrera();
+            } catch (InterruptedException e) {
+                e.printStackTrace(); // O manejar la excepción de otra manera
+            }
+        });
+
+        Thread threadMontaña = new Thread(() -> {
+            // Lógica de la carrera de montaña
+            try {
+                carreraMontaña.empezarCarrera();
+            } catch (InterruptedException e) {
+                e.printStackTrace(); // O manejar la excepción de otra manera
+            }
+        });
+
+        // Iniciar los hilos
+        threadCarretera.start();
+        threadMontaña.start();
     }
 }
