@@ -17,4 +17,8 @@ public abstract class Carrera {
     }
 
     public abstract void empezarCarrera() throws InterruptedException;
+
+    public void eliminarBicicleta(int pos){
+        bicicletas.remove(pos);
+    }
 }
