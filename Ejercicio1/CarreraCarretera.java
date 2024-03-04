@@ -22,13 +22,6 @@ public class CarreraCarretera extends Carrera {
 
         System.out.println("La carrera ha comenzado!");
 
-        for (Bicicleta bicicleta : getBicicletas() ) {
-            System.out.println("Bicicleta " + bicicleta.getIdCarrera() + " en la carrera de " + this.getClass().getSimpleName());
-        }
-
-        // Lógica adicional de la carrera (puede incluir comprobaciones de finalización, etc.)
-        // ...
-
         System.out.println("La carrera ha terminado!");
     }
 }
