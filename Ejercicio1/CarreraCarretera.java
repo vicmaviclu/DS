@@ -12,7 +12,7 @@ public class CarreraCarretera extends Carrera {
     public void empezarCarrera() throws InterruptedException{
         // Dormir durante 60 segundos
         //Thread.sleep(60000);
-        // Eliminar el 10% de las bicis
+        // Eliminar el 10% de las bicicletas
         Random random = new Random();
         int nEliminadas = (int) (getBicicletas().size() * 0.10);
         for(int i = 0; i < nEliminadas; i++){
