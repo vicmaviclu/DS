@@ -10,7 +10,7 @@ public class CarreraMontaña  extends Carrera {
 
     @Override
     public void empezarCarrera() throws InterruptedException{
-        System.out.println("La carrera ha comenzado!");
+        System.out.println("La carrera de Montaña ha comenzado!");
         
         // Dormir durante 60 segundos        
         //Thread.sleep(60000);
@@ -19,10 +19,10 @@ public class CarreraMontaña  extends Carrera {
         Random random = new Random();
         int nEliminadas = (int) (getBicicletas().size() * 0.20);
         for(int i = 0; i < nEliminadas; i++){
-            int numeroAleatorio = random.nextInt(getBicicletas().size() + 1 - i); // Genera un numero aleatorio entre 0 y nEliminadas -i o sea todo el espacio del array; (0, nEliminadas)
+            int numeroAleatorio = random.nextInt(getBicicletas().size()); // Genera un numero aleatorio entre 0 y size; (0, size]
             eliminarBicicleta(numeroAleatorio);
         }
 
-        System.out.println("La carrera ha terminado!");
+        System.out.println("La carrera de Montaña ha terminado!");
     }
 }

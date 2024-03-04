@@ -1,15 +1,9 @@
+package Ejercicio1;
 import java.util.ArrayList;
-
-import Ejercicio1.Bicicleta;
-import Ejercicio1.Carrera;
-import Ejercicio1.FactoriaCarreraYBicicleta;
-import Ejercicio1.FactoriaCarretera;
-import Ejercicio1.FactoriaMontaña;
-import Ejercicio1.HiloCarrera;
 
 public class ejercicio1 {
     public static void main(String[] args) {
-        final int N = 10;
+        final int N = 5;
 
         //  Carretera //////////////////////////////////////////////////////////////////
         // Crear Factoria de Carretera
