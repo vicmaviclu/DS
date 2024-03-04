@@ -3,7 +3,7 @@ package Ejercicio1;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class CarreraMontaña  extends Carrera{
+public class CarreraMontaña  extends Carrera {
     public CarreraMontaña(ArrayList<Bicicleta> bicicletas) {
         super(bicicletas);
     }
@@ -13,7 +13,7 @@ public class CarreraMontaña  extends Carrera{
         System.out.println("La carrera ha comenzado!");
         
         // Dormir durante 60 segundos        
-        Thread.sleep(60000);
+        //Thread.sleep(60000);
         
         // Eliminar el 20% de las bicicletas
         Random random = new Random();
