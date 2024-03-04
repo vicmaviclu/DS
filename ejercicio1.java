@@ -40,7 +40,7 @@ public class ejercicio1 {
         HiloCarrera threadCarretera = new HiloCarrera(carreraCarretera);
         HiloCarrera threadMontaña = new HiloCarrera(carreraMontaña);
 
-        threadCarretera.setCarrera(carreraMontaña);
+        threadCarretera.setCarrera(carreraCarretera);
         threadMontaña.setCarrera(carreraMontaña);
         
         // Iniciar los hilos

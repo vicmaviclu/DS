@@ -19,7 +19,7 @@ public class CarreraCarretera extends Carrera {
         Random random = new Random();
         int nEliminadas = (int) (getBicicletas().size() * 0.10);
         for(int i = 0; i < nEliminadas; i++){
-            int numeroAleatorio = random.nextInt(nEliminadas + 1 - i); // Genera un numero aleatorio entre 0 y nEliminadas -i o sea todo el espacio del array; (0, nEliminadas)
+            int numeroAleatorio = random.nextInt(getBicicletas().size() + 1 - i); // Genera un numero aleatorio entre 0 y nEliminadas -i o sea todo el espacio del array; (0, nEliminadas)
             eliminarBicicleta(numeroAleatorio);
         }
 
