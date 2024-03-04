@@ -10,6 +10,7 @@ public class ejercicio1 {
     public static void main(String[] args) {
         final int N = 0;
 
+        //  Carretera //////////////////////////////////////////////////////////////////
         // Crear Factoria de Carretera
         FactoriaCarreraYBicicleta factoriaCarretera = new FactoriaCarretera();
         // Añadir las bicis Carretera
@@ -21,6 +22,7 @@ public class ejercicio1 {
         // Crear Carrera Carretera
         Carrera carreraCarretera = factoriaCarretera.crearCarrera(bicicletasCarretera);
 
+        //  Montaña ////////////////////////////////////////////////////////////////// 
         // Crear Factoria de Montaña
         FactoriaCarreraYBicicleta factoriaMontaña = new FactoriaMontaña();
         // Añadir las bicis Montaña
