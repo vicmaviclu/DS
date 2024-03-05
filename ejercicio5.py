@@ -1,86 +1,77 @@
 import requests
 from bs4 import BeautifulSoup
 from selenium import webdriver
-import json
 
-class ScraperStrategy:
-    def scrape(self, symbol):
+class ScrapeStrategy():
+    def scrape(self, url):
         pass
 
-class BeautifulSoupScraper(ScraperStrategy):
-    def scrape(self, symbol):
-        url = f"https://finance.yahoo.com/quote/{symbol}"
+
+class BeautifulSoupStrategy(ScrapeStrategy):
+    def scrape(self, url):
         response = requests.get(url)
-        soup = BeautifulSoup(response.text, 'html.parser')
-        
-        previous_close = soup.find("td", {"data-test": "PREV_CLOSE-value"}).text
-        open_price = soup.find("td", {"data-test": "OPEN-value"}).text
-        volume = soup.find("td", {"data-test": "TD_VOLUME-value"}).text
-        market_cap = soup.find("td", {"data-test": "MARKET_CAP-value"}).text
-        
-        return {
-            "Previous Close": previous_close,
-            "Open": open_price,
-            "Volume": volume,
-            "Market Cap": market_cap
-        }
+        if response.status_code == 200:
+            soup = BeautifulSoup(response.content, 'html.parser')
+            open_value_td = soup.find('td', {'data-test': 'OPEN-value'})
+            previous_close = soup.find("td", {"data-test": "PREV_CLOSE-value"})
+            volume = soup.find("td", {"data-test": "TD_VOLUME-value"})
+            market_cap = soup.find("td", {"data-test": "MARKET_CAP-value"})
+            if (open_value_td, previous_close, volume, market_cap):
+                return {
+                    'OPEN-value': open_value_td.text.strip(),
+                    'PREV_CLOSE-value': previous_close.text.strip(),
+                    'Volume': volume.text.strip(),
+                    'Market_cap': market_cap.text.strip()
+                }
+            else:
+                return 'Values not found'
+        else:
+            return f'Failed to retrieve the webpage, status code: {response.status_code}'
 
-class SeleniumScraper(ScraperStrategy):
-    def scrape(self, symbol):
-        url = f"https://finance.yahoo.com/quote/{symbol}"
-        driver = webdriver.Chrome()  # You might need to adjust this path according to your system
-        driver.get(url)
-        
-        previous_close = driver.find_element_by_xpath("//td[@data-test='PREV_CLOSE-value']").text
-        open_price = driver.find_element_by_xpath("//td[@data-test='OPEN-value']").text
-        volume = driver.find_element_by_xpath("//td[@data-test='TD_VOLUME-value']").text
-        market_cap = driver.find_element_by_xpath("//td[@data-test='MARKET_CAP-value']").text
-        
-        driver.quit()
-        
-        return {
-            "Previous Close": previous_close,
-            "Open": open_price,
-            "Volume": volume,
-            "Market Cap": market_cap
-        }
 
-class Scraper:
+
+class SeleniumStrategy(ScrapeStrategy):
+    def scrape(self, url):
+        pass
+
+
+class Context:
     def __init__(self, strategy):
-        self.strategy = strategy
-    
-    def scrape(self, symbol):
-        return self.strategy.scrape(symbol)
+        self._strategy = strategy
 
-def main():
-    symbol = "TSLA"  # Example symbol, you can change it to any other symbol
-    
-    # Choose the scraper strategy (BeautifulSoup or Selenium)
-    scraper = Scraper(BeautifulSoupScraper())
-    # scraper = Scraper(SeleniumScraper())
-    
-    data = scraper.scrape(symbol)
-    
-    # Write data to JSON file
-    with open("stock_data.json", "w") as file:
-        json.dump(data, file, indent=4)
-    
-    print("Data scraped and saved successfully.")
+    def set_strategy(self, strategy):
+        self._strategy = strategy
 
-if __name__ == "__main__":
-    main()
+    def scrape(self, url):
+        return self._strategy.scrape(url)
 
 
+url = 'https://finance.yahoo.com/quote/TSLA'
+context = Context(BeautifulSoupStrategy())
+results = context.scrape(url)
 
-def display_data():
-# Read data from JSON file
-    with open("stock_data.json", "r") as file:
-        data = json.load(file)
-    
-    # Display the data
-    print("Stock Data:")
-    for key, value in data.items():
-        print(f"{key}: {value}")
+for key,value in results.items():
+    print(f'{key}: {value}')
 
-# Luego de guardar los datos en el archivo JSON, llama a esta función para mostrarlos
-display_data()
+
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+
+
+driver = webdriver.Chrome()
+driver.get('https://finance.yahoo.com/quote/TSLA')
+
+
+boton_cookies_aceptar = driver.find_element(By.XPATH, "//button[@class='btn secondary accept-all ']") # /html/body/div/div/div/div/form/div[2]/div[2]/button[1]
+boton_cookies_aceptar.click()
+#tabla = driver.find_element(By.XPATH, "//div[@class='Bxz(bb) D(ib) Va(t) Mih(250px)!--lgv2 W(100%) Mt(-6px) Mt(0px)--mobp Mt(0px)--mobl W(50%)!--lgv2 Mend(20px)!--lgv2 Pend(10px)!--lgv2']")
+driver.close()
+# Resto del código sigue igual
+"""
+url = 'https://finance.yahoo.com/quote/TSLA'
+context = Context(SeleniumStrategy())
+results = context.scrape(url)
+
+for key, value in results.items():
+    print(f'{key}: {value}')
+"""
