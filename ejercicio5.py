@@ -61,11 +61,26 @@ from selenium.webdriver.common.by import By
 driver = webdriver.Chrome()
 driver.get('https://finance.yahoo.com/quote/TSLA')
 
-
+driver.implicitly_wait(10)
 boton_cookies_aceptar = driver.find_element(By.XPATH, "//button[@class='btn secondary accept-all ']") # /html/body/div/div/div/div/form/div[2]/div[2]/button[1]
 boton_cookies_aceptar.click()
-#tabla = driver.find_element(By.XPATH, "//div[@class='Bxz(bb) D(ib) Va(t) Mih(250px)!--lgv2 W(100%) Mt(-6px) Mt(0px)--mobp Mt(0px)--mobl W(50%)!--lgv2 Mend(20px)!--lgv2 Pend(10px)!--lgv2']")
+driver.implicitly_wait(10)
+div = driver.find_element(By.XPATH, "//div[@id='quote-summary']")
+tablas = div.find_element(By.XPATH, "//tr[@class='Bxz(bb) Bdbw(1px) Bdbs(s) Bdc($seperatorColor) H(36px) ']")
+
+open_value_td = div.find_element(By.XPATH, ".//td[@data-test='OPEN-value']")
+volume = div.find_element(By.XPATH, ".//td[@data-test='TD_VOLUME-value']")
+market_cap = div.find_element(By.XPATH, ".//td[@data-test='MARKET_CAP-value']")
+previous_close = div.find_element(By.XPATH, ".//td[@data-test='PREV_CLOSE-value']")
+print(open_value_td.text)
+print(previous_close.text)
+print(volume.text)
+print(market_cap.text)
+
+
+
 driver.close()
+
 # Resto del código sigue igual
 """
 url = 'https://finance.yahoo.com/quote/TSLA'
