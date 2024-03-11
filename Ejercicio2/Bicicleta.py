@@ -6,8 +6,8 @@ class Bicicleta(ABC):
     def __init__(self, id):
         self.id = id
 
-    def getIdCarrera():
+    def getIdCarrera(self):  # Added "self" parameter
         return self.id
 
-    def setIdcarrera(id):
+    def setIdcarrera(self,id):  # Added "self" parameter
         self.id = id
