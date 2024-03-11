@@ -29,8 +29,7 @@ class BeautifulSoupStrategy(ScrapeStrategy):
         else:
             return f'Failed to retrieve the webpage, status code: {response.status_code}'
 
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
+
 class SeleniumStrategy(ScrapeStrategy):
     def scrape(self, url):
         driver = webdriver.Chrome()
