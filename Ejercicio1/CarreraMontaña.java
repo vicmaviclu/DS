@@ -10,7 +10,7 @@ public class CarreraMontaña  extends Carrera {
 
     @Override
     public void empezarCarrera() throws InterruptedException{
-        System.out.println("La carrera de Montaña ha comenzado!");
+        System.out.println("La carrera de Montaña ha comenzado con el siguiente número de bicicletas: " + getBicicletas().size());
         
         // Dormir durante 60 segundos        
         //Thread.sleep(60000);
@@ -23,6 +23,6 @@ public class CarreraMontaña  extends Carrera {
             eliminarBicicleta(numeroAleatorio);
         }
 
-        System.out.println("La carrera de Montaña ha terminado!");
+        System.out.println("La carrera de Montaña ha terminado con el siguiente número de bicicletas: " + getBicicletas().size());
     }
 }

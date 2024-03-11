@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 public class ejercicio1 {
     public static void main(String[] args) {
-        final int N = 5;
+        final int N = 10;
 
         //  Carretera //////////////////////////////////////////////////////////////////
         // Crear Factoria de Carretera
