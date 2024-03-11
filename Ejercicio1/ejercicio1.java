@@ -1,9 +1,19 @@
 package Ejercicio1;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class ejercicio1 {
     public static void main(String[] args) {
-        final int N = 10;
+        // Pedir el número de bicicletas por terminal y comprobar si es un entero
+        Scanner scanner = new Scanner(System.in);
+        int N = 0;
+        System.out.println("Por favor, introduzca un número entero de las bicicletas que participan en las carreras:");
+        while (!scanner.hasNextInt()) { // Devuelve true si el valor introducido es un entero
+            System.out.println("Eso no es un número entero. Por favor, introduzca un número entero:");
+            scanner.next(); // Elimina la entrada incorrecta
+        }
+        N = scanner.nextInt();
+        scanner.close();
 
         //  Carretera //////////////////////////////////////////////////////////////////
         // Crear Factoria de Carretera
