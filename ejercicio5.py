@@ -31,20 +31,33 @@ class BeautifulSoupStrategy(ScrapeStrategy):
 
 
 class SeleniumStrategy(ScrapeStrategy):
+    # Variables de clase
+    XPATH_BOTON_COOKIES_ACEPTAR = "/html/body/div/div/div/div/form/div[2]/div[2]/button[1]"
+    XPATH_OPEN_VALUE = ".//td[@data-test='OPEN-value']"
+    XPATH_VOLUME = ".//td[@data-test='TD_VOLUME-value']"
+    XPATH_MARKET_CAP = ".//td[@data-test='MARKET_CAP-value']"
+    XPATH_PREV_CLOSE = ".//td[@data-test='PREV_CLOSE-value']"
+
+    def __init__(self):
+        self.driver = webdriver.Chrome()
+        self.driver.implicitly_wait(30)
+
     def scrape(self, url):
-        driver = webdriver.Chrome()
-        driver.get(url)
-        driver.implicitly_wait(30)
+        self.driver.get(url)
+        self.accept_cookies()
+        return self.get_values()
 
-        boton_cookies_aceptar = driver.find_element(By.XPATH, "/html/body/div/div/div/div/form/div[2]/div[2]/button[1]") # /html/body/div/div/div/div/form/div[2]/div[2]/button[1]
-        boton_cookies_aceptar.click()     
-   
-        # div = driver.find_element(By.XPATH, "//div[@id='quote-summary']")        
+    # Acepta las cookies
+    def accept_cookies(self):
+        boton_cookies_aceptar = self.driver.find_element(By.XPATH, self.XPATH_BOTON_COOKIES_ACEPTAR)
+        boton_cookies_aceptar.click()
 
-        open_value_td = driver.find_element(By.XPATH, ".//td[@data-test='OPEN-value']")
-        volume = driver.find_element(By.XPATH, ".//td[@data-test='TD_VOLUME-value']")
-        market_cap = driver.find_element(By.XPATH, ".//td[@data-test='MARKET_CAP-value']")
-        previous_close = driver.find_element(By.XPATH, ".//td[@data-test='PREV_CLOSE-value']")
+    # Encuentra los valores de la página
+    def get_values(self):
+        open_value_td = self.driver.find_element(By.XPATH, self.XPATH_OPEN_VALUE)
+        volume = self.driver.find_element(By.XPATH, self.XPATH_VOLUME)
+        market_cap = self.driver.find_element(By.XPATH, self.XPATH_MARKET_CAP)
+        previous_close = self.driver.find_element(By.XPATH, self.XPATH_PREV_CLOSE)
         if (open_value_td, previous_close, volume, market_cap):
             return {
                 'OPEN-value': open_value_td.text.strip(),
