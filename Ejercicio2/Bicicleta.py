@@ -11,3 +11,8 @@ class Bicicleta(ABC):
 
     def setIdcarrera(self,id):  # Added "self" parameter
         self.id = id
+
+    def __copy__(self):
+        clone =  Bicicleta(self.id + 1)
+        return clone
+    
