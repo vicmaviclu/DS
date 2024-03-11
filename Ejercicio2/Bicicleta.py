@@ -3,6 +3,11 @@ from abc import ABC, abstractmethod
 class Bicicleta(ABC):
 
     @abstractmethod
-    def Bicicleta():pass
-    def getIdCarrera():pass
-    def setIdcarrera():pass
+    def __init__(self, id):
+        self.id = id
+
+    def getIdCarrera():
+        return self.id
+
+    def setIdcarrera(id):
+        self.id = id
