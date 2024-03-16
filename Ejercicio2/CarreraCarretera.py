@@ -1,26 +1,23 @@
-import Carrera
+from .Bicicleta import Bicicleta
+from .Carrera import Carrera
 import random
 import time
+from typing import List
 
 class CarreraCarretera(Carrera):
-    def __init__(bicicletas):
-        super().__init__(bicicletas)
-    
-   
-class CarreraCarretera(Carrera):
-    def __init__(self, bicicletas):
+    def __init__(self, bicicletas: List[Bicicleta]):
         super().__init__(bicicletas)
 
-    def empezarCarrera(self):
-        print(f"La carrera de Carretera ha comenzado con el siguiente número de bicicletas: {len(self.bicicletas)}")
+    def empezar_carrera(self):
+        print(f"La carrera de Montaña ha comenzado con el siguiente número de bicicletas: {len(self.bicicletas)}")
 
-        # Sleep for 60 seconds
-        # time.sleep(60)
+        # Dormir durante 60 segundos
+        time.sleep(60)
 
-        # Remove 10% of the bicycles
-        nEliminadas = int(len(self.bicicletas) * 0.10)
-        for _ in range(nEliminadas):
-            numeroAleatorio = random.randint(0, len(self.bicicletas) - 1)  # Generates a random number between 0 and size; (0, size]
-            self.eliminarBicicleta(numeroAleatorio)
+        # Eliminar el 20% de las bicicletas
+        n_eliminadas = int(len(self.bicicletas) * 0.10)
+        for _ in range(n_eliminadas):
+            numero_aleatorio = random.randint(0, len(self.bicicletas) - 1)
+            self.eliminar_bicicleta(numero_aleatorio)
 
-        print(f"La carrera de Carretera ha terminado con el siguiente número de bicicletas: {len(self.bicicletas)}")
+        print(f"La carrera de Montaña ha terminado con el siguiente número de bicicletas: {len(self.bicicletas)}")
