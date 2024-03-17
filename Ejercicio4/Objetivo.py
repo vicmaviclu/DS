@@ -1,16 +1,63 @@
-from EstadoMotor import EstadoMotor 
+import tkinter as tk
 
-class Objetivo:
-    def __init__(self):
-        pass
+class Velocimetro(tk.Frame):
+    def __init__(self, master):
+        super().__init__(master, bg="white", padx=10, pady=10)
+        self.label_velocimetro = tk.Label(self, text="Velocímetro", font=("Arial", 12, "bold"), bg="white")
+        self.label_velocimetro.pack()
+        self.valor_km_h = 222.42
+        self.label_km_h = tk.Label(self, text="{} km/h".format(self.valor_km_h), font=("Arial", 10), bg="white")
+        self.label_km_h.pack()
 
-    def ejecutar(self, revoluciones, estado_motor):
-        # Modificar parámetros de movimiento del vehículo en el salpicadero
-        # Utilizar las revoluciones recalculadas teniendo en cuenta el estado del vehículo y el rozamiento
-        # Aquí deberías implementar la lógica para modificar la velocidad angular, la velocidad lineal y la distancia recorrida
-        velocidad_angular = revoluciones  # Aquí se asume que la velocidad angular es igual a las revoluciones
-        velocidad_lineal = revoluciones * 2 * 3.1416 * 0.15 * (60/1000)  # Calcular la velocidad lineal a partir de las revoluciones (fórmula proporcionada)
-        distancia_recorrida = velocidad_lineal / 60  # Calcular la distancia recorrida (suponiendo que la velocidad lineal está en km/h y la distancia en km)
+class CuentaKilometros(tk.Frame):
+    def __init__(self, master):
+        super().__init__(master, bg="white", padx=10, pady=10)
+        self.label_cuentakilometros = tk.Label(self, text="Cuentakilómetros", font=("Arial", 12, "bold"), bg="white")
+        self.label_cuentakilometros.pack()
+        self.valor_reciente = 1.06
+        self.label_reciente = tk.Label(self, text="Reciente: {} km".format(self.valor_reciente), font=("Arial", 10), bg="white")
+        self.label_reciente.pack()
+        self.valor_total = 1.32
+        self.label_total = tk.Label(self, text="Total: {} km".format(self.valor_total), font=("Arial", 10), bg="white")
+        self.label_total.pack()
 
-        # Devolver los parámetros modificados
-        return velocidad_angular, velocidad_lineal, distancia_recorrida
+class CuentaRevoluciones(tk.Frame):
+    def __init__(self, master):
+        super().__init__(master, bg="white", padx=10, pady=10)
+        self.label_cuentarrevoluciones = tk.Label(self, text="Cuentarrevoluciones", font=("Arial", 12, "bold"), bg="white")
+        self.label_cuentarrevoluciones.pack()
+        self.valor_rpm = 59.00
+        self.label_rpm = tk.Label(self, text="{} RPM".format(self.valor_rpm), font=("Arial", 10), bg="white")
+        self.label_rpm.pack()
+
+class SalpicaderoApp(tk.Frame):
+    def __init__(self, master):
+        super().__init__(master, bg="lightgrey", padx=20, pady=20)
+        self.master = master
+        master.title("Salpicadero")
+
+        # Crear marco principal para el salpicadero
+        self.marco_salpicadero = tk.Frame(master, bg="lightgrey", padx=20, pady=20)
+        self.marco_salpicadero.pack()
+
+        # Crear etiqueta para el título del salpicadero
+        self.etiqueta_salpicadero = tk.Label(self.marco_salpicadero, text="Salpicadero", font=("Arial", 16, "bold"), bg="lightgrey")
+        self.etiqueta_salpicadero.pack()
+
+        # Crear instancias de los componentes del salpicadero
+        self.velocimetro = Velocimetro(self.marco_salpicadero)
+        self.velocimetro.pack(pady=10)
+
+        self.cuenta_kilometros = CuentaKilometros(self.marco_salpicadero)
+        self.cuenta_kilometros.pack(pady=10)
+
+        self.cuenta_revoluciones = CuentaRevoluciones(self.marco_salpicadero)
+        self.cuenta_revoluciones.pack(pady=10)
+
+# Crear la ventana principal y el salpicadero
+root = tk.Tk()
+app = SalpicaderoApp(root)
+app.pack()
+
+# Ejecutar la aplicación
+root.mainloop()
