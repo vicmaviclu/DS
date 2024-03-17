@@ -1,4 +1,5 @@
 import requests
+import json
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -81,20 +82,24 @@ class Context:
 
 # Estrategia scraping con BeautifulSoup
     
+strategy = input("Por favor, elige una estrategia de scraping (ingresa 'B' para BeautifulSoup o 'S' para Selenium): ")
+
+if strategy.lower() == 'b':
+    context = Context(BeautifulSoupStrategy())
+elif strategy.lower() == 's':
+    context = Context(SeleniumStrategy())
+else:
+    print("Estrategia no reconocida. Por favor, elige 'BeautifulSoup' o 'Selenium'.")
+    exit(1)
+
 url = 'https://finance.yahoo.com/quote/TSLA'
-context = Context(BeautifulSoupStrategy())
 results = context.scrape(url)
 
-print("Resultados con BeautifulSoup: ")
-for key,value in results.items():
-    print(f'{key}: {value}')
+with open('results.json', 'w') as f:
+    json.dump(results, f)
 
+print("Los resultados se han guardado en un archivo llamado 'results.json'")
 
-# Estrategia scraping con Selenium
-
-context = Context(SeleniumStrategy())
-results = context.scrape(url)
-
-print("Resultados con Selenium: ")
-for key, value in results.items():
-    print(f'{key}: {value}')
+# print("Resultados con Selenium: ")
+# for key, value in results.items():
+#   print(f'{key}: {value}')
