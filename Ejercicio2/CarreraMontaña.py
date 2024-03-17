@@ -12,7 +12,7 @@ class CarreraMontaña(Carrera):
         print(f"La carrera de Montaña ha comenzado con el siguiente número de bicicletas: {len(self.bicicletas)}")
 
         # Dormir durante 60 segundos
-        #time.sleep(60)
+        time.sleep(60)
 
         # Eliminar el 20% de las bicicletas
         n_eliminadas = int(len(self.bicicletas) * 0.20)

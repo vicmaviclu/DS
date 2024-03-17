@@ -13,7 +13,7 @@ public class CarreraMontaña  extends Carrera {
         System.out.println("La carrera de Montaña ha comenzado con el siguiente número de bicicletas: " + getBicicletas().size());
         
         // Dormir durante 60 segundos        
-        //Thread.sleep(60000);
+        Thread.sleep(60000);
         
         // Eliminar el 20% de las bicicletas
         Random random = new Random();
