@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from .Bicicleta import Bicicleta
+from Bicicleta import Bicicleta
 from typing import List
 
 class Carrera(ABC):

@@ -1,12 +1,11 @@
-import Bicicleta
+from Bicicleta import Bicicleta
 
 class BicicletaCarretera(Bicicleta):
-    def __init__(self, id):
-        super().init(id)
-        self.id += 1
+    id_carrera = 0
 
-    def toString(self):
-        print("Bicicleta de carretera con id: " + self.id + " ha terminado la carrera.")
-              
+    def __init__(self):
+        super().__init__()
 
+    def __str__(self):
+        return f"Bicicleta de carretera con identificador de carrera {self.get_id_carrera()}"
     

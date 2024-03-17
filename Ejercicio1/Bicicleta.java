@@ -16,6 +16,5 @@ public abstract class Bicicleta {
         this.idCarrera = idCarrera;
     }
 
-    // public abstract ArrayList<Bicicleta> crearBicicletas(int N);
     public abstract String toString();
 }

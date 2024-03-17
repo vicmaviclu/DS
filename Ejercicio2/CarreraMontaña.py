@@ -1,8 +1,8 @@
 import random
 from typing import List
 import time
-from .Bicicleta import Bicicleta
-from .Carrera import Carrera
+from Bicicleta import Bicicleta
+from Carrera import Carrera
 
 class CarreraMontaña(Carrera):
     def __init__(self, bicicletas: List[Bicicleta]):
@@ -12,7 +12,7 @@ class CarreraMontaña(Carrera):
         print(f"La carrera de Montaña ha comenzado con el siguiente número de bicicletas: {len(self.bicicletas)}")
 
         # Dormir durante 60 segundos
-        time.sleep(60)
+        #time.sleep(60)
 
         # Eliminar el 20% de las bicicletas
         n_eliminadas = int(len(self.bicicletas) * 0.20)
@@ -21,3 +21,5 @@ class CarreraMontaña(Carrera):
             self.eliminar_bicicleta(numero_aleatorio)
 
         print(f"La carrera de Montaña ha terminado con el siguiente número de bicicletas: {len(self.bicicletas)}")
+        for bici in self.bicicletas:
+            print(f"ID de la bicicleta: {bici.id_carrera}")
