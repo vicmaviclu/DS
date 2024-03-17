@@ -1,6 +1,7 @@
-from EstadoMotor import EstadoMotor  # Importar el enum desde el archivo EstadoMotor.py
+from EstadoMotor import EstadoMotor  # Importar el enum desde el archivo EstadoMotor.pyç
+from Filtro import Filtro  # Importar la clase abstracta Filtro desde el archivo Filtro.py
 
-class FiltroCalcularVelocidad:
+class FiltroCalcularVelocidad(Filtro):
     def __init__(self):
         self.incremento_velocidad = 0
 
