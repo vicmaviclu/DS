@@ -41,6 +41,7 @@ class PanelControl(tk.Tk):
 
     def acelerar(self):
         if self.boton_acelerar.cget("text") == "Acelerar":
+            
             self.etiqueta_estado.config(text="ACELERANDO")
             self.boton_acelerar.config(text="Soltar Acelerador", state=tk.DISABLED, bg="red")
             self.boton_frenar.config(text="Frenar", state=tk.NORMAL, bg="SystemButtonFace")
