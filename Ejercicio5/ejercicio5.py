@@ -95,7 +95,7 @@ else:
 url = 'https://finance.yahoo.com/quote/TSLA'
 results = context.scrape(url)
 
-with open('results.json', 'w') as f:
+with open('Ejercicio5/results.json', 'w') as f:
     json.dump(results, f)
 
 print("Los resultados se han guardado en un archivo llamado 'results.json'")
