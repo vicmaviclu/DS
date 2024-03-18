@@ -6,12 +6,12 @@
 *.log
 *.pyc
 *.swp
-.DS_Store
-.atom/
-.buildlog/
-.history
-.svn/
-migrate_working_dir/
+P2/ejercicio_grupal/.DS_Store
+P2/ejercicio_grupal/.atom/
+P2/ejercicio_grupal/.buildlog/
+P2/ejercicio_grupal/.history
+P2/ejercicio_grupal/.svn/
+P2/ejercicio_grupal/migrate_working_dir/
 
 # IntelliJ related
 *.iml
