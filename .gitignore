@@ -1,17 +1,17 @@
-*.json
+**/.json
 **/__pycache__/
 
 # Miscellaneous
-*.class
-*.log
-*.pyc
-*.swp
-P2/ejercicio_grupal/.DS_Store
-P2/ejercicio_grupal/.atom/
-P2/ejercicio_grupal/.buildlog/
-P2/ejercicio_grupal/.history
-P2/ejercicio_grupal/.svn/
-P2/ejercicio_grupal/migrate_working_dir/
+**/.class
+**/.log
+**/.pyc
+**/.swp
+**/.DS_Store
+**/.atom/
+**/.buildlog/
+**/.history
+**/.svn/
+migrate_working_dir/
 
 # IntelliJ related
 *.iml
