@@ -1,5 +1,5 @@
 from CadenaFiltros import CadenaFiltros
-
+import time
 class GestorFiltros:
     def __init__(self, objetivo):
         self.cadena_filtros = CadenaFiltros(objetivo)

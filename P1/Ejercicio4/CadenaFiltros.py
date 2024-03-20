@@ -6,16 +6,16 @@ class CadenaFiltros:
         self.filtros = []
         self.objetivo = objetivo
         self.revoluciones=0
+        self.estado_motor = EstadoMotor.APAGADO
 
     def agregar_filtro(self, filtro):
         self.filtros.append(filtro)
 
     def ejecutar_filtros(self, estado_motor):
-        
-        while( estado_motor != EstadoMotor.APAGADO and estado_motor != EstadoMotor.ENCENDIDO):
+        self.estado_motor = estado_motor
+        while self.estado_motor == EstadoMotor.ACELERANDO or self.estado_motor == EstadoMotor.FRENANDO:
             for filtro in self.filtros:
                 self.revoluciones = filtro.ejecutar(self.revoluciones, estado_motor)
-            
-            self.objetivo.ejecutar(self.revoluciones)
-            time.sleep(2)
         
+            self.objetivo.ejecutar(self.revoluciones, estado_motor)
+            time.sleep(2)        

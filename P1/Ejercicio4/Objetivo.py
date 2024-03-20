@@ -1,4 +1,5 @@
 import tkinter as tk
+from EstadoMotor import EstadoMotor
 
 class Velocimetro(tk.Frame):
     def __init__(self, master, revoluciones):
@@ -34,37 +35,49 @@ class CuentaRevoluciones(tk.Frame):
 class Objetivo:
     def __init__(self):
         self.root = None
+        self.revoluciones = 0
+        self.EstadoMotor = EstadoMotor.APAGADO
+   
+        self.root = tk.Tk()
+        self.root.title("Salpicadero")
 
-    def ejecutar(self, revoluciones):
+        # Crear marco principal para el salpicadero
+        self.marco_salpicadero = tk.Frame(self.root, bg="lightgrey", padx=20, pady=20)
+        self.marco_salpicadero.pack()
+
+        # Crear etiqueta para el título del salpicadero
+        self.etiqueta_salpicadero = tk.Label(self.marco_salpicadero, text="Salpicadero", font=("Arial", 16, "bold"), bg="lightgrey")
+        self.etiqueta_salpicadero.pack()
+
+        # Crear instancias de los componentes del salpicadero
+        self.velocimetro = Velocimetro(self.marco_salpicadero, self.revoluciones)
+        self.velocimetro.pack(pady=10)
+
+        self.cuenta_kilometros = CuentaKilometros(self.marco_salpicadero)
+        self.cuenta_kilometros.pack(pady=10)
+
+        self.cuenta_revoluciones = CuentaRevoluciones(self.marco_salpicadero, self.revoluciones)
+        self.cuenta_revoluciones.pack(pady=10)
+
+
+    def ejecutar(self, revoluciones, estadomotor):
         self.revoluciones = revoluciones
+        self.EstadoMotor = estadomotor
 
         if self.root is None:
-            self.root = tk.Tk()
-            self.root.title("Salpicadero")
+            self.root.mainloop()
+        self.actualizar_datos()
 
-            # Crear marco principal para el salpicadero
-            self.marco_salpicadero = tk.Frame(self.root, bg="lightgrey", padx=20, pady=20)
-            self.marco_salpicadero.pack()
 
-            # Crear etiqueta para el título del salpicadero
-            self.etiqueta_salpicadero = tk.Label(self.marco_salpicadero, text="Salpicadero", font=("Arial", 16, "bold"), bg="lightgrey")
-            self.etiqueta_salpicadero.pack()
+    def actualizar_datos(self):
+        if self.EstadoMotor == EstadoMotor.ACELERANDO or self.EstadoMotor == EstadoMotor.FRENANDO:
+            # Aquí es donde actualizas las revoluciones y otros datos del salpicadero
 
-            # Crear instancias de los componentes del salpicadero
-            self.velocimetro = Velocimetro(self.marco_salpicadero, self.revoluciones)
-            self.velocimetro.pack(pady=10)
-
-            self.cuenta_kilometros = CuentaKilometros(self.marco_salpicadero)
-            self.cuenta_kilometros.pack(pady=10)
-
-            self.cuenta_revoluciones = CuentaRevoluciones(self.marco_salpicadero, self.revoluciones)
-            self.cuenta_revoluciones.pack(pady=10)
-
-        else:
             # Actualizar los valores de los componentes del salpicadero
-            self.velocimetro.label_km_h.config(text="{} km/h".format(2 * 3.141592 * 0.15 * self.revoluciones * (60 / 1000)))
+            self.velocimetro.label_km_h.config(text="{} km/h".format(int(2 * 3.141592 * 0.15 * self.revoluciones * (60 / 1000))))
             self.cuenta_revoluciones.label_rpm.config(text="{} RPM".format(self.revoluciones))
 
-        self.root.mainloop()
+            print("Actualizando datos del salpicadero...")
+            self.root.update()
 
-
+        
