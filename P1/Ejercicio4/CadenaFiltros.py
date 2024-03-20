@@ -1,11 +1,21 @@
-from CadenaFiltros import CadenaFiltros
+from EstadoMotor import EstadoMotor
+import time
 
-class GestorFiltros:
-    def __init__(self):
-        self.cadena_filtros = CadenaFiltros()
+class CadenaFiltros:
+    def __init__(self, objetivo):
+        self.filtros = []
+        self.objetivo = objetivo
+        self.revoluciones=0
 
     def agregar_filtro(self, filtro):
-        self.cadena_filtros.agregar_filtro(filtro)
+        self.filtros.append(filtro)
 
-    def ejecutar_peticion_filtros(self, revoluciones, estado_motor):
-        return self.cadena_filtros.ejecutar_filtros(revoluciones, estado_motor)
+    def ejecutar_filtros(self, estado_motor):
+        
+        while( estado_motor != EstadoMotor.APAGADO and estado_motor != EstadoMotor.ENCENDIDO):
+            for filtro in self.filtros:
+                self.revoluciones = filtro.ejecutar(self.revoluciones, estado_motor)
+            
+            self.objetivo.ejecutar(self.revoluciones)
+            time.sleep(2)
+        

@@ -6,6 +6,7 @@ class FiltroCalcularVelocidad(Filtro):
         self.incremento_velocidad = 0
 
     def ejecutar(self, revoluciones, estado_motor):
+        print("Estado motor filtro: ", estado_motor)
         if estado_motor == EstadoMotor.APAGADO or estado_motor == EstadoMotor.ENCENDIDO:
             self.incremento_velocidad = 0
         elif estado_motor == EstadoMotor.FRENANDO:
