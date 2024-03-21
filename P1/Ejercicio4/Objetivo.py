@@ -28,7 +28,7 @@ class CuentaKilometros(tk.Frame):
         self.label_cuentakilometros.pack()
 
         # Carga los valores desde el archivo
-        if os.path.exists('datos.json'):
+        if os.path.exists('P1/Ejercicio4/datos.json'):
             with open('datos.json', 'r') as f:
                 datos = json.load(f)
                 self.valor_total = datos['valor_total']
@@ -52,7 +52,7 @@ class CuentaKilometros(tk.Frame):
         self.label_total.config(text="Total: {} km".format(self.valor_total))
 
         # Guarda los valores en el archivo para uso futuro
-        with open('datos.json', 'w') as f:
+        with open('P1/Ejercicio4/datos.json', 'w') as f:
             json.dump({'valor_total': self.valor_total}, f)  
 
 class CuentaRevoluciones(tk.Frame):
