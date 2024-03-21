@@ -9,19 +9,19 @@ class CadenaFiltros:
         self.estado_motor = EstadoMotor.APAGADO
 
     def agregar_filtro(self, filtro):
+        # Agrega un nuevo filtro a la lista de filtros
         self.filtros.append(filtro)
 
     def ejecutar_filtros(self, estado_motor):
+        # Ejecuta los filtros mientras el estado del motor sea ACELERANDO o FRENANDO
         self.estado_motor = estado_motor
-
-        while self.estado_motor == EstadoMotor.ACELERANDO or self.estado_motor == EstadoMotor.FRENANDO:
+        while self.estado_motor in (EstadoMotor.ACELERANDO, EstadoMotor.FRENANDO):
             self.ejecutar_operaciones(estado_motor)
-            time.sleep(2)  
-
-        if self.estado_motor == EstadoMotor.APAGADO:
-            self.ejecutar_operaciones(estado_motor)
+            time.sleep(2)
+        self.ejecutar_operaciones(estado_motor)
 
     def ejecutar_operaciones(self, estado_motor):
+        # Ejecuta las operaciones dependiendo del estado del motor
         if self.estado_motor == EstadoMotor.APAGADO:
             self.revoluciones = 0
         else:

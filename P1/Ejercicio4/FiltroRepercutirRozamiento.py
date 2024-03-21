@@ -1,5 +1,4 @@
-from EstadoMotor import EstadoMotor 
-from Filtro import Filtro  # Importar la clase abstracta Filtro desde el archivo Filtro.py
+from Filtro import Filtro 
 
 class FiltroRepercutirRozamiento(Filtro):
     def __init__(self):

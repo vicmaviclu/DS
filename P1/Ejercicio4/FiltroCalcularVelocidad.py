@@ -3,20 +3,23 @@ from Filtro import Filtro  # Importar la clase abstracta Filtro desde el archivo
 
 class FiltroCalcularVelocidad(Filtro):
     MAX_RPM = 5000  # Máximo de 5000 RPM
+    
+    # Diccionario con los incrementos de velocidad según el estado del motor
+    INCREMENTOS_VELOCIDAD = {
+        EstadoMotor.APAGADO: 0,
+        EstadoMotor.ENCENDIDO: 0,
+        EstadoMotor.FRENANDO: -100,
+        EstadoMotor.ACELERANDO: 100,
+    }
+
     def __init__(self):
         self.incremento_velocidad = 0
 
     def ejecutar(self, revoluciones, estado_motor):
-        print("Estado motor filtro: ", estado_motor)
-        if estado_motor == EstadoMotor.APAGADO or estado_motor == EstadoMotor.ENCENDIDO:
-            self.incremento_velocidad = 0
-        elif estado_motor == EstadoMotor.FRENANDO:
-            self.incremento_velocidad = -100
-        elif estado_motor == EstadoMotor.ACELERANDO:
-            self.incremento_velocidad = 100
+        print(f"Estado motor filtro: {estado_motor}")
+        self.incremento_velocidad = self.INCREMENTOS_VELOCIDAD[estado_motor]
 
         # Aplicar el incremento de velocidad y verificar el límite máximo
-        revoluciones += self.incremento_velocidad
-        revoluciones = min(revoluciones, FiltroCalcularVelocidad.MAX_RPM) 
+        revoluciones = min(revoluciones + self.incremento_velocidad, self.MAX_RPM)
 
         return revoluciones
