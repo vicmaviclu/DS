@@ -29,7 +29,7 @@ class CuentaKilometros(tk.Frame):
 
         # Carga los valores desde el archivo
         if os.path.exists('P1/Ejercicio4/datos.json'):
-            with open('datos.json', 'r') as f:
+            with open('P1/Ejercicio4/datos.json', 'r') as f:
                 datos = json.load(f)
                 self.valor_total = datos['valor_total']
         else:
