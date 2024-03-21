@@ -22,14 +22,18 @@ class Velocimetro(tk.Frame):
 
 
 class CuentaKilometros(tk.Frame):
+    # Obtiene el directorio actual
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    # Define la ruta del archivo de datos
+    file_path = os.path.join(current_dir, 'datos.json')
     def __init__(self, master):
         super().__init__(master, bg="white", padx=10, pady=10)
         self.label_cuentakilometros = tk.Label(self, text="Cuentakilómetros", font=("Arial", 12, "bold"), bg="white")
         self.label_cuentakilometros.pack()
 
         # Carga los valores desde el archivo
-        if os.path.exists('P1/Ejercicio4/datos.json'):
-            with open('P1/Ejercicio4/datos.json', 'r') as f:
+        if os.path.exists(self.file_path):
+            with open(self.file_path, 'r') as f:
                 datos = json.load(f)
                 self.valor_total = datos['valor_total']
         else:
@@ -52,7 +56,11 @@ class CuentaKilometros(tk.Frame):
         self.label_total.config(text="Total: {} km".format(self.valor_total))
 
         # Guarda los valores en el archivo para uso futuro
+<<<<<<< HEAD
         with open('P1\Ejercicio4\datos.json', 'w') as f:
+=======
+        with open(self.file_path, 'w') as f:
+>>>>>>> 5d5de83e79459be1a505513ffbbfcd73df95c060
             json.dump({'valor_total': self.valor_total}, f)  
 
 class CuentaRevoluciones(tk.Frame):
