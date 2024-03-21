@@ -52,7 +52,7 @@ class CuentaKilometros(tk.Frame):
         self.label_total.config(text="Total: {} km".format(self.valor_total))
 
         # Guarda los valores en el archivo para uso futuro
-        with open('P1/Ejercicio4/datos.json', 'w') as f:
+        with open('P1\Ejercicio4\datos.json', 'w') as f:
             json.dump({'valor_total': self.valor_total}, f)  
 
 class CuentaRevoluciones(tk.Frame):
