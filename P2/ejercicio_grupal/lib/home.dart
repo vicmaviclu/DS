@@ -19,19 +19,35 @@ class MyApp extends StatelessWidget {
               Container(
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: AssetImage('assets/images/bandera.jpg'), // Reemplaza 'images/bandera.jpg' con la ruta de tu imagen de fondo
+                    image: AssetImage('images/bandera.jpg'), // Reemplaza 'images/bandera.jpg' con la ruta de tu imagen de fondo
                     fit: BoxFit.cover,
                   ),
                 ),
                 child: Text(
                   'Pizzería Casalini',
                   style: TextStyle(
-                    fontSize: 44, // Cambia el tamaño del texto
-                    fontWeight: FontWeight.bold, // Hace el texto en negrita
-                    color: const Color.fromARGB(255, 237, 12, 12), // Cambia el color del texto
+                    fontSize: 44,
+                    fontWeight: FontWeight.bold,
+                    color: const Color.fromARGB(255, 237, 12, 12),
                   ),
                 ),
               ),
+            ],
+          ),
+        ),
+        body: Container(
+          width: 300, // Ajusta esto para cambiar el ancho del menú
+          child: ListView(
+            children: const [
+              MyExpansionPanel(
+                title: 'Pizza Margherita',
+                children: ['Tomate', 'Mozzarella', 'Albahaca'],
+              ),
+              MyExpansionPanel(
+                title: 'Pizza Pepperoni',
+                children: ['Tomate', 'Mozzarella', 'Pepperoni'],
+              ),
+              // Agrega más pizzas aquí
             ],
           ),
         ),
@@ -44,7 +60,9 @@ class MyExpansionPanel extends StatefulWidget {
   final String title;
   final List<String> children;
 
-  const MyExpansionPanel({Key? key, required this.title, required this.children}) : super(key: key);
+  const MyExpansionPanel(
+      {Key? key, required this.title, required this.children})
+      : super(key: key);
 
   @override
   _MyExpansionPanelState createState() => _MyExpansionPanelState();
@@ -58,7 +76,7 @@ class _MyExpansionPanelState extends State<MyExpansionPanel> {
     return ExpansionPanelList(
       expansionCallback: (int index, bool isExpanded) {
         setState(() {
-          _isExpanded = !isExpanded;
+          _isExpanded = !_isExpanded;
         });
       },
       children: [
@@ -69,7 +87,9 @@ class _MyExpansionPanelState extends State<MyExpansionPanel> {
             );
           },
           body: Column(
-            children: widget.children.map((String ingredient) => ListTile(title: Text(ingredient))).toList(),
+            children: widget.children
+                .map((String ingredient) => ListTile(title: Text(ingredient)))
+                .toList(),
           ),
           isExpanded: _isExpanded,
         ),
