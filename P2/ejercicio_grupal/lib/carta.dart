@@ -1,9 +1,9 @@
 import 'models/pizza.dart';
 
-class Menu {
+class Carta {
   List<Pizza> pizzas;
 
-  Menu(this.pizzas);
+  Carta(this.pizzas);
 
   void addPizza(Pizza pizza) {
     pizzas.add(pizza);
