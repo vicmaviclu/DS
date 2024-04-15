@@ -14,12 +14,12 @@ class MyApp extends StatelessWidget {
         appBar: AppBar(
           title: Row(
             children: [
-              Image.asset('images/descarga.png', fit: BoxFit.cover, height: 100,), // Reemplaza 'assets/image.png' con la ruta de tu imagen
+              Image.asset('assets/images/descarga.png', fit: BoxFit.cover, height: 100,), // Reemplaza 'assets/image.png' con la ruta de tu imagen
               SizedBox(width: 10), // Añade un espacio entre la imagen y el texto
               Container(
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: AssetImage('images/bandera.jpg'), // Reemplaza 'images/bandera.jpg' con la ruta de tu imagen de fondo
+                    image: AssetImage('assets/images/bandera.jpg'), // Reemplaza 'images/bandera.jpg' con la ruta de tu imagen de fondo
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -32,22 +32,6 @@ class MyApp extends StatelessWidget {
                   ),
                 ),
               ),
-            ],
-          ),
-        ),
-        body: Container(
-          width: 300, // Ajusta esto para cambiar el ancho del menú
-          child: ListView(
-            children: const [
-              MyExpansionPanel(
-                title: 'Pizza Margherita',
-                children: ['Tomate', 'Mozzarella', 'Albahaca'],
-              ),
-              MyExpansionPanel(
-                title: 'Pizza Pepperoni',
-                children: ['Tomate', 'Mozzarella', 'Pepperoni'],
-              ),
-              // Agrega más pizzas aquí
             ],
           ),
         ),
