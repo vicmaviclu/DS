@@ -14,6 +14,7 @@ class _MenuPedidoState extends State<MenuPedido> {
   String? tamanoSeleccionado;
   final direccionControlador = TextEditingController();
   final tarjetaControlador= TextEditingController();
+  final telefonoControlador = TextEditingController(); // Nuevo controlador para el número de teléfono
   Pedido? pedido;
 
   PreferredSizeWidget buildAppBar() {
@@ -64,7 +65,6 @@ class _MenuPedidoState extends State<MenuPedido> {
     );
   }
 
-
   Widget buildTextField(String label, TextEditingController controller) {
     return TextField(
       controller: controller,
@@ -74,7 +74,6 @@ class _MenuPedidoState extends State<MenuPedido> {
       ),
     );
   }
-
 
   Widget buildBotonPedido() {
     return Padding(
@@ -86,16 +85,21 @@ class _MenuPedidoState extends State<MenuPedido> {
     );
   }
 
-  // Maneja la presión del botón de pedido
-  void clickBoton() {
-    if (pizzaSeleccionada != null && tamanoSeleccionado != null && direccionControlador.text.isNotEmpty && tarjetaControlador.text.isNotEmpty) {
-      crearPedido();
-      limpiarTexto();
-    } else {
-      mensajeError();
-    }
-  }
+// Maneja la presión del botón de pedido
+void clickBoton() {
+  RegExp regExp = RegExp(r'^[0-9]+$'); // Expresión regular para verificar si la cadena contiene solo números
 
+  if (pizzaSeleccionada != null && 
+      tamanoSeleccionado != null && 
+      direccionControlador.text.isNotEmpty && 
+      regExp.hasMatch(tarjetaControlador.text) && 
+      regExp.hasMatch(telefonoControlador.text)) { 
+    crearPedido();
+    limpiarTexto();
+  } else {
+    mensajeError();
+  }
+}
 
   // Crea y muestra el pedido
   void crearPedido() {
@@ -106,6 +110,7 @@ class _MenuPedidoState extends State<MenuPedido> {
       direccion: direccionControlador.text,
       tarjeta: tarjetaControlador.text,
       coste: coste,
+      numeroTelefono: telefonoControlador.text, // Añade el número de teléfono al pedido
     );
 
     pedido!.hacerPedido();
@@ -147,6 +152,7 @@ class _MenuPedidoState extends State<MenuPedido> {
       tamanoSeleccionado = null;
       direccionControlador.clear();
       tarjetaControlador.clear();
+      telefonoControlador.clear(); // Limpia el campo del número de teléfono
     });
   }
 
@@ -156,7 +162,7 @@ class _MenuPedidoState extends State<MenuPedido> {
       builder: (BuildContext context) {
         return AlertDialog(
           title:const Text('Error'),
-          content: const Text('Por favor, rellena todos los campos antes de realizar el pedido.'),
+          content: const Text('Por favor, rellena todos los campos antes de realizar el pedido. Asegúrate de que el número de tarjeta y el número de teléfono sean solo números.'),          
           actions: <Widget>[
             TextButton(
               child: const Text('Cerrar'),
@@ -186,6 +192,7 @@ class _MenuPedidoState extends State<MenuPedido> {
                 buildPizzaTamanoLista(),
                 buildTextField('Dirección', direccionControlador),
                 buildTextField('Tarjeta de Crédito', tarjetaControlador),
+                buildTextField('Número de Teléfono', telefonoControlador), // Nuevo campo para el número de teléfono
                 buildBotonPedido(),
               ],
             ),
