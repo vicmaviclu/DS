@@ -46,4 +46,20 @@ class Carta {
   void removePizza(String nombrePizza) {
     pizzas.removeWhere((pizzaConFoto) => pizzaConFoto.pizza.nombre == nombrePizza);
   }
+
+  double getCoste(String nombrePizza, String tamano) {
+    Map<String, double> costesAdicionales = {
+      'Mediana': 1.0,
+      'Grande': 2.0,
+      'Gigante': 3.0,
+    };
+  for (var pizzaConFoto in pizzas) {
+    if (pizzaConFoto.pizza.nombre == nombrePizza) {
+      double precioBase = pizzaConFoto.pizza.precio;
+      double costeAdicional = costesAdicionales[tamano] ?? 0.0;
+      return precioBase + costeAdicional;
+    }
+  }
+  return 0.0; // Devuelve 0.0 si la pizza no se encuentra
+}
 }

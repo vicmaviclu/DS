@@ -1,5 +1,6 @@
 import 'package:ejercicio_grupal/menu_carta.dart';
 import 'package:flutter/material.dart';
+import 'menu_pedido.dart';
 
 void main() {
   runApp(const MyApp());
@@ -64,10 +65,19 @@ class _MyHomePageState extends State<MyHomePage> {
         width: 200.0,
         height: 50.0,
         child: ElevatedButton(
-          onPressed: () {          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => MenuCarta()),
-          );},
+          onPressed: () { 
+            if(texto == 'Carta')  {       
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => MenuCarta()),
+            );
+            }else{
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => MenuPedido()),
+              );
+            }
+          },
           child: Center(
             child: Text(
               texto,
