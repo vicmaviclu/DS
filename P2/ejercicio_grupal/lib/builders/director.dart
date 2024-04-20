@@ -2,16 +2,16 @@ import 'package:ejercicio_grupal/builders/pizza_builder.dart';
 import 'package:ejercicio_grupal/models/pizza.dart';
 
 class Director {
-  PizzaBuilder _builder;
+  final PizzaBuilder builder;
 
-  Director(this._builder);
+  Director(this.builder);
 
   Pizza build(String tamano) {
-    _builder.createPizza();
-    _builder.setNombre();
-    _builder.setPrecio();
-    _builder.setTamano(tamano);
-    _builder.setIngredientes();
-    return _builder.getPizza();
+    builder.createPizza();
+    builder.setNombre();
+    builder.setPrecio();
+    builder.setTamano(tamano);
+    builder.setIngredientes();
+    return builder.getPizza();
   }
 }
