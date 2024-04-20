@@ -20,4 +20,11 @@ class Tartufa extends PizzaBuilder {
   void setIngredientes() {
     pizza.ingredientes = ['Tomate', 'Queso Pecorino', 'Trufa Negra', 'Aceite de Trufa'];
   }
+
+  
+  @override
+  void setIngredientesAdicionales( List<String> ingredientesAdicionales) {
+    pizza.ingredientes.addAll(ingredientesAdicionales);
+    
+  }
 }

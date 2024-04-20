@@ -20,4 +20,11 @@ class Pistacho extends PizzaBuilder {
   void setIngredientes() {
     pizza.ingredientes = ['Tomate', 'Burrata', 'Pistacho', 'Aceite de oliva', 'Jamón Cocido', 'Rúcula'];
   }
+
+  
+  @override
+  void setIngredientesAdicionales( List<String> ingredientesAdicionales) {
+    pizza.ingredientes.addAll(ingredientesAdicionales);
+    
+  }
 }

@@ -20,4 +20,11 @@ class MargaritaBuilder extends PizzaBuilder {
   void setIngredientes() {
     pizza.ingredientes = ['Tomate', 'Mozzarella', 'Albahaca'];
   }
+
+  
+  @override
+  void setIngredientesAdicionales( List<String> ingredientesAdicionales) {
+    pizza.ingredientes.addAll(ingredientesAdicionales);
+    
+  }
 }

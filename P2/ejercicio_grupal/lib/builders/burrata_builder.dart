@@ -20,4 +20,10 @@ class BurrataPesto extends PizzaBuilder {
   void setIngredientes() {
     pizza.ingredientes = ['Pesto', 'Burrata', 'Aceite de Oliva', 'Tomate Cherry'];
   }
+
+  @override
+  void setIngredientesAdicionales( List<String> ingredientesAdicionales) {
+    pizza.ingredientes.addAll(ingredientesAdicionales);
+    
+  }
 }

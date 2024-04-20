@@ -20,4 +20,11 @@ class PepperoniBuilder extends PizzaBuilder {
   void setIngredientes() {
     pizza.ingredientes = ['Tomate', 'Mozzarella', 'Pepperoni'];
   }
+
+  
+  @override
+  void setIngredientesAdicionales( List<String> ingredientesAdicionales) {
+    pizza.ingredientes.addAll(ingredientesAdicionales);
+    
+  }
 }

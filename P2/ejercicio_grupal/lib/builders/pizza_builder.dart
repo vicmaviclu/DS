@@ -11,6 +11,8 @@ abstract class PizzaBuilder {
   void setPrecio();
   void setTamano(String tamano);
   void setIngredientes();
+  void setIngredientesAdicionales(List<String> ingredientes);
+
   Pizza getPizza() {
     return this.pizza;
   }

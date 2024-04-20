@@ -20,4 +20,11 @@ class Vegetal extends PizzaBuilder {
   void setIngredientes() {
     pizza.ingredientes = ['Tomate', 'Mozzarella', 'Rucula', 'Tomate Cherry','Aceite de Oliva'];
   }
+
+  
+  @override
+  void setIngredientesAdicionales( List<String> ingredientesAdicionales) {
+    pizza.ingredientes.addAll(ingredientesAdicionales);
+    
+  }
 }
