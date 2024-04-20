@@ -1,13 +1,18 @@
+import 'package:ejercicio_grupal/builders/director.dart';
+import 'package:ejercicio_grupal/builders/hawaiana_builder.dart';
+import 'package:ejercicio_grupal/builders/margarita_builder.dart';
+import 'package:ejercicio_grupal/builders/pepperoni_builder.dart';
+
 import 'models/pizza.dart';
 import 'models/pizza_foto.dart';
 
-// Carta clase singleton 
+// Carta clase singleton
 class Carta {
   List<PizzaConFoto> pizzas;
   Map<String, double> costesAdicionales = {
-      'Mediana': 1.0,
-      'Grande': 2.0,
-      'Gigante': 3.0,
+    'Mediana': 1.0,
+    'Grande': 2.0,
+    'Gigante': 3.0,
   };
 
   static final Carta _singleton = Carta._internal();
@@ -16,34 +21,30 @@ class Carta {
     return _singleton;
   }
 
-  Carta._internal() : pizzas = [
-    PizzaConFoto(
-      pizza: Pizza(
-        nombre: 'Margarita',
-        precio: 8.50,
-        ingredientes: ['Tomate', 'Mozzarella', 'Albahaca'],
-        tamano: '',
-      ),
-      foto: 'assets/descarga.png',
-    ),
-    PizzaConFoto(
-      pizza: Pizza(
-        nombre: 'Pepperoni',
-        precio: 9.00,
-        ingredientes: ['Tomate', 'Mozzarella', 'Pepperoni'],
-        tamano: '',
-      ),
-      foto: 'assets/descarga.png',
-    ),
-    // Añade más pizzas aquí...
-  ];
+  Carta._internal()
+      : pizzas = [
+          PizzaConFoto(
+            pizza: Director(MargaritaBuilder()).build(''),
+            foto: 'assets/descarga.png',
+          ),
+          PizzaConFoto(
+            pizza: Director(PepperoniBuilder()).build(''),
+            foto: 'assets/descarga.png',
+          ),
+          PizzaConFoto(
+            pizza: Director(HawaianaBuilder()).build(''),
+            foto: 'assets/descarga.png',
+          )
+          // Añade más pizzas aquí...
+        ];
 
   void addPizza(Pizza pizza, String foto) {
     pizzas.add(PizzaConFoto(pizza: pizza, foto: foto));
   }
 
   void removePizza(String nombrePizza) {
-    pizzas.removeWhere((pizzaConFoto) => pizzaConFoto.pizza.nombre == nombrePizza);
+    pizzas.removeWhere(
+        (pizzaConFoto) => pizzaConFoto.pizza.nombre == nombrePizza);
   }
 
   double getCoste(String nombrePizza, String tamano) {

@@ -1,13 +1,8 @@
 class Pizza {
-  String nombre;
-  double precio;
+  String nombre = 'Pizza';
+  double precio = 0.0;
   List<String> ingredientes = [];
-  String? tamano;
+  String tamano = '';
 
-  Pizza({
-    required this.nombre,
-    required this.precio,
-    required this.ingredientes,
-    this.tamano,
-  });
+  Pizza();
 }

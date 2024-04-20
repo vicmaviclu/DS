@@ -1,7 +1,17 @@
 import 'package:ejercicio_grupal/models/pizza.dart';
 
 abstract class PizzaBuilder {
-  Pizza? pizza;
-  void createNewPizza();
-  void addIngredientes(List<String> ingredientes);
+  late Pizza pizza;
+
+  void createPizza() {
+    pizza = Pizza();
+  }
+
+  void setNombre();
+  void setPrecio();
+  void setTamano(String tamano);
+  void setIngredientes();
+  Pizza getPizza() {
+    return this.pizza;
+  }
 }

@@ -1,14 +1,14 @@
 import 'pizza_builder.dart';
 
-class MargaritaBuilder extends PizzaBuilder {
+class PepperoniBuilder extends PizzaBuilder {
   @override
   void setNombre() {
-    pizza.nombre = 'Margarita';
+    pizza.nombre = 'Pepperoni';
   }
 
   @override
   void setPrecio() {
-    pizza.precio = 8.50;
+    pizza.precio = 9.00;
   }
 
   @override
@@ -18,6 +18,6 @@ class MargaritaBuilder extends PizzaBuilder {
 
   @override
   void setIngredientes() {
-    pizza.ingredientes = ['Tomate', 'Mozzarella', 'Albahaca'];
+    pizza.ingredientes = ['Tomate', 'Mozzarella', 'Pepperoni'];
   }
 }
