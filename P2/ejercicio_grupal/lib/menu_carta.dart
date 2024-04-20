@@ -11,9 +11,13 @@ class MenuCarta extends StatelessWidget {
         Container(
           child: Align(
             alignment: Alignment.topCenter,
-            child: Image.asset(
-              pizzaConFoto.foto,
-              fit: BoxFit.fill, // Asegura que la imagen llene todo el espacio disponible
+            child: SizedBox(
+              width: 220.0, 
+              height: 200.0, 
+              child: Image.asset(
+                pizzaConFoto.foto,
+                fit: BoxFit.fill,
+              ),
             ),
           ),
         ),
