@@ -63,6 +63,7 @@ flutter:
     - assets/descarga.png
     - assets/bandera.jpg
     - assets/logo.jpeg
+    - assets/margarita.jpg
 
   # To add assets to your application, add an assets section, like this:
   # assets:

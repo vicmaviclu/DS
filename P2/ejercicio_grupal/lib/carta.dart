@@ -25,7 +25,8 @@ class Carta {
       : pizzas = [
           PizzaConFoto(
             pizza: Director(MargaritaBuilder()).build(''),
-            foto: 'assets/descarga.png',
+            foto: 'assets/margarita.jpg',
+            
           ),
           PizzaConFoto(
             pizza: Director(PepperoniBuilder()).build(''),
