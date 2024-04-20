@@ -1,15 +1,14 @@
 import 'models/pizza.dart';
-
-class PizzaConFoto {
-  final Pizza pizza;
-  final String foto;
-
-  PizzaConFoto({required this.pizza, required this.foto});
-}
+import 'models/pizza_foto.dart';
 
 // Carta clase singleton 
 class Carta {
   List<PizzaConFoto> pizzas;
+  Map<String, double> costesAdicionales = {
+      'Mediana': 1.0,
+      'Grande': 2.0,
+      'Gigante': 3.0,
+  };
 
   static final Carta _singleton = Carta._internal();
 
@@ -48,18 +47,13 @@ class Carta {
   }
 
   double getCoste(String nombrePizza, String tamano) {
-    Map<String, double> costesAdicionales = {
-      'Mediana': 1.0,
-      'Grande': 2.0,
-      'Gigante': 3.0,
-    };
-  for (var pizzaConFoto in pizzas) {
-    if (pizzaConFoto.pizza.nombre == nombrePizza) {
-      double precioBase = pizzaConFoto.pizza.precio;
-      double costeAdicional = costesAdicionales[tamano] ?? 0.0;
-      return precioBase + costeAdicional;
+    for (var pizzaConFoto in pizzas) {
+      if (pizzaConFoto.pizza.nombre == nombrePizza) {
+        double precioBase = pizzaConFoto.pizza.precio;
+        double costeAdicional = costesAdicionales[tamano] ?? 0.0;
+        return precioBase + costeAdicional;
+      }
     }
+    return 0.0;
   }
-  return 0.0; // Devuelve 0.0 si la pizza no se encuentra
-}
 }

@@ -1,23 +1,5 @@
-class SistemaEnvios {
-  final String direccion;
-
-  SistemaEnvios({required this.direccion});
-
-  void enviarPedido() {
-    print('Enviando el pedido a la dirección $direccion');
-  }
-}
-
-class SistemaPagos {
-  final String tarjeta;
-  final double coste;
-
-  SistemaPagos({required this.tarjeta, required this.coste});
-
-  void procesarPago() {
-    print('Procesando el pago con la tarjeta $tarjeta');
-  }
-}
+import 'sistema_envios.dart';
+import 'sistema_pagos.dart';
 
 class Pedido {
   final String pizzaSeleccionada;
@@ -37,6 +19,10 @@ class Pedido {
   void hacerPedido() {
     sistemaPagos.procesarPago();
     sistemaEnvios.enviarPedido();
+    // LLamar al builder correspondiente para hacer la pizza y devolverla
+    // Se puede hacer un controlador de builders que llame al builder correspondiente
+    // o hacer unos builders que te hagan la pizza basica con cada tamaño
+    // y luego hacer el patron decorador para los ingedientes(decoradorPepperoni, decoradorMargarita, etc)
     print('pedido realizado');
   }
 
