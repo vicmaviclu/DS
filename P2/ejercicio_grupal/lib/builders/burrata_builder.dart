@@ -1,14 +1,14 @@
 import 'package:ejercicio_grupal/builders/pizza_builder.dart';
 
-class HawaianaBuilder extends PizzaBuilder {
+class BurrataPesto extends PizzaBuilder {
   @override
   void setNombre() {
-    pizza.nombre = 'Hawaiana';
+    pizza.nombre = 'Burrata Pesto';
   }
 
   @override
   void setPrecio() {
-    pizza.precio = 8.0;
+    pizza.precio = 9.0;
   }
 
   @override
@@ -18,6 +18,6 @@ class HawaianaBuilder extends PizzaBuilder {
 
   @override
   void setIngredientes() {
-    pizza.ingredientes = ['Tomate', 'Jamon', 'Piña'];
+    pizza.ingredientes = ['Pesto', 'Burrata', 'Aceite de Oliva', 'Tomate Cherry'];
   }
 }

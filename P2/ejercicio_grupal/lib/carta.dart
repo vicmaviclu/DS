@@ -1,7 +1,10 @@
 import 'package:ejercicio_grupal/builders/director.dart';
-import 'package:ejercicio_grupal/builders/hawaiana_builder.dart';
+import 'package:ejercicio_grupal/builders/burrata_builder.dart';
 import 'package:ejercicio_grupal/builders/margarita_builder.dart';
 import 'package:ejercicio_grupal/builders/pepperoni_builder.dart';
+import 'package:ejercicio_grupal/builders/pistacho_buider.dart';
+import 'package:ejercicio_grupal/builders/tartufa_builder.dart';
+import 'package:ejercicio_grupal/builders/vegetal_builder.dart';
 
 import 'models/pizza.dart';
 import 'models/pizza_foto.dart';
@@ -30,12 +33,27 @@ class Carta {
           ),
           PizzaConFoto(
             pizza: Director(PepperoniBuilder()).build(''),
-            foto: 'assets/descarga.png',
+            foto: 'assets/pepperoni.jpg',
           ),
           PizzaConFoto(
-            pizza: Director(HawaianaBuilder()).build(''),
-            foto: 'assets/descarga.png',
+            pizza: Director(BurrataPesto()).build(''),
+            foto: 'assets/burrata.jpg',
+          ),
+          PizzaConFoto(
+            pizza: Director(Tartufa()).build(''),
+            foto: 'assets/tartufa.webp',
+          ),
+          
+          PizzaConFoto(
+            pizza: Director(Pistacho()).build(''),
+            foto: 'assets/pistacho.JPEG',
+          ),
+          
+          PizzaConFoto(
+            pizza: Director(Vegetal()).build(''),
+            foto: 'assets/vegetal.webp',
           )
+          
           // Añade más pizzas aquí...
         ];
 

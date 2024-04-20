@@ -1,3 +1,5 @@
+import 'package:flutter/foundation.dart';
+
 import 'sistema_envios.dart';
 import 'sistema_pagos.dart';
 
@@ -9,6 +11,7 @@ class Pedido {
   final SistemaEnvios sistemaEnvios;
   final SistemaPagos sistemaPagos;
   final String numeroTelefono; 
+  List<String> ingredientesAdicionalesSeleccionados = [];
 
   Pedido({
     required this.pizzaSeleccionada,
@@ -17,9 +20,11 @@ class Pedido {
     required String tarjeta,
     required double coste,
     required this.numeroTelefono, 
+    required this.ingredientesAdicionalesSeleccionados,
   })  : sistemaEnvios = SistemaEnvios(direccion: direccion, numeroTelefono: numeroTelefono),
         sistemaPagos = SistemaPagos(tarjeta: tarjeta, coste: coste),
         numeroPedido = ++_contadorPedidos;
+
 
   void hacerPedido() {
     sistemaPagos.procesarPago();
@@ -31,15 +36,16 @@ class Pedido {
     // y luego hacer el patron decorador para los ingedientes(decoradorPepperoni, decoradorMargarita, etc)
   }
 
-  @override
+ @override
   String toString() {
     return '\n'
-           'Número de pedido: $numeroPedido\n'
-           'Pizza seleccionada: $pizzaSeleccionada\n'
-           'Tamaño seleccionado: $tamanoSeleccionado\n'
-           'Dirección: ${sistemaEnvios.direccion}\n'
-           'Número de teléfono: $numeroTelefono\n' 
-           'Tarjeta: ${sistemaPagos.tarjeta}\n'
-           'Coste: ${sistemaPagos.coste}';
+          'Número de pedido: $numeroPedido\n'
+          'Pizza seleccionada: $pizzaSeleccionada\n'
+          'Tamaño seleccionado: $tamanoSeleccionado\n'
+          'Dirección: ${sistemaEnvios.direccion}\n'
+          'Número de teléfono: $numeroTelefono\n' 
+          'Tarjeta: ${sistemaPagos.tarjeta}\n'
+          'Coste: ${sistemaPagos.coste};\n'
+          'Extras: ${ingredientesAdicionalesSeleccionados.join(', ')}\n';
   }
 }

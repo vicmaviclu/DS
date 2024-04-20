@@ -14,8 +14,10 @@ class _MenuPedidoState extends State<MenuPedido> {
   String? tamanoSeleccionado;
   final direccionControlador = TextEditingController();
   final tarjetaControlador= TextEditingController();
-  final telefonoControlador = TextEditingController(); // Nuevo controlador para el número de teléfono
+  final telefonoControlador = TextEditingController();
   Pedido? pedido;
+  List<String> ingredientesAdicionalesDisponibles = ['Aceitunas', 'Champiñones', 'Pimientos', 'Cebolla', 'Extra queso'];
+  List<String> ingredientesAdicionalesSeleccionados = [];
 
   PreferredSizeWidget buildAppBar() {
     return AppBar(
@@ -27,7 +29,6 @@ class _MenuPedidoState extends State<MenuPedido> {
     );
   }
 
-  // Menu desplegable con todas las pizzas
   Widget buildPizzaLista() {
     return DropdownButton<String>(
       hint: const Text('Selecciona una pizza', style: TextStyle(fontSize:20, fontWeight: FontWeight.bold, color: Colors.black)),
@@ -46,7 +47,6 @@ class _MenuPedidoState extends State<MenuPedido> {
     );
   }
 
-  // menu de tamaños
   Widget buildPizzaTamanoLista() {
     return DropdownButton<String>(
       hint: const Text('Selecciona un tamaño', style: TextStyle(fontSize:20, fontWeight: FontWeight.bold, color: Colors.black)),
@@ -85,32 +85,31 @@ class _MenuPedidoState extends State<MenuPedido> {
     );
   }
 
-// Maneja la presión del botón de pedido
-void clickBoton() {
-  RegExp regExp = RegExp(r'^[0-9]+$'); // Expresión regular para verificar si la cadena contiene solo números
+  void clickBoton() {
+    RegExp regExp = RegExp(r'^[0-9]+$');
 
-  if (pizzaSeleccionada != null && 
-      tamanoSeleccionado != null && 
-      direccionControlador.text.isNotEmpty && 
-      regExp.hasMatch(tarjetaControlador.text) && 
-      regExp.hasMatch(telefonoControlador.text)) { 
-    crearPedido();
-    limpiarTexto();
-  } else {
-    mensajeError();
+    if (pizzaSeleccionada != null && 
+        tamanoSeleccionado != null && 
+        direccionControlador.text.isNotEmpty && 
+        regExp.hasMatch(tarjetaControlador.text) && 
+        regExp.hasMatch(telefonoControlador.text)) { 
+      crearPedido();
+      limpiarTexto();
+    } else {
+      mensajeError();
+    }
   }
-}
 
-  // Crea y muestra el pedido
   void crearPedido() {
-    double coste = carta.getCoste(pizzaSeleccionada!, tamanoSeleccionado!);
+    double coste = carta.getCoste(pizzaSeleccionada!, tamanoSeleccionado!) + ingredientesAdicionalesSeleccionados.length * 0.5;
     pedido = Pedido(
       pizzaSeleccionada: pizzaSeleccionada!,
       tamanoSeleccionado: tamanoSeleccionado!,
       direccion: direccionControlador.text,
       tarjeta: tarjetaControlador.text,
       coste: coste,
-      numeroTelefono: telefonoControlador.text, // Añade el número de teléfono al pedido
+      numeroTelefono: telefonoControlador.text,
+      ingredientesAdicionalesSeleccionados: ingredientesAdicionalesSeleccionados,
     );
 
     pedido!.hacerPedido();
@@ -120,7 +119,7 @@ void clickBoton() {
       builder: (BuildContext context) {
         return AlertDialog(
           title: const Padding(
-            padding: EdgeInsets.only(bottom: 2.0), // Reduce el padding inferior
+            padding: EdgeInsets.only(bottom: 2.0),
             child: Text(
               'Confirmación del Pedido',
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
@@ -128,12 +127,12 @@ void clickBoton() {
           ),
           content: Column(
             mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start, // Alinea el texto a la izquierda
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Text(
                 pedido.toString(),
-                style:const TextStyle(fontSize: 18), // Aumenta el tamaño de la fuente a 18
-              ),          
+                style:const TextStyle(fontSize: 18),
+              ),
               const SizedBox(height: 30),
               Text(
                 'Hora estimada de llegada: ${DateTime.now().add(const Duration(minutes: 30)).toLocal().toString().substring(11, 16)} - ${DateTime.now().add(const Duration(minutes: 45)).toLocal().toString().substring(11, 16)}',
@@ -152,7 +151,8 @@ void clickBoton() {
       tamanoSeleccionado = null;
       direccionControlador.clear();
       tarjetaControlador.clear();
-      telefonoControlador.clear(); // Limpia el campo del número de teléfono
+      telefonoControlador.clear();
+      ingredientesAdicionalesSeleccionados.clear();
     });
   }
 
@@ -176,6 +176,45 @@ void clickBoton() {
     );
   }
 
+  void mostrarDialogoIngredientes() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return StatefulBuilder(
+          builder: (BuildContext context, StateSetter setState) {
+            return AlertDialog(
+              title: Text('Selecciona ingredientes adicionales'),
+              content: Column(
+                children: ingredientesAdicionalesDisponibles.map((ingrediente) {
+                  return CheckboxListTile(
+                    title: Text(ingrediente),
+                    value: ingredientesAdicionalesSeleccionados.contains(ingrediente),
+                    onChanged: (bool? valor) {
+                      if (valor == true) {
+                        ingredientesAdicionalesSeleccionados.add(ingrediente);
+                      } else {
+                        ingredientesAdicionalesSeleccionados.remove(ingrediente);
+                      }
+                      setState(() {});
+                    },
+                  );
+                }).toList(),
+              ),
+              actions: [
+                TextButton(
+                  child: Text('OK'),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ],
+            );
+          },
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -192,7 +231,11 @@ void clickBoton() {
                 buildPizzaTamanoLista(),
                 buildTextField('Dirección', direccionControlador),
                 buildTextField('Tarjeta de Crédito', tarjetaControlador),
-                buildTextField('Número de Teléfono', telefonoControlador), // Nuevo campo para el número de teléfono
+                buildTextField('Número de Teléfono', telefonoControlador),
+                ElevatedButton(
+                  onPressed: mostrarDialogoIngredientes,
+                  child: Text('Añadir ingredientes'),
+                ),
                 buildBotonPedido(),
               ],
             ),
