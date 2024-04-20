@@ -75,13 +75,20 @@ class _MenuPedidoState extends State<MenuPedido> {
     );
   }
 
-  Widget buildBotonPedido() {
+  Widget buildBotonPedido(String text) {
     return Padding(
       padding: const EdgeInsets.only(top: 16.0),
       child: ElevatedButton(
         onPressed: clickBoton,
-        child: const Text('Realizar Pedido', style: TextStyle(fontSize:20, fontWeight: FontWeight.bold)),
-      ),
+        child: Text(text, style: const TextStyle(fontSize:20, fontWeight: FontWeight.bold)),      ),
+    );
+  }
+  Widget buildBoton(String text) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 16.0),
+      child: ElevatedButton(
+        onPressed: mostrarDialogoIngredientes,
+        child: Text(text, style: const TextStyle(fontSize:20, fontWeight: FontWeight.bold)),      ),
     );
   }
 
@@ -101,17 +108,15 @@ class _MenuPedidoState extends State<MenuPedido> {
   }
 
   void crearPedido() {
-    double coste = carta.getCoste(pizzaSeleccionada!, tamanoSeleccionado!) + ingredientesAdicionalesSeleccionados.length * 0.5;
+    print(ingredientesAdicionalesSeleccionados);
     pedido = Pedido(
       pizzaSeleccionada: pizzaSeleccionada!,
       tamanoSeleccionado: tamanoSeleccionado!,
       direccion: direccionControlador.text,
       tarjeta: tarjetaControlador.text,
-      coste: coste,
       numeroTelefono: telefonoControlador.text,
       ingredientesAdicionalesSeleccionados: ingredientesAdicionalesSeleccionados,
     );
-
     pedido!.hacerPedido();
 
     showDialog(
@@ -131,12 +136,14 @@ class _MenuPedidoState extends State<MenuPedido> {
             children: <Widget>[
               Text(
                 pedido.toString(),
-                style:const TextStyle(fontSize: 18),
+                style:const TextStyle(fontSize: 24),
               ),
               const SizedBox(height: 30),
-              Text(
-                'Hora estimada de llegada: ${DateTime.now().add(const Duration(minutes: 30)).toLocal().toString().substring(11, 16)} - ${DateTime.now().add(const Duration(minutes: 45)).toLocal().toString().substring(11, 16)}',
-                style:const TextStyle(fontWeight: FontWeight.bold),
+              Center(
+                child: Text(
+                  'Hora estimada de llegada: ${DateTime.now().add(const Duration(minutes: 30)).toLocal().toString().substring(11, 16)} - ${DateTime.now().add(const Duration(minutes: 45)).toLocal().toString().substring(11, 16)}',
+                  style:const TextStyle(fontWeight: FontWeight.bold),
+                ),
               ),
             ],
           ),
@@ -149,6 +156,7 @@ class _MenuPedidoState extends State<MenuPedido> {
     setState(() {
       pizzaSeleccionada = null;
       tamanoSeleccionado = null;
+      ingredientesAdicionalesSeleccionados = [];
       direccionControlador.clear();
       tarjetaControlador.clear();
       telefonoControlador.clear();
@@ -183,7 +191,7 @@ class _MenuPedidoState extends State<MenuPedido> {
         return StatefulBuilder(
           builder: (BuildContext context, StateSetter setState) {
             return AlertDialog(
-              title: Text('Selecciona ingredientes adicionales'),
+              title: const Text('Selecciona ingredientes adicionales'),
               content: Column(
                 children: ingredientesAdicionalesDisponibles.map((ingrediente) {
                   return CheckboxListTile(
@@ -201,11 +209,17 @@ class _MenuPedidoState extends State<MenuPedido> {
                 }).toList(),
               ),
               actions: [
-                TextButton(
-                  child: Text('OK'),
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
+                Center(
+                  child: SizedBox(
+                    width: 100, // Ancho del botón
+                    height: 50, // Altura del botón
+                    child: TextButton(
+                      child: const Text('OK'),
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                    ),
+                  ),
                 ),
               ],
             );
@@ -232,11 +246,8 @@ class _MenuPedidoState extends State<MenuPedido> {
                 buildTextField('Dirección', direccionControlador),
                 buildTextField('Tarjeta de Crédito', tarjetaControlador),
                 buildTextField('Número de Teléfono', telefonoControlador),
-                ElevatedButton(
-                  onPressed: mostrarDialogoIngredientes,
-                  child: Text('Añadir ingredientes'),
-                ),
-                buildBotonPedido(),
+                buildBoton('Añadir ingredientes adicionales'),
+                buildBotonPedido('Realizar Pedido'),
               ],
             ),
           ),

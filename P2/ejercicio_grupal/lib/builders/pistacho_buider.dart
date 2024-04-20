@@ -1,30 +1,27 @@
-import 'package:ejercicio_grupal/builders/pizza_builder.dart';
+import '/builders/pizza_builder.dart';
 
 class Pistacho extends PizzaBuilder {
+  final String nombre = 'Pistacho';
+  final double precio = 11.0;
+  final List<String> ingredientes = ['Tomate', 'Burrata', 'Pistacho', 'Aceite de oliva', 'Jamón Cocido', 'Rúcula'];
+
   @override
   void setNombre() {
-    pizza.nombre = 'Pistacho';
+    pizza.setNombre = nombre;
   }
 
   @override
   void setPrecio() {
-    pizza.precio = 11.0;
+    pizza.setPrecio = precio;
   }
 
   @override
   void setTamano(String tamano) {
-    pizza.tamano = tamano;
+    pizza.setTamano = tamano;
   }
 
   @override
   void setIngredientes() {
-    pizza.ingredientes = ['Tomate', 'Burrata', 'Pistacho', 'Aceite de oliva', 'Jamón Cocido', 'Rúcula'];
-  }
-
-  
-  @override
-  void setIngredientesAdicionales( List<String> ingredientesAdicionales) {
-    pizza.ingredientes.addAll(ingredientesAdicionales);
-    
+    pizza.setIngredientes = ingredientes;
   }
 }

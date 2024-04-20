@@ -54,7 +54,7 @@ class Carta {
             foto: 'assets/vegetal.webp',
           )
           
-          // Añade más pizzas aquí...
+          // Añade más pizzas por aquii
         ];
 
   void addPizza(Pizza pizza, String foto) {
@@ -64,16 +64,5 @@ class Carta {
   void removePizza(String nombrePizza) {
     pizzas.removeWhere(
         (pizzaConFoto) => pizzaConFoto.pizza.nombre == nombrePizza);
-  }
-
-  double getCoste(String nombrePizza, String tamano) {
-    for (var pizzaConFoto in pizzas) {
-      if (pizzaConFoto.pizza.nombre == nombrePizza) {
-        double precioBase = pizzaConFoto.pizza.precio;
-        double costeAdicional = costesAdicionales[tamano] ?? 0.0;
-        return precioBase + costeAdicional;
-      }
-    }
-    return 0.0;
   }
 }
