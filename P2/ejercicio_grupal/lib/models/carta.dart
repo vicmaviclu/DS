@@ -6,8 +6,8 @@ import 'package:ejercicio_grupal/builders/pistacho_buider.dart';
 import 'package:ejercicio_grupal/builders/tartufa_builder.dart';
 import 'package:ejercicio_grupal/builders/vegetal_builder.dart';
 
-import 'models/pizza.dart';
-import 'models/pizza_foto.dart';
+import 'pizza.dart';
+import 'pizza_foto.dart';
 
 // Carta clase singleton
 class Carta {
@@ -29,7 +29,6 @@ class Carta {
           PizzaConFoto(
             pizza: Director(MargaritaBuilder()).build(''),
             foto: 'assets/margarita.jpg',
-            
           ),
           PizzaConFoto(
             pizza: Director(PepperoniBuilder()).build(''),
@@ -43,17 +42,17 @@ class Carta {
             pizza: Director(Tartufa()).build(''),
             foto: 'assets/tartufa.webp',
           ),
-          
+
           PizzaConFoto(
             pizza: Director(Pistacho()).build(''),
             foto: 'assets/pistacho.JPEG',
           ),
-          
+
           PizzaConFoto(
             pizza: Director(Vegetal()).build(''),
             foto: 'assets/vegetal.webp',
           )
-          
+
           // Añade más pizzas por aquii
         ];
 

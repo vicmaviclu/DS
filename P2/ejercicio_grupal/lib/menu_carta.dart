@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'carta.dart';
+import 'models/carta.dart';
 import 'models/pizza_foto.dart';
 
 class MenuCarta extends StatelessWidget {
@@ -12,8 +12,8 @@ class MenuCarta extends StatelessWidget {
           child: Align(
             alignment: Alignment.topCenter,
             child: SizedBox(
-              width: 220.0, 
-              height: 200.0, 
+              width: 220.0,
+              height: 200.0,
               child: Image.asset(
                 pizzaConFoto.foto,
                 fit: BoxFit.fill,
@@ -27,12 +27,13 @@ class MenuCarta extends StatelessWidget {
             Flexible(
               child: Text(
                 pizzaConFoto.pizza.nombre,
-                style: const TextStyle(fontSize:20, fontWeight: FontWeight.bold),
+                style:
+                    const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
             ),
             Text(
               '${pizzaConFoto.pizza.precio} €',
-              style: const TextStyle(fontSize:20, fontWeight: FontWeight.bold),
+              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
           ],
         ),
@@ -51,7 +52,8 @@ class MenuCarta extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const DefaultTextStyle(
-          style: TextStyle(fontSize:40, color: Colors.purple, fontWeight: FontWeight.bold),
+          style: TextStyle(
+              fontSize: 40, color: Colors.purple, fontWeight: FontWeight.bold),
           child: Text('Carta de pizzas'),
         ),
         centerTitle: true,
@@ -62,7 +64,7 @@ class MenuCarta extends StatelessWidget {
           color: Colors.purple,
           child: GridView.count(
             crossAxisCount: 2,
-            childAspectRatio: 3/4,
+            childAspectRatio: 3 / 4,
             children: List.generate(carta.pizzas.length, (index) {
               return Card(
                 child: buildCarta(carta.pizzas[index]),
