@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const MyHomePage(title: 'Pizzeria Casalini'), // Utiliza MyHomePage como la página de inicio
+      home: const MyHomePage(title: 'Pizzeria Casalini'), 
     );
   }
 }
@@ -48,8 +48,8 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Text(          
           widget.title,
           style: const TextStyle(
-            color: Colors.purple, // Color del texto
-            fontSize: 50.0, // Tamaño del texto
+            color: Colors.purple, 
+            fontSize: 50.0, 
             fontWeight: FontWeight.bold,
             ),
         )
@@ -111,7 +111,7 @@ class _MyHomePageState extends State<MyHomePage> {
         height: 800,
         child: Column(
           children: <Widget>[
-          Image.asset('assets/logo.jpeg'), // Añade tu imagen aquí
+          Image.asset('assets/logo.jpeg'), 
           buildBotones(),
           ],
         ),

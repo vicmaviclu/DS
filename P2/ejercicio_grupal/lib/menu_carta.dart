@@ -40,7 +40,7 @@ class MenuCarta extends StatelessWidget {
         Center(
           child: Text(
             pizzaConFoto.pizza.ingredientes.join(', '),
-            textAlign: TextAlign.center, // Centra el texto en el centro
+            textAlign: TextAlign.center, 
           ),
         ),
       ],

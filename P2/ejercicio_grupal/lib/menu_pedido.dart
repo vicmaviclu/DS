@@ -29,7 +29,7 @@ class _MenuPedidoState extends State<MenuPedido> {
     return AppBar(
       title: const DefaultTextStyle(
         style: TextStyle(
-            fontSize: 40, color: Colors.black, fontWeight: FontWeight.bold),
+            fontSize: 40, color: Colors.purple, fontWeight: FontWeight.bold),
         child: Text('Menú de Pedido'),
       ),
       centerTitle: true,
