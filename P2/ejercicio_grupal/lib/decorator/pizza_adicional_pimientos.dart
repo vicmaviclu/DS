@@ -1,10 +1,9 @@
 import 'pizza_decorator.dart';
-import 'pizza.dart';
+import '../models/pizza.dart';
 
-class PizzaAdicionalQueso extends PizzaDecorator {
-  final String ingrediente = 'queso extra';
-  PizzaAdicionalQueso(Pizza pizza) : super(pizza);
-
+class PizzaAdicionalPimientos extends PizzaDecorator {
+  final String ingrediente = 'Pimientos Extra';
+  PizzaAdicionalPimientos(Pizza pizza) : super(pizza);
 
   @override
   void updateDescription() {

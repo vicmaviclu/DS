@@ -1,4 +1,4 @@
-import 'pizza.dart';
+import '../models/pizza.dart';
 
 abstract class PizzaDecorator extends Pizza {
   Pizza pizza;
@@ -6,7 +6,6 @@ abstract class PizzaDecorator extends Pizza {
 
   PizzaDecorator(this.pizza);
 
-  
   void updateDescription();
 
   void updateCoste();
