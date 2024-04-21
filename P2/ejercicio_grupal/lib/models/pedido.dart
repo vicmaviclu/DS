@@ -5,6 +5,8 @@ import 'pizza_extras.dart';
 import 'sistema_envios.dart';
 import 'sistema_pagos.dart';
 
+
+// Clase pedido actua como una fachada
 class Pedido {
   Pizza? pizza;
   static int _contadorPedidos = 0;

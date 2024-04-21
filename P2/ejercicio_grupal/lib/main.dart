@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: MyHomePage(title: 'Pizzeria Casalini'), // Utiliza MyHomePage como la página de inicio
+      home: const MyHomePage(title: 'Pizzeria Casalini'), // Utiliza MyHomePage como la página de inicio
     );
   }
 }
