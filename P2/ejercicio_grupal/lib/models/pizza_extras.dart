@@ -1,10 +1,10 @@
 import '/models/pizza.dart';
 import 'package:ejercicio_grupal/decorator/pizza_decorator.dart';
-import 'decorator/pizza_adicional_queso.dart';
-import 'decorator/pizza_adicional_aceitunos.dart';
-import 'decorator/pizza_adicional_champiñones.dart';
-import 'decorator/pizza_adicional_pimientos.dart';
-import 'decorator/pizza_adicional_cebolla.dart';
+import '../decorator/pizza_adicional_queso.dart';
+import '../decorator/pizza_adicional_aceitunos.dart';
+import '../decorator/pizza_adicional_champiñones.dart';
+import '../decorator/pizza_adicional_pimientos.dart';
+import '../decorator/pizza_adicional_cebolla.dart';
 
 class PizzaExtras {
   static void anadirExtras(
