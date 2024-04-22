@@ -14,7 +14,7 @@ class PizzaFactory {
         return Director(MargaritaBuilder()).build(tamanoSeleccionado);
       case 'Pizza Pepperoni':
         return Director(PepperoniBuilder()).build(tamanoSeleccionado);
-      case 'Pizza Vegetariana':
+      case 'Pizza Vegetal':
         return Director(Vegetal()).build(tamanoSeleccionado);
       case 'Pizza Burrata Pesto':
         return Director(BurrataPesto()).build(tamanoSeleccionado);

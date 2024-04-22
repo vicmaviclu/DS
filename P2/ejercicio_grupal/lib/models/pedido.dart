@@ -5,52 +5,57 @@ import 'pizza_extras.dart';
 import 'sistema_envios.dart';
 import 'sistema_pagos.dart';
 
-
 // Clase pedido actua como una fachada
 class Pedido {
-  Pizza? pizza;
+  List<Pizza> pizzas = [];
   static int _contadorPedidos = 0;
   final int numeroPedido;
-  final String pizzaSeleccionada;
-  final String tamanoSeleccionado;
   final SistemaEnvios sistemaEnvios;
   SistemaPagos sistemaPagos;
   final String numeroTelefono;
-  List<String> ingredientesAdicionalesSeleccionados = [];
 
   Pedido({
-    required this.pizzaSeleccionada,
-    required this.tamanoSeleccionado,
+    required this.pizzas,
     required String direccion,
     required String tarjeta,
     required this.numeroTelefono,
-    required this.ingredientesAdicionalesSeleccionados,
   })  : sistemaEnvios =
             SistemaEnvios(direccion: direccion, numeroTelefono: numeroTelefono),
         sistemaPagos = SistemaPagos(tarjeta: tarjeta),
         numeroPedido = ++_contadorPedidos;
 
+  String get direccion => sistemaEnvios.direccion;
+  String get tarjeta => sistemaPagos.tarjeta;
+  
   void hacerPedido() {
     sistemaPagos.procesarPago();
     sistemaEnvios.enviarPedido();
-    pizza = PizzaFactory.createPizza(pizzaSeleccionada, tamanoSeleccionado);
-    if (ingredientesAdicionalesSeleccionados.isNotEmpty) {
-      PizzaExtras.anadirExtras(pizza!, ingredientesAdicionalesSeleccionados);
+    double totalCost = 0;
+    for (var pizza in pizzas) {
+      totalCost += pizza.getCoste(pizza.tamano);
     }
-    sistemaPagos.coste = pizza!.getCoste(tamanoSeleccionado);
+    sistemaPagos.coste = (totalCost);
     print('Pedido realizado');
   }
 
   @override
   String toString() {
-    return '\n'
-        'Número de pedido: $numeroPedido\n'
-        'Pizza seleccionada: $pizzaSeleccionada\n'
-        'Tamaño seleccionado: $tamanoSeleccionado\n'
-        'Dirección: ${sistemaEnvios.direccion}\n'
-        'Número de teléfono: $numeroTelefono\n'
-        'Tarjeta: ${sistemaPagos.tarjeta}\n'
-        'Coste: ${sistemaPagos.coste}\n'
-        'Extras: ${ingredientesAdicionalesSeleccionados.isEmpty ? 'No extras' : ingredientesAdicionalesSeleccionados.join(', ')}';
+    String pedido = 'Número de pedido: $numeroPedido\n';
+    for (var pizza in pizzas) {
+      pedido += pizza.toString() + '\n';
+    }
+    return pedido;
+  }
+
+  double getCosteTotal() {
+    double totalCost = 0;
+    for (var pizza in pizzas) {
+      totalCost += pizza.getCoste(pizza.tamano);
+    }
+    return totalCost;
+  }
+
+  void clear(){
+    pizzas.clear();
   }
 }

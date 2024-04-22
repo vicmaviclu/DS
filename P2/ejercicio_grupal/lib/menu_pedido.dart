@@ -1,7 +1,12 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'models/carta.dart';
 import 'models/pedido.dart';
 import 'models/pizza_foto.dart';
+import 'models/pizza.dart';
+import 'models/pizza_extras.dart';
+import 'factory/pizza_factory.dart';
 
 class MenuPedido extends StatefulWidget {
   @override
@@ -10,6 +15,7 @@ class MenuPedido extends StatefulWidget {
 
 class _MenuPedidoState extends State<MenuPedido> {
   final Carta carta = Carta();
+  List<Pizza> pizzas = [];
   String? pizzaSeleccionada;
   String? tamanoSeleccionado;
   final direccionControlador = TextEditingController();
@@ -118,12 +124,21 @@ class _MenuPedidoState extends State<MenuPedido> {
     );
   }
 
+  Widget buildBotonPizza(String text) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 16.0),
+      child: ElevatedButton(
+        onPressed: anadirPizza,
+        child: Text(text,
+            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+      ),
+    );
+  }
+
   void clickBoton() {
     RegExp regExp = RegExp(r'^[0-9]+$');
 
-    if (pizzaSeleccionada != null &&
-        tamanoSeleccionado != null &&
-        direccionControlador.text.isNotEmpty &&
+    if (direccionControlador.text.isNotEmpty &&
         regExp.hasMatch(tarjetaControlador.text) &&
         regExp.hasMatch(telefonoControlador.text)) {
       crearPedido();
@@ -133,51 +148,66 @@ class _MenuPedidoState extends State<MenuPedido> {
     }
   }
 
-  void crearPedido() {
-    print(ingredientesAdicionalesSeleccionados);
-    pedido = Pedido(
-      pizzaSeleccionada: pizzaSeleccionada!,
-      tamanoSeleccionado: tamanoSeleccionado!,
-      direccion: direccionControlador.text,
-      tarjeta: tarjetaControlador.text,
-      numeroTelefono: telefonoControlador.text,
-      ingredientesAdicionalesSeleccionados:
-          ingredientesAdicionalesSeleccionados,
-    );
-    pedido!.hacerPedido();
-
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Padding(
-            padding: EdgeInsets.only(bottom: 2.0),
-            child: Text(
-              'Confirmación del Pedido',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-            ),
-          ),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Text(
-                pedido.toString(),
-                style: const TextStyle(fontSize: 24),
-              ),
-              const SizedBox(height: 30),
-              Center(
-                child: Text(
-                  'Hora estimada de llegada: ${DateTime.now().add(const Duration(minutes: 30)).toLocal().toString().substring(11, 16)} - ${DateTime.now().add(const Duration(minutes: 45)).toLocal().toString().substring(11, 16)}',
-                  style: const TextStyle(fontWeight: FontWeight.bold),
-                ),
-              ),
-            ],
-          ),
-        );
-      },
-    );
+  void anadirPizza(){
+    Pizza pizza = PizzaFactory.createPizza(pizzaSeleccionada!, tamanoSeleccionado!);
+    if (ingredientesAdicionalesSeleccionados.isNotEmpty) {
+      PizzaExtras.anadirExtras(pizza, ingredientesAdicionalesSeleccionados);
+    }
+    pizzas.add(pizza);
+    clearPizza();
   }
+
+void crearPedido() {
+  print(ingredientesAdicionalesSeleccionados);
+  anadirPizza();
+  pedido = Pedido(
+    pizzas: pizzas,
+    direccion: direccionControlador.text,
+    tarjeta: tarjetaControlador.text,
+    numeroTelefono: telefonoControlador.text,
+  );
+  pedido!.hacerPedido();
+
+showDialog(
+  context: context,
+  builder: (BuildContext context) {
+    return AlertDialog(
+      title: const Padding(
+        padding: EdgeInsets.only(bottom: 2.0),
+        child: Text(
+          'Confirmación del Pedido',
+          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+        ),
+      ),
+      content: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text(
+              '${pedido.toString()}'
+              'Dirección: ${pedido?.direccion}\n'
+              'Número de teléfono: ${pedido?.numeroTelefono}\n'
+              'Tarjeta: ${pedido?.tarjeta}\n'
+              'Coste total: ${pedido?.getCosteTotal()} €',
+              style: const TextStyle(fontSize: 24),
+            ),
+            const SizedBox(height: 30),
+            Center(
+              child: Text(
+                'Hora estimada de llegada: ${DateTime.now().add(const Duration(minutes: 30)).toLocal().toString().substring(11, 16)} - ${DateTime.now().add(const Duration(minutes: 45)).toLocal().toString().substring(11, 16)}',
+                style: const TextStyle(fontWeight: FontWeight.bold),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  },
+).then((_) {
+  pedido?.clear();
+});
+}
 
   void limpiarTexto() {
     setState(() {
@@ -187,6 +217,15 @@ class _MenuPedidoState extends State<MenuPedido> {
       direccionControlador.clear();
       tarjetaControlador.clear();
       telefonoControlador.clear();
+      ingredientesAdicionalesSeleccionados.clear();
+    });
+  }
+
+  void clearPizza() {
+    setState(() {
+      pizzaSeleccionada = null;
+      tamanoSeleccionado = null;
+      ingredientesAdicionalesSeleccionados = [];
       ingredientesAdicionalesSeleccionados.clear();
     });
   }
@@ -277,6 +316,7 @@ class _MenuPedidoState extends State<MenuPedido> {
                 buildTextField('Tarjeta de Crédito', tarjetaControlador),
                 buildTextField('Número de Teléfono', telefonoControlador),
                 buildBoton('Añadir ingredientes adicionales'),
+                buildBotonPizza('Añadir pizza'),
                 buildBotonPedido('Realizar Pedido'),
               ],
             ),
