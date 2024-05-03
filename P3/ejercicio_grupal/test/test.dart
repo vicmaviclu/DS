@@ -5,6 +5,7 @@ import 'package:ejercicio_grupal/builders/margarita_builder.dart';
 import 'package:ejercicio_grupal/decorator/pizza_adicional_queso.dart';
 import 'package:ejercicio_grupal/factory/pizza_factory.dart';
 import 'package:ejercicio_grupal/models/pizza_extras.dart';
+import 'package:ejercicio_grupal/models/pizza_foto.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:ejercicio_grupal/models/pizza.dart';
 import 'package:ejercicio_grupal/decorator/pizza_decorator.dart';
@@ -30,6 +31,12 @@ void main() {
 
     test('Valores por defecto de pizza', () {
       checkPizza(pizza!, 'Pizza ', 0.0, [], '');
+    });
+
+    test('Pizza con foto', () {
+      final foto = 'assets/margarita.jpg';
+      final pizzaConFoto = PizzaConFoto(pizza: pizza!, foto: foto);
+      expect(pizzaConFoto.foto, foto);
     });
 
     test('Builder de pizza', () {
@@ -59,10 +66,10 @@ void main() {
       checkPizza(pizza!, margaritaName , margaritaPrice + 0.5, margaritaIngredients + ['queso extra'], mediumSize);
     });
     
+    
   });
 
-  group("Comprobacion app pedido", () { 
-
+  group("Comprobacion APP", () { 
 
     setUp(() {
 
@@ -72,14 +79,17 @@ void main() {
     });
     test('Pedido', () {
     });
-    test('extras', () {
+
+    test('Pedido', () {
     });
+
+    test('Pedido', () {
+    });
+
     test('Carta', () {
     });
+
     test('Carta', () {
     });
-    test('Carta', () {
-    });
-    
   });
 }
