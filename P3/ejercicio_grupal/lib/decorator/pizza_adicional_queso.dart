@@ -8,6 +8,7 @@ class PizzaAdicionalQueso extends PizzaDecorator {
   @override
   void updateDescription() {
     pizza.addIngrediente(ingrediente);
+    pizza.ingredientes.add(ingrediente); // Añade el ingrediente a la descripción de la pizza
   }
 
   @override
