@@ -10,6 +10,7 @@ class Pedido {
   final SistemaEnvios sistemaEnvios;
   SistemaPagos sistemaPagos;
   final String numeroTelefono;
+  bool _pedidoRealizado = false;
 
   Pedido({
     required this.pizzas,
@@ -23,7 +24,8 @@ class Pedido {
 
   String get direccion => sistemaEnvios.direccion;
   String get tarjeta => sistemaPagos.tarjeta;
-  
+  bool get pedidoRealizado => _pedidoRealizado;
+
   void hacerPedido() {
     sistemaPagos.procesarPago();
     sistemaEnvios.enviarPedido();
@@ -32,6 +34,7 @@ class Pedido {
       totalCost += pizza.getCoste(pizza.tamano);
     }
     sistemaPagos.coste = (totalCost);
+    _pedidoRealizado = true;
     print('Pedido realizado');
   }
 
@@ -52,7 +55,7 @@ class Pedido {
     return totalCost;
   }
 
-  void clear(){
+  void clear() {
     pizzas.clear();
   }
 }

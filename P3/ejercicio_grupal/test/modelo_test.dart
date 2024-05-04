@@ -11,8 +11,8 @@ import 'package:ejercicio_grupal/models/pizza.dart';
 import 'package:ejercicio_grupal/decorator/pizza_decorator.dart';
 import 'package:ejercicio_grupal/models/pedido.dart';
 
-void main() { 
-  group("Comprobacion pizzas", () { 
+void main() {
+  group("Comprobacion pizzas", () {
     Pizza? pizza;
     const margaritaName = 'Pizza Margarita';
     const mediumSize = 'Mediana';
@@ -23,7 +23,8 @@ void main() {
       pizza = Pizza();
     });
 
-    void checkPizza(Pizza pizza, String name, double price, List<String> ingredients, String size) {
+    void checkPizza(Pizza pizza, String name, double price,
+        List<String> ingredients, String size) {
       expect(pizza.getNombre, name);
       expect(pizza.getPrecio, price);
       expect(pizza.getIngredientes, ingredients);
@@ -42,12 +43,14 @@ void main() {
 
     test('Builder de pizza', () {
       pizza = Director(MargaritaBuilder()).build(mediumSize);
-      checkPizza(pizza!, margaritaName, margaritaPrice, margaritaIngredients, mediumSize);
+      checkPizza(pizza!, margaritaName, margaritaPrice, margaritaIngredients,
+          mediumSize);
     });
 
     test('Factoria de pizza', () {
       pizza = PizzaFactory.createPizza(margaritaName, mediumSize);
-      checkPizza(pizza!, margaritaName, margaritaPrice, margaritaIngredients, mediumSize);
+      checkPizza(pizza!, margaritaName, margaritaPrice, margaritaIngredients,
+          mediumSize);
     });
 
     test('Decorador de pizza', () {
@@ -56,7 +59,8 @@ void main() {
       PizzaAdicionalQueso(pizza!).updateCoste();
       PizzaAdicionalQueso(pizza!).updateDescription();
 
-      checkPizza(pizza!, margaritaName , margaritaPrice + 0.5, margaritaIngredients + ['queso extra'], mediumSize);
+      checkPizza(pizza!, margaritaName, margaritaPrice + 0.5,
+          margaritaIngredients + ['queso extra'], mediumSize);
     });
 
     test('Pizza extra', () {
@@ -64,11 +68,12 @@ void main() {
 
       PizzaExtras.anadirExtras(pizza!, ['Extra queso']);
 
-      checkPizza(pizza!, margaritaName , margaritaPrice + 0.5, margaritaIngredients + ['queso extra'], mediumSize);
+      checkPizza(pizza!, margaritaName, margaritaPrice + 0.5,
+          margaritaIngredients + ['queso extra'], mediumSize);
     });
   });
 
-  group("Comprobacion APP", () { 
+  group("Comprobacion APP", () {
     Pizza? pizza, pizza2;
     const mediumSize = 'Mediana';
 
@@ -93,10 +98,8 @@ void main() {
             numeroTelefono: '1234567890',
           );
 
-          // Actuar
           pedido.hacerPedido();
 
-          // Afirmar
           expect(pedido.pedidoRealizado, isTrue);
         }
       });
@@ -111,11 +114,10 @@ void main() {
             numeroTelefono: '1234567890',
           );
 
-          // Actuar
           pedido.hacerPedido();
 
-          // Afirmar
-          var costeTotalEsperado = pizza!.getCoste(pizza!.tamano) + pizza2!.getCoste(pizza2!.tamano);
+          var costeTotalEsperado =
+              pizza!.getCoste(pizza!.tamano) + pizza2!.getCoste(pizza2!.tamano);
           expect(pedido.getCosteTotal(), costeTotalEsperado);
         }
       });
