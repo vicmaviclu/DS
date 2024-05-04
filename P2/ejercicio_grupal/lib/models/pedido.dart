@@ -7,18 +7,21 @@ import 'sistema_pagos.dart';
 
 // Clase pedido actua como una fachada
 class Pedido {
+  bool pedidoRealizado = false;
   List<Pizza> pizzas = [];
   static int _contadorPedidos = 0;
   final int numeroPedido;
   final SistemaEnvios sistemaEnvios;
   SistemaPagos sistemaPagos;
   final String numeroTelefono;
-
+  
+  
   Pedido({
     required this.pizzas,
     required String direccion,
     required String tarjeta,
     required this.numeroTelefono,
+    
   })  : sistemaEnvios =
             SistemaEnvios(direccion: direccion, numeroTelefono: numeroTelefono),
         sistemaPagos = SistemaPagos(tarjeta: tarjeta),
@@ -26,6 +29,9 @@ class Pedido {
 
   String get direccion => sistemaEnvios.direccion;
   String get tarjeta => sistemaPagos.tarjeta;
+
+  
+
   
   void hacerPedido() {
     sistemaPagos.procesarPago();
@@ -36,7 +42,9 @@ class Pedido {
     }
     sistemaPagos.coste = (totalCost);
     print('Pedido realizado');
-  }
+    pedidoRealizado = true;
+
+      }
 
   @override
   String toString() {

@@ -9,6 +9,7 @@ import 'package:ejercicio_grupal/models/pizza_foto.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:ejercicio_grupal/models/pizza.dart';
 import 'package:ejercicio_grupal/decorator/pizza_decorator.dart';
+import 'package:ejercicio_grupal/models/pedido.dart';
 
 void main() { 
   group("Comprobacion pizzas", () { 
@@ -65,31 +66,59 @@ void main() {
 
       checkPizza(pizza!, margaritaName , margaritaPrice + 0.5, margaritaIngredients + ['queso extra'], mediumSize);
     });
-    
-    
   });
 
   group("Comprobacion APP", () { 
+    Pizza? pizza, pizza2;
+    const mediumSize = 'Mediana';
 
     setUp(() {
-
+      var tempPizza = Director(MargaritaBuilder()).build(mediumSize);
+      var tempPizza2 = Director(MargaritaBuilder()).build(mediumSize);
+      if (tempPizza != null && tempPizza2 != null) {
+        pizza = tempPizza;
+        pizza2 = tempPizza2;
+        PizzaExtras.anadirExtras(pizza!, ['Extra queso']);
+      }
     });
 
-    test('Carta', () {
-    });
-    test('Pedido', () {
-    });
+    group('Realizar Pedido', () {
+      test('Pedido realizado', () {
+        if (pizza != null && pizza2 != null) {
+          var pizzas = [pizza!, pizza2!];
+          var pedido = Pedido(
+            pizzas: pizzas,
+            direccion: '123 Calle Falsa',
+            tarjeta: '1234567812345678',
+            numeroTelefono: '1234567890',
+          );
 
-    test('Pedido', () {
-    });
+          // Actuar
+          pedido.hacerPedido();
 
-    test('Pedido', () {
-    });
+          // Afirmar
+          expect(pedido.pedidoRealizado, isTrue);
+        }
+      });
 
-    test('Carta', () {
-    });
+      test('Comprobar Coste Total', () {
+        if (pizza != null && pizza2 != null) {
+          var pizzas = [pizza!, pizza2!];
+          var pedido = Pedido(
+            pizzas: pizzas,
+            direccion: '123 Calle Falsa',
+            tarjeta: '1234567812345678',
+            numeroTelefono: '1234567890',
+          );
 
-    test('Carta', () {
+          // Actuar
+          pedido.hacerPedido();
+
+          // Afirmar
+          var costeTotalEsperado = pizza!.getCoste(pizza!.tamano) + pizza2!.getCoste(pizza2!.tamano);
+          expect(pedido.getCosteTotal(), costeTotalEsperado);
+        }
+      });
     });
   });
 }
