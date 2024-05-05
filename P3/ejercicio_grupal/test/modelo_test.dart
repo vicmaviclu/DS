@@ -9,7 +9,6 @@ import 'package:ejercicio_grupal/models/pizza.dart';
 import 'package:ejercicio_grupal/models/pedido.dart';
 import 'package:ejercicio_grupal/models/carta.dart';
 
-
 void main() {
   group("Comprobacion pizzas", () {
     Pizza? pizza;
@@ -57,7 +56,8 @@ void main() {
       PizzaAdicionalQueso(pizza!).updateCoste();
       PizzaAdicionalQueso(pizza!).updateDescription();
 
-      checkPizza(pizza!, nombre, precio + 0.5, ingredientes + ['queso extra'], tamano);
+      checkPizza(
+          pizza!, nombre, precio + 0.5, ingredientes + ['queso extra'], tamano);
     });
 
     test('Pizza extra', () {
@@ -65,7 +65,8 @@ void main() {
 
       PizzaExtras.anadirExtras(pizza!, ['Extra queso']);
 
-      checkPizza(pizza!, nombre, precio + 0.5, ingredientes + ['queso extra'], tamano);
+      checkPizza(
+          pizza!, nombre, precio + 0.5, ingredientes + ['queso extra'], tamano);
     });
   });
 
@@ -97,7 +98,8 @@ void main() {
       });
 
       test('Comprobar Coste Total', () {
-        var costeTotalEsperado = pizza!.getCoste(pizza!.tamano) + pizza2!.getCoste(pizza2!.tamano);
+        var costeTotalEsperado =
+            pizza!.getCoste(pizza!.tamano) + pizza2!.getCoste(pizza2!.tamano);
         expect(pedido!.getCosteTotal(), costeTotalEsperado);
       });
 
@@ -107,34 +109,38 @@ void main() {
       });
     });
 
-  group('Carta', () {
-    Carta? carta;
-    const fotoPizza = 'assets/margarita.jpg';
+    group('Carta', () {
+      Carta? carta;
+      const fotoPizza = 'assets/margarita.jpg';
 
-    setUp(() {
-      carta = Carta();
-      carta!.reset();
-      carta!.addPizza(pizza!, fotoPizza);
-      carta!.addPizza(pizza2!, fotoPizza);
-    });
+      setUp(() {
+        carta = Carta();
+        carta!.reset();
+        carta!.addPizza(pizza!, fotoPizza);
+        carta!.addPizza(pizza2!, fotoPizza);
+      });
 
-    test('añade a la carta', () {
-      expect(carta!.pizzas[0], isNotNull);
-      expect(carta!.pizzas[1], isNotNull);
-      expect(carta!.pizzas[0].pizza, equals(pizza!));
-      expect(carta!.pizzas[1].pizza, equals(pizza2!));
-      expect(carta!.pizzas[1].foto, equals(fotoPizza));
-      expect(carta!.pizzas.length, 2);
-    });
+      test('añade a la carta', () {
+        expect(carta!.pizzas[0], isNotNull);
+        expect(carta!.pizzas[1], isNotNull);
+        expect(carta!.pizzas[0].pizza, equals(pizza!));
+        expect(carta!.pizzas[1].pizza, equals(pizza2!));
+        expect(carta!.pizzas[1].foto, equals(fotoPizza));
+        expect(carta!.pizzas.length, 2);
+      });
 
-    test('removePizza elimina una pizza de la carta', () {
-      carta!.removePizza(pizza!.getNombre);
-      carta!.removePizza(pizza2!.getNombre);
-      expect(carta!.pizzas, isNot(contains(pizza!)));
-      expect(carta!.pizzas, isNot(contains(pizza2!)));
-      expect(carta!.pizzas.length, 0);
+      test('removePizza elimina una pizza de la carta', () {
+        carta!.removePizza(pizza!.getNombre);
+        carta!.removePizza(pizza2!.getNombre);
+        expect(carta!.pizzas, isNot(contains(pizza!)));
+        expect(carta!.pizzas, isNot(contains(pizza2!)));
+        expect(carta!.pizzas.length, 0);
+      });
+
+      test('reset borra todas las pizzas de la carta', () {
+        carta!.reset();
+        expect(carta!.pizzas, isEmpty);
+      });
     });
-  });
-      
   });
 }
