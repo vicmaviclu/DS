@@ -119,8 +119,8 @@ void main() {
     });
 
     test('añade a la carta', () {
-      expect(carta!.pizzas[1], isNotNull);
       expect(carta!.pizzas[0], isNotNull);
+      expect(carta!.pizzas[1], isNotNull);
       expect(carta!.pizzas[0].pizza, equals(pizza!));
       expect(carta!.pizzas[1].pizza, equals(pizza2!));
       expect(carta!.pizzas[1].foto, equals(fotoPizza));
