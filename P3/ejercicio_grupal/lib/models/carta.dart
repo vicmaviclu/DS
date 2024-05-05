@@ -64,4 +64,8 @@ class Carta {
     pizzas.removeWhere(
         (pizzaConFoto) => pizzaConFoto.pizza.nombre == nombrePizza);
   }
+
+  void reset() {
+    pizzas.clear();
+  }
 }

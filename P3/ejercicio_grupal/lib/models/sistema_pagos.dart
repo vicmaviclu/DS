@@ -5,6 +5,6 @@ class SistemaPagos {
   SistemaPagos({required this.tarjeta});
 
   void procesarPago() {
-    print('Procesando el pago con la tarjeta $tarjeta');
+    // print('Procesando el pago con la tarjeta $tarjeta');
   }
 }

@@ -35,7 +35,7 @@ class Pedido {
     }
     sistemaPagos.coste = (totalCost);
     _pedidoRealizado = true;
-    print('Pedido realizado');
+    // print('Pedido realizado');
   }
 
   @override
