@@ -1,0 +1,2 @@
+class Tarea < ApplicationRecord
+end
