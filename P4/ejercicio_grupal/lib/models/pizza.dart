@@ -1,4 +1,6 @@
 class Pizza {
+  int ?id;
+  int ?pedido_id;
   String nombre = 'Pizza ';
   double precio = 0.0;
   List<String> ingredientes = [];
@@ -17,10 +19,9 @@ class Pizza {
   double get getPrecio => precio;
   List<String> get getIngredientes => ingredientes;
   String get getTamano => tamano;
-  //List<String> get getIngredientesAdicionales => ingredientesAdicionales;
 
   set setNombre(String nuevoNombre) {
-    nombre += nuevoNombre;
+    nombre = nuevoNombre;
   }
 
   set setPrecio(double nuevoPrecio) {
@@ -53,5 +54,24 @@ class Pizza {
         'Ingredientes: ${ingredientes.join(', ')}\n'
         'Extras: ${ingredientesAdicionales.isEmpty ? 'No extras' : ingredientesAdicionales.join(', ')}\n'
         'Precio: ${getCoste(tamano)}\n'; 
+  }
+
+  factory Pizza.fromJson(Map<String, dynamic> json) {
+    return Pizza()
+      ..id = json['id'] as int?
+      ..nombre = json['nombre'] as String? ?? 'Pizza '
+      ..precio = (json['coste'] as num?)?.toDouble() ?? 0.0
+      ..tamano = json['tamano'] as String? ?? ''
+      ..pedido_id = json['pedido_id'] as int?;
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      if (id != null) 'id': id,
+      'nombre': nombre,
+      'coste': precio,
+      'tamano': tamano,
+      if (pedido_id != null) 'pedido_id': pedido_id,
+    };
   }
 }

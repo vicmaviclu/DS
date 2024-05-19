@@ -1,4 +1,5 @@
 import 'package:ejercicio_grupal/menu_carta.dart';
+import 'package:ejercicio_grupal/mis_pedidos.dart';
 import 'package:flutter/material.dart';
 import 'menu_pedido.dart';
 
@@ -32,7 +33,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
+  String currentUser = "Victor";
+  List<String> users = ["Victor", "Antonio", "Joaquin", "Kaito"];
 
   @override
   Widget build(BuildContext context) {
@@ -54,6 +56,26 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
         )
       ),
+      actions: <Widget>[
+        DropdownButton<String>(
+          value: currentUser,
+          icon: Icon(Icons.arrow_downward),
+          onChanged: (String? newValue) {
+            if (newValue != null && newValue != currentUser) {
+              setState(() {
+                currentUser = newValue;
+                // _cargarTareasIniciales(); // Uncomment this if you have this method
+              });
+            }
+          },
+          items: users.map<DropdownMenuItem<String>>((String value) {
+            return DropdownMenuItem<String>(
+              value: value,
+              child: Text(value),
+            );
+          }).toList(),
+        ),
+      ],
     );
   }
 
@@ -71,10 +93,15 @@ class _MyHomePageState extends State<MyHomePage> {
               context,
               MaterialPageRoute(builder: (context) => MenuCarta()),
             );
-            }else{
+            }if(texto == 'Hacer pedido'){
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => MenuPedido()),
+              );
+            }else{
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => MisPedidos(currentUser: currentUser)),
               );
             }
           },
@@ -99,6 +126,7 @@ class _MyHomePageState extends State<MyHomePage> {
       children: <Widget>[
         buildBoton('Carta'),
         buildBoton('Hacer pedido'),
+        buildBoton('Mis pedidos')
       ],
     );
   }

@@ -7,6 +7,6 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
-  resources :pedidos, only: [:index, :create, :update, :destroy]
-  resources :pizzas, only: [:index, :create, :update, :destroy]
+  resources :pedido, only: [:index, :create, :update, :destroy]
+  resources :pizza, only: [:index, :create, :update, :destroy]
 end
