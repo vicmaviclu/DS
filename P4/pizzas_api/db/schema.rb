@@ -10,7 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_19_115448) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_19_184322) do
+  create_table "ingredientes", force: :cascade do |t|
+    t.string "nombre"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "pedidos", force: :cascade do |t|
     t.string "numero_telefono"
     t.string "direccion"
@@ -18,6 +24,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_19_115448) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "usuario"
+    t.decimal "costeTotal"
+  end
+
+  create_table "pizza_ingredientes", force: :cascade do |t|
+    t.integer "pizza_id", null: false
+    t.integer "ingrediente_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ingrediente_id"], name: "index_pizza_ingredientes_on_ingrediente_id"
+    t.index ["pizza_id"], name: "index_pizza_ingredientes_on_pizza_id"
   end
 
   create_table "pizzas", force: :cascade do |t|
@@ -30,5 +46,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_19_115448) do
     t.index ["pedido_id"], name: "index_pizzas_on_pedido_id"
   end
 
+  add_foreign_key "pizza_ingredientes", "ingredientes"
+  add_foreign_key "pizza_ingredientes", "pizzas"
   add_foreign_key "pizzas", "pedidos"
 end

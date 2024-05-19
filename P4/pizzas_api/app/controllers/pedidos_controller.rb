@@ -40,6 +40,6 @@ class PedidosController < ApplicationController
     private
   
     def pedido_params
-      params.require(:pedido).permit(:numero_telefono, :direccion, :tarjeta, :usuario)
+      params.require(:pedido).permit(:numero_telefono, :direccion, :tarjeta, :usuario, :costeTotal)
     end
   end

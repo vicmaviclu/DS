@@ -15,6 +15,7 @@ class Pedido {
   SistemaPagos sistemaPagos;
   final String numeroTelefono;
   bool _pedidoRealizado = false;
+  double? costeTotal;
 
   Pedido({
     required this.pizzas,
@@ -23,6 +24,7 @@ class Pedido {
     required this.numeroTelefono,
     required this.usuario,
     int? numeroPedido,
+    this.costeTotal,
   })  : sistemaEnvios =
           SistemaEnvios(direccion: direccion, numeroTelefono: numeroTelefono),
         sistemaPagos = SistemaPagos(tarjeta: tarjeta) {
@@ -33,17 +35,27 @@ class Pedido {
   String get tarjeta => sistemaPagos.tarjeta;
   bool get pedidoRealizado => _pedidoRealizado;
 
-  void hacerPedido() {
-    sistemaPagos.procesarPago();
-    sistemaEnvios.enviarPedido();
+  Future<void> hacerPedido() async {
+    // Primero, crea el Pedido y genera el numeroPedido
+    await anadirPedido(); 
+
     double totalCost = 0;
+
+    // Luego, crea las Pizzas y asigna el numeroPedido
     for (var pizza in pizzas) {
       totalCost += pizza.getCoste(pizza.tamano);
+      pizza.pedido_id = this.numeroPedido;
+      await pizza.anadirPizza(apiUrl); 
     }
+
+    // Actualiza el coste total del pedido en la base de datos
+    this.costeTotal = totalCost;
+    await actualizarCosteTotalPedido(apiUrl, this.numeroPedido, totalCost);
+
+    sistemaPagos.procesarPago();
+    sistemaEnvios.enviarPedido();
     sistemaPagos.coste = (totalCost);
     _pedidoRealizado = true;
-    // print('Pedido realizado');
-    anadirPedido();
   }
 
   Future<void> anadirPedido() async {
@@ -52,27 +64,47 @@ class Pedido {
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
-      body: jsonEncode({
-        'id': numeroPedido,
-        'numeroTelefono': numeroTelefono,
-        'direccion': direccion,
-        'tarjeta': tarjeta,
-        'usuario': usuario,
-      }),
+      body: jsonEncode(this.toJson()),
     );
     if (response.statusCode != 201) {
       throw Exception('Failed to save order: ${response.body}');
     }
+    this.numeroPedido = jsonDecode(response.body)['id']; 
   }
 
+  Future<void> actualizarCosteTotalPedido(String apiUrl, int? numeroPedido, double totalCost) async {
+    final response = await http.put(
+      Uri.parse('$apiUrl/pedidos/$numeroPedido'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode({'costeTotal': totalCost}),
+    );
+
+    if (response.statusCode != 200) {
+      throw Exception('Failed to update order cost: ${response.body}');
+    }
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': numeroPedido,
+      'numeroTelefono': numeroTelefono,
+      'direccion': direccion,
+      'tarjeta': tarjeta,
+      'usuario': usuario,
+      'costeTotal': costeTotal,
+    };
+  }
   factory Pedido.fromJson(Map<String, dynamic> json) {
     return Pedido(
       numeroTelefono: json['numero_telefono'],
       direccion: json['direccion'],
       tarjeta: json['tarjeta'],
       usuario: json['usuario'],
-      pizzas: [], // Aquí necesitas proporcionar una lista de pizzas. Asegúrate de ajustar esto según tus necesidades.
+      pizzas: [], 
       numeroPedido: json['id'],
+      costeTotal: json['costeTotal'],
     );
   }
 
