@@ -7,11 +7,17 @@ import 'models/pizza_extras.dart';
 import 'factory/pizza_factory.dart';
 
 class MenuPedido extends StatefulWidget {
+  final String currentUser;
+  
+  MenuPedido({required this.currentUser});
+
   @override
-  _MenuPedidoState createState() => _MenuPedidoState();
+  _MenuPedidoState createState() => _MenuPedidoState(currentUser: currentUser);
+
 }
 
 class _MenuPedidoState extends State<MenuPedido> {
+  final String currentUser;
   final Carta carta = Carta();
   List<Pizza> pizzas = [];
   String? pizzaSeleccionada;
@@ -28,6 +34,8 @@ class _MenuPedidoState extends State<MenuPedido> {
     'Extra queso'
   ];
   List<String> ingredientesAdicionalesSeleccionados = [];
+
+  _MenuPedidoState({required this.currentUser});
 
   PreferredSizeWidget buildAppBar() {
     return AppBar(

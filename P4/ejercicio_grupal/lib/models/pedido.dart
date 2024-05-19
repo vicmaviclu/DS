@@ -4,6 +4,7 @@ import 'sistema_pagos.dart';
 
 // Clase pedido actua como una fachada
 class Pedido {
+  final String apiUrl = "http://localhost:3000/pedidos";
   int ?id;
   List<Pizza> pizzas = [];
   final SistemaEnvios sistemaEnvios;

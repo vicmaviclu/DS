@@ -96,7 +96,7 @@ class _MyHomePageState extends State<MyHomePage> {
             }if(texto == 'Hacer pedido'){
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => MenuPedido()),
+                MaterialPageRoute(builder: (context) => MenuPedido(currentUser: currentUser)),
               );
             }else{
               Navigator.push(
