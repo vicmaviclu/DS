@@ -1,12 +1,16 @@
 import '/models/pizza.dart';
 import 'sistema_envios.dart';
 import 'sistema_pagos.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 
 // Clase pedido actua como una fachada
 class Pedido {
-  final String apiUrl = "http://localhost:3000/pedidos";
-  int ?id;
+  final apiUrl = 'http://localhost:3000';
+  final String usuario;
   List<Pizza> pizzas = [];
+  static int _contadorPedidos = 0;
+  int? numeroPedido;
   final SistemaEnvios sistemaEnvios;
   SistemaPagos sistemaPagos;
   final String numeroTelefono;
@@ -17,9 +21,13 @@ class Pedido {
     required String direccion,
     required String tarjeta,
     required this.numeroTelefono,
+    required this.usuario,
+    int? numeroPedido,
   })  : sistemaEnvios =
-            SistemaEnvios(direccion: direccion, numeroTelefono: numeroTelefono),
-        sistemaPagos = SistemaPagos(tarjeta: tarjeta);
+          SistemaEnvios(direccion: direccion, numeroTelefono: numeroTelefono),
+        sistemaPagos = SistemaPagos(tarjeta: tarjeta) {
+    this.numeroPedido = numeroPedido ?? ++_contadorPedidos;
+  }
 
   String get direccion => sistemaEnvios.direccion;
   String get tarjeta => sistemaPagos.tarjeta;
@@ -35,11 +43,42 @@ class Pedido {
     sistemaPagos.coste = (totalCost);
     _pedidoRealizado = true;
     // print('Pedido realizado');
+    anadirPedido();
+  }
+
+  Future<void> anadirPedido() async {
+    final response = await http.post(
+      Uri.parse('$apiUrl/pedidos'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode({
+        'id': numeroPedido,
+        'numeroTelefono': numeroTelefono,
+        'direccion': direccion,
+        'tarjeta': tarjeta,
+        'usuario': usuario,
+      }),
+    );
+    if (response.statusCode != 201) {
+      throw Exception('Failed to save order: ${response.body}');
+    }
+  }
+
+  factory Pedido.fromJson(Map<String, dynamic> json) {
+    return Pedido(
+      numeroTelefono: json['numero_telefono'],
+      direccion: json['direccion'],
+      tarjeta: json['tarjeta'],
+      usuario: json['usuario'],
+      pizzas: [], // Aquí necesitas proporcionar una lista de pizzas. Asegúrate de ajustar esto según tus necesidades.
+      numeroPedido: json['id'],
+    );
   }
 
   @override
   String toString() {
-    String pedido = 'Número de pedido: ${id}\n';
+    String pedido = 'Número de pedido: $numeroPedido\n';
     for (var pizza in pizzas) {
       pedido += pizza.toString() + '\n';
     }
@@ -56,31 +95,5 @@ class Pedido {
 
   void clear() {
     pizzas.clear();
-  }
-
-  factory Pedido.fromJson(Map<String, dynamic> json) {
-    return Pedido(
-      pizzas: (json['pizzas'] as List<dynamic>?)
-              ?.map((e) => Pizza.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          [],
-      direccion: json['direccion'] as String? ?? '',
-      tarjeta: json['tarjeta'] as String? ?? '',
-      numeroTelefono: json['numero_telefono'] as String? ?? '',
-    )
-      ..id = json['id'] as int?
-      .._pedidoRealizado = json['pedido_realizado'] as bool? ?? false;
-  }
-
-  Map<String, dynamic> toJson() {
-    return {
-      if (id != null) 'id': id,
-      'numero_pedido': id,
-      'numero_telefono': numeroTelefono,
-      'pedido_realizado': _pedidoRealizado,
-      'direccion': direccion,
-      'tarjeta': tarjeta,
-      'pizzas': pizzas.map((e) => e.toJson()).toList(),
-    };
   }
 }

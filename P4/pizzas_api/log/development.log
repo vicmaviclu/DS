@@ -87,3 +87,196 @@ Processing by Rails::WelcomeController#index as HTML
 Completed 200 OK in 2ms (Views: 1.7ms | ActiveRecord: 0.0ms | Allocations: 239)
 
 
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to AddUsuarioToPedidos (20240519115054)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (1.0ms)[0m  [1m[35mALTER TABLE "pedidos" ADD "usuario" varchar[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240519115054') RETURNING "version"[0m
+  [1m[36mTRANSACTION (2.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to RemoveNumeroPedidoFromPedidos (20240519115431)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TEMPORARY TABLE "apedidos" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "numero_pedido" integer DEFAULT NULL, "numero_telefono" varchar DEFAULT NULL, "pedido_realizado" boolean DEFAULT NULL, "direccion" varchar DEFAULT NULL, "tarjeta" varchar DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "usuario" varchar DEFAULT NULL)[0m
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "apedidos" ("id","numero_pedido","numero_telefono","pedido_realizado","direccion","tarjeta","created_at","updated_at","usuario")
+                     SELECT "id","numero_pedido","numero_telefono","pedido_realizado","direccion","tarjeta","created_at","updated_at","usuario" FROM "pedidos"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "pedidos"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "pedidos" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "numero_telefono" varchar DEFAULT NULL, "pedido_realizado" boolean DEFAULT NULL, "direccion" varchar DEFAULT NULL, "tarjeta" varchar DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "usuario" varchar DEFAULT NULL)[0m
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "pedidos" ("id","numero_telefono","pedido_realizado","direccion","tarjeta","created_at","updated_at","usuario")
+                     SELECT "id","numero_telefono","pedido_realizado","direccion","tarjeta","created_at","updated_at","usuario" FROM "apedidos"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "apedidos"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240519115431') RETURNING "version"[0m
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[36mcommit transaction[0m
+Migrating to RenameIdInPedidos (20240519115440)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.9ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240519115440') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mcommit transaction[0m
+Migrating to RemovePedidoRealizadoFromPedidos (20240519115448)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TEMPORARY TABLE "apedidos" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "numero_telefono" varchar DEFAULT NULL, "pedido_realizado" boolean DEFAULT NULL, "direccion" varchar DEFAULT NULL, "tarjeta" varchar DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "usuario" varchar DEFAULT NULL)[0m
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "apedidos" ("id","numero_telefono","pedido_realizado","direccion","tarjeta","created_at","updated_at","usuario")
+                     SELECT "id","numero_telefono","pedido_realizado","direccion","tarjeta","created_at","updated_at","usuario" FROM "pedidos"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "pedidos"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "pedidos" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "numero_telefono" varchar DEFAULT NULL, "direccion" varchar DEFAULT NULL, "tarjeta" varchar DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "usuario" varchar DEFAULT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "pedidos" ("id","numero_telefono","direccion","tarjeta","created_at","updated_at","usuario")
+                     SELECT "id","numero_telefono","direccion","tarjeta","created_at","updated_at","usuario" FROM "apedidos"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "apedidos"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240519115448') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started POST "/pedidos" for ::1 at 2024-05-19 14:24:38 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (No route matches [POST] "/pedidos"):
+  
+Started GET "/" for ::1 at 2024-05-19 14:24:50 +0200
+Processing by Rails::WelcomeController#index as HTML
+  Rendering C:/Ruby31-x64/lib/ruby/gems/3.1.0/gems/railties-7.1.3.2/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered C:/Ruby31-x64/lib/ruby/gems/3.1.0/gems/railties-7.1.3.2/lib/rails/templates/rails/welcome/index.html.erb (Duration: 0.8ms | Allocations: 354)
+Completed 200 OK in 53ms (Views: 11.9ms | ActiveRecord: 0.0ms | Allocations: 4362)
+
+
+Started GET "/pedidos" for ::1 at 2024-05-19 14:24:55 +0200
+  
+ActionController::RoutingError (No route matches [GET] "/pedidos"):
+  
+Started GET "/pedidos" for ::1 at 2024-05-19 14:26:33 +0200
+Processing by PedidosController#index as HTML
+  [1m[36mPedido Count (0.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "pedidos"[0m
+  ↳ app/controllers/pedidos_controller.rb:8:in `index'
+Cargando todos los pedidos, Total: 0
+  [1m[36mPedido Load (0.1ms)[0m  [1m[34mSELECT "pedidos".* FROM "pedidos"[0m
+  ↳ app/controllers/pedidos_controller.rb:10:in `index'
+Completed 200 OK in 52ms (Views: 1.9ms | ActiveRecord: 6.4ms | Allocations: 8493)
+
+
+Started POST "/pedidos" for ::1 at 2024-05-19 14:26:52 +0200
+Processing by PedidosController#create as */*
+  Parameters: {"id"=>1, "numeroTelefono"=>"3", "direccion"=>"a", "tarjeta"=>"3", "usuario"=>"Victor", "pedido"=>{"id"=>1, "direccion"=>"a", "tarjeta"=>"3", "usuario"=>"Victor"}}
+[31mUnpermitted parameter: :id. Context: { controller: PedidosController, action: create, request: #<ActionDispatch::Request:0x000001cfa46c6130>, params: {"id"=>1, "numeroTelefono"=>"3", "direccion"=>"a", "tarjeta"=>"3", "usuario"=>"Victor", "controller"=>"pedidos", "action"=>"create", "pedido"=>{"id"=>1, "direccion"=>"a", "tarjeta"=>"3", "usuario"=>"Victor"}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/pedidos_controller.rb:15:in `create'
+  [1m[36mPedido Create (2.9ms)[0m  [1m[32mINSERT INTO "pedidos" ("numero_telefono", "direccion", "tarjeta", "created_at", "updated_at", "usuario") VALUES (?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["numero_telefono", nil], ["direccion", "a"], ["tarjeta", "3"], ["created_at", "2024-05-19 12:26:52.930962"], ["updated_at", "2024-05-19 12:26:52.930962"], ["usuario", "Victor"]]
+  ↳ app/controllers/pedidos_controller.rb:15:in `create'
+  [1m[36mTRANSACTION (1.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/pedidos_controller.rb:15:in `create'
+Completed 201 Created in 50ms (Views: 1.0ms | ActiveRecord: 5.4ms | Allocations: 11292)
+
+
+Started GET "/pedidos" for ::1 at 2024-05-19 14:26:55 +0200
+Processing by PedidosController#index as HTML
+  [1m[36mPedido Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "pedidos"[0m
+  ↳ app/controllers/pedidos_controller.rb:8:in `index'
+Cargando todos los pedidos, Total: 1
+  [1m[36mPedido Load (0.1ms)[0m  [1m[34mSELECT "pedidos".* FROM "pedidos"[0m
+  ↳ app/controllers/pedidos_controller.rb:10:in `index'
+Completed 200 OK in 7ms (Views: 4.1ms | ActiveRecord: 0.2ms | Allocations: 1448)
+
+
+Started GET "/pedidos" for ::1 at 2024-05-19 14:37:06 +0200
+Processing by PedidosController#index as */*
+  [1m[36mPedido Count (2.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "pedidos"[0m
+  ↳ app/controllers/pedidos_controller.rb:8:in `index'
+Cargando todos los pedidos, Total: 1
+  [1m[36mPedido Load (0.2ms)[0m  [1m[34mSELECT "pedidos".* FROM "pedidos"[0m
+  ↳ app/controllers/pedidos_controller.rb:10:in `index'
+Completed 200 OK in 11ms (Views: 5.1ms | ActiveRecord: 3.3ms | Allocations: 1625)
+
+
+Started GET "/pedidos" for ::1 at 2024-05-19 14:38:17 +0200
+Processing by PedidosController#index as */*
+  [1m[36mPedido Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "pedidos"[0m
+  ↳ app/controllers/pedidos_controller.rb:8:in `index'
+Cargando todos los pedidos, Total: 1
+  [1m[36mPedido Load (0.1ms)[0m  [1m[34mSELECT "pedidos".* FROM "pedidos"[0m
+  ↳ app/controllers/pedidos_controller.rb:10:in `index'
+Completed 200 OK in 4ms (Views: 1.7ms | ActiveRecord: 0.2ms | Allocations: 1310)
+
+
+Started GET "/pedidos" for ::1 at 2024-05-19 14:39:31 +0200
+Processing by PedidosController#index as */*
+  [1m[36mPedido Count (0.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "pedidos"[0m
+  ↳ app/controllers/pedidos_controller.rb:8:in `index'
+Cargando todos los pedidos, Total: 1
+  [1m[36mPedido Load (0.1ms)[0m  [1m[34mSELECT "pedidos".* FROM "pedidos"[0m
+  ↳ app/controllers/pedidos_controller.rb:10:in `index'
+Completed 200 OK in 13ms (Views: 3.2ms | ActiveRecord: 0.8ms | Allocations: 1309)
+
+
+Started GET "/pedidos" for ::1 at 2024-05-19 14:39:36 +0200
+Processing by PedidosController#index as */*
+  [1m[36mPedido Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "pedidos"[0m
+  ↳ app/controllers/pedidos_controller.rb:8:in `index'
+Cargando todos los pedidos, Total: 1
+  [1m[36mPedido Load (0.1ms)[0m  [1m[34mSELECT "pedidos".* FROM "pedidos"[0m
+  ↳ app/controllers/pedidos_controller.rb:10:in `index'
+Completed 200 OK in 12ms (Views: 3.4ms | ActiveRecord: 0.2ms | Allocations: 1319)
+
+
+Started GET "/pedidos" for ::1 at 2024-05-19 14:39:54 +0200
+Processing by PedidosController#index as */*
+  [1m[36mPedido Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "pedidos"[0m
+  ↳ app/controllers/pedidos_controller.rb:8:in `index'
+Cargando todos los pedidos, Total: 1
+  [1m[36mPedido Load (0.4ms)[0m  [1m[34mSELECT "pedidos".* FROM "pedidos"[0m
+  ↳ app/controllers/pedidos_controller.rb:10:in `index'
+Completed 200 OK in 11ms (Views: 6.9ms | ActiveRecord: 0.5ms | Allocations: 1309)
+
+
+Started POST "/pedidos" for ::1 at 2024-05-19 14:40:09 +0200
+Processing by PedidosController#create as */*
+  Parameters: {"id"=>1, "numeroTelefono"=>"3", "direccion"=>"a", "tarjeta"=>"3", "usuario"=>"Victor", "pedido"=>{"id"=>1, "direccion"=>"a", "tarjeta"=>"3", "usuario"=>"Victor"}}
+[31mUnpermitted parameter: :id. Context: { controller: PedidosController, action: create, request: #<ActionDispatch::Request:0x000001cfa5a235e8>, params: {"id"=>1, "numeroTelefono"=>"3", "direccion"=>"a", "tarjeta"=>"3", "usuario"=>"Victor", "controller"=>"pedidos", "action"=>"create", "pedido"=>{"id"=>1, "direccion"=>"a", "tarjeta"=>"3", "usuario"=>"Victor"}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/pedidos_controller.rb:15:in `create'
+  [1m[36mPedido Create (2.6ms)[0m  [1m[32mINSERT INTO "pedidos" ("numero_telefono", "direccion", "tarjeta", "created_at", "updated_at", "usuario") VALUES (?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["numero_telefono", nil], ["direccion", "a"], ["tarjeta", "3"], ["created_at", "2024-05-19 12:40:09.494457"], ["updated_at", "2024-05-19 12:40:09.494457"], ["usuario", "Victor"]]
+  ↳ app/controllers/pedidos_controller.rb:15:in `create'
+  [1m[36mTRANSACTION (2.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/pedidos_controller.rb:15:in `create'
+Completed 201 Created in 17ms (Views: 0.9ms | ActiveRecord: 5.3ms | Allocations: 2138)
+
+
+Started GET "/pedidos" for ::1 at 2024-05-19 14:40:18 +0200
+Processing by PedidosController#index as */*
+  [1m[36mPedido Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "pedidos"[0m
+  ↳ app/controllers/pedidos_controller.rb:8:in `index'
+Cargando todos los pedidos, Total: 2
+  [1m[36mPedido Load (0.1ms)[0m  [1m[34mSELECT "pedidos".* FROM "pedidos"[0m
+  ↳ app/controllers/pedidos_controller.rb:10:in `index'
+Completed 200 OK in 9ms (Views: 5.7ms | ActiveRecord: 0.2ms | Allocations: 1409)
+
+
+Started GET "/pedidos" for ::1 at 2024-05-19 14:42:09 +0200
+Processing by PedidosController#index as */*
+  [1m[36mPedido Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "pedidos"[0m
+  ↳ app/controllers/pedidos_controller.rb:8:in `index'
+Cargando todos los pedidos, Total: 2
+  [1m[36mPedido Load (0.2ms)[0m  [1m[34mSELECT "pedidos".* FROM "pedidos"[0m
+  ↳ app/controllers/pedidos_controller.rb:10:in `index'
+Completed 200 OK in 10ms (Views: 6.6ms | ActiveRecord: 0.4ms | Allocations: 1409)
+
+
+Started GET "/pedidos" for ::1 at 2024-05-19 14:42:17 +0200
+Processing by PedidosController#index as */*
+  [1m[36mPedido Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "pedidos"[0m
+  ↳ app/controllers/pedidos_controller.rb:8:in `index'
+Cargando todos los pedidos, Total: 2
+  [1m[36mPedido Load (0.1ms)[0m  [1m[34mSELECT "pedidos".* FROM "pedidos"[0m
+  ↳ app/controllers/pedidos_controller.rb:10:in `index'
+Completed 200 OK in 9ms (Views: 3.7ms | ActiveRecord: 0.3ms | Allocations: 1409)
+
+

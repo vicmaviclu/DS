@@ -171,6 +171,7 @@ void crearPedido() {
     direccion: direccionControlador.text,
     tarjeta: tarjetaControlador.text,
     numeroTelefono: telefonoControlador.text,
+    usuario: currentUser,
   );
   pedido!.hacerPedido();
 

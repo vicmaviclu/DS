@@ -10,15 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_19_111915) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_19_115448) do
   create_table "pedidos", force: :cascade do |t|
-    t.integer "numero_pedido"
     t.string "numero_telefono"
-    t.boolean "pedido_realizado"
     t.string "direccion"
     t.string "tarjeta"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "usuario"
   end
 
   create_table "pizzas", force: :cascade do |t|
