@@ -89,7 +89,7 @@ class Pedido {
   Map<String, dynamic> toJson() {
     return {
       'id': numeroPedido,
-      'numeroTelefono': numeroTelefono,
+      'numero_telefono': numeroTelefono,
       'direccion': direccion,
       'tarjeta': tarjeta,
       'usuario': usuario,

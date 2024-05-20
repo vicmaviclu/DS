@@ -1,3 +1,4 @@
+import 'package:ejercicio_grupal/menu_editar.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -34,15 +35,26 @@ class _MisPedidosState extends State<MisPedidos> {
     }
   }
 
-  Future<void> deletePedido(int id) async {
-    final response = await http.delete(Uri.parse('http://localhost:3000/pedidos/$id'));
+  Future<void> deletePizzas(int pedidoId) async {
+    final pizzas = await fetchPizzas(pedidoId);
+    for (var pizza in pizzas) {
+      final response = await http.delete(Uri.parse('http://localhost:3000/pizzas/${pizza['id']}'));
+      if (response.statusCode != 200) {
+        throw Exception('Failed to delete pizza');
+      }
+    }
+  }
 
+  Future<void> deletePedido(int id) async {
+    await deletePizzas(id);
+    final response = await http.delete(Uri.parse('http://localhost:3000/pedidos/$id'));
     if (response.statusCode != 200) {
       throw Exception('Failed to delete pedido');
     }
   }
 
-  bool canDelete(String createdAt) {
+  // Puede editaar/eliminar si han pasado menos de 10 min
+  bool canEE(String createdAt) {
     DateTime now = DateTime.now();
     DateTime orderTime = DateTime.parse(createdAt);
     Duration difference = now.difference(orderTime);
@@ -51,19 +63,36 @@ class _MisPedidosState extends State<MisPedidos> {
 
   Widget buildPedidoCard(pedido, pizzaSnapshot) {
     return Card(
-      margin: EdgeInsets.all(8.0),
+      margin:const EdgeInsets.all(8.0),
       child: Column(
         children: [
           ListTile(
-            leading: Icon(Icons.shopping_cart, color: Colors.green),
-            title: Text('Pedido ${pedido['id']}', style: TextStyle(fontWeight: FontWeight.bold)),
+            leading:const Icon(Icons.shopping_cart, color: Colors.green),
+            title: Text('Pedido ${pedido['id']}', style:const TextStyle(fontWeight: FontWeight.bold)),
             subtitle: buildPedidoDetails(pedido),
-            trailing: IconButton(
-              icon: Icon(Icons.delete, color: Colors.red),
-              onPressed: canDelete(pedido['created_at']) ? () async {
-                await deletePedido(pedido['id']);
-                setState(() {});  // This will trigger a rebuild of the UI
-              } : null,
+            trailing: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                IconButton(
+                  icon:const Icon(Icons.edit, color: Colors.blue),
+                  onPressed: canEE(pedido['created_at']) ? () async {
+                    final pizzas = await fetchPizzas(pedido['id']);
+                    if (mounted) { // Check if the widget is still mounted
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => PedidoEditar(pedido: pedido, pizzas: pizzas, onConfirm: (){setState(() {});},)),
+                      );
+                    }
+                  } : null,
+                ),
+                IconButton(
+                  icon:const Icon(Icons.delete, color: Colors.red),
+                  onPressed: canEE(pedido['created_at']) ? () async {
+                    await deletePedido(pedido['id']);
+                    setState(() {});  
+                  } : null,
+                ),
+              ],
             ),
           ),
           ...pizzaSnapshot.data!.map((pizza) => ListTile(
@@ -91,18 +120,18 @@ class _MisPedidosState extends State<MisPedidos> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Mis Pedidos'),
+        title:const Text('Mis Pedidos'),
       ),
       body: FutureBuilder<List<dynamic>>(
         future: fetchPedidos(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           } else if (snapshot.hasError) {
             return Center(child: Text('Error: ${snapshot.error}'));
           } else {
             if (snapshot.data!.isEmpty) {
-              return Center(child: Text('No hay ningún pedido para este usuario'));
+              return const Center(child: Text('No hay ningún pedido para este usuario'));
             } else {
               return ListView.builder(
                 itemCount: snapshot.data!.length,
@@ -112,7 +141,7 @@ class _MisPedidosState extends State<MisPedidos> {
                     future: fetchPizzas(pedido['id']),
                     builder: (context, pizzaSnapshot) {
                       if (pizzaSnapshot.connectionState == ConnectionState.waiting) {
-                        return CircularProgressIndicator();
+                        return const CircularProgressIndicator();
                       } else if (pizzaSnapshot.hasError) {
                         return Text('Error: ${pizzaSnapshot.error}');
                       } else {
