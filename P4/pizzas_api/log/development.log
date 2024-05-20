@@ -7239,3 +7239,561 @@ Processing by PizzasController#index as */*
   ↳ app/controllers/pizzas_controller.rb:4:in `index'
 Cargando pizzas, Total: 35
   [1m[36mPizza Load (0.1ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:5:in `index'
+Completed 200 OK in 16ms (Views: 13.3ms | ActiveRecord: 0.2ms | Allocations: 4813)
+
+
+Started GET "/pizzas" for ::1 at 2024-05-20 21:53:37 +0200
+Processing by PizzasController#index as */*
+  [1m[36mPizza Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:4:in `index'
+Cargando pizzas, Total: 35
+  [1m[36mPizza Load (0.3ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:5:in `index'
+Completed 200 OK in 17ms (Views: 14.2ms | ActiveRecord: 0.4ms | Allocations: 4813)
+
+
+Started GET "/pizzas" for ::1 at 2024-05-20 21:53:37 +0200
+Processing by PizzasController#index as */*
+  [1m[36mPizza Count (0.9ms)[0m  [1m[34mSELECT COUNT(*) FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:4:in `index'
+Cargando pizzas, Total: 35
+  [1m[36mPizza Load (0.2ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:5:in `index'
+Completed 200 OK in 16ms (Views: 10.2ms | ActiveRecord: 1.0ms | Allocations: 4813)
+
+
+Started GET "/pizzas" for ::1 at 2024-05-20 21:53:37 +0200
+Processing by PizzasController#index as */*
+  [1m[36mPizza Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:4:in `index'
+Cargando pizzas, Total: 35
+  [1m[36mPizza Load (0.1ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:5:in `index'
+Completed 200 OK in 19ms (Views: 16.0ms | ActiveRecord: 0.2ms | Allocations: 4813)
+
+
+Started GET "/pizzas" for ::1 at 2024-05-20 21:53:37 +0200
+Processing by PizzasController#index as */*
+  [1m[36mPizza Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:4:in `index'
+Cargando pizzas, Total: 35
+  [1m[36mPizza Load (0.3ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:5:in `index'
+Completed 200 OK in 16ms (Views: 12.3ms | ActiveRecord: 0.5ms | Allocations: 4813)
+
+
+Started GET "/pizzas" for ::1 at 2024-05-20 21:53:37 +0200
+Processing by PizzasController#index as */*
+  [1m[36mPizza Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:4:in `index'
+Cargando pizzas, Total: 35
+  [1m[36mPizza Load (0.1ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:5:in `index'
+Completed 200 OK in 19ms (Views: 16.4ms | ActiveRecord: 0.3ms | Allocations: 4813)
+
+
+Started GET "/pizzas" for ::1 at 2024-05-20 21:53:38 +0200
+Processing by PizzasController#index as */*
+  [1m[36mPizza Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:4:in `index'
+Cargando pizzas, Total: 35
+  [1m[36mPizza Load (0.4ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:5:in `index'
+Completed 200 OK in 16ms (Views: 11.2ms | ActiveRecord: 0.6ms | Allocations: 4813)
+
+
+Started GET "/pizzas" for ::1 at 2024-05-20 21:53:38 +0200
+Processing by PizzasController#index as */*
+  [1m[36mPizza Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:4:in `index'
+Cargando pizzas, Total: 35
+  [1m[36mPizza Load (0.1ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:5:in `index'
+Completed 200 OK in 12ms (Views: 9.9ms | ActiveRecord: 0.2ms | Allocations: 4813)
+
+
+Started GET "/pizzas" for ::1 at 2024-05-20 21:53:38 +0200
+Processing by PizzasController#index as */*
+  [1m[36mPizza Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:4:in `index'
+Cargando pizzas, Total: 35
+  [1m[36mPizza Load (0.1ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:5:in `index'
+Completed 200 OK in 16ms (Views: 13.1ms | ActiveRecord: 0.2ms | Allocations: 4813)
+
+
+Started GET "/pizzas" for ::1 at 2024-05-20 21:53:38 +0200
+Processing by PizzasController#index as */*
+  [1m[36mPizza Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:4:in `index'
+Cargando pizzas, Total: 35
+  [1m[36mPizza Load (0.4ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:5:in `index'
+Completed 200 OK in 15ms (Views: 10.8ms | ActiveRecord: 0.5ms | Allocations: 4813)
+
+
+Started GET "/pizzas" for ::1 at 2024-05-20 21:53:38 +0200
+Processing by PizzasController#index as */*
+  [1m[36mPizza Count (1.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:4:in `index'
+Cargando pizzas, Total: 35
+  [1m[36mPizza Load (0.6ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:5:in `index'
+Completed 200 OK in 15ms (Views: 8.7ms | ActiveRecord: 1.4ms | Allocations: 4813)
+
+
+Started GET "/pizzas" for ::1 at 2024-05-20 21:53:38 +0200
+Processing by PizzasController#index as */*
+  [1m[36mPizza Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:4:in `index'
+Cargando pizzas, Total: 35
+  [1m[36mPizza Load (0.1ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:5:in `index'
+Completed 200 OK in 18ms (Views: 15.5ms | ActiveRecord: 0.3ms | Allocations: 4813)
+
+
+Started GET "/pizzas" for ::1 at 2024-05-20 21:53:38 +0200
+Processing by PizzasController#index as */*
+  [1m[36mPizza Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:4:in `index'
+Cargando pizzas, Total: 35
+  [1m[36mPizza Load (0.2ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:5:in `index'
+Completed 200 OK in 17ms (Views: 11.4ms | ActiveRecord: 0.4ms | Allocations: 4813)
+
+
+Started GET "/pizzas" for ::1 at 2024-05-20 21:53:38 +0200
+Processing by PizzasController#index as */*
+  [1m[36mPizza Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:4:in `index'
+Cargando pizzas, Total: 35
+  [1m[36mPizza Load (0.1ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:5:in `index'
+Completed 200 OK in 18ms (Views: 16.0ms | ActiveRecord: 0.2ms | Allocations: 4813)
+
+
+Started GET "/pizzas" for ::1 at 2024-05-20 21:53:38 +0200
+Processing by PizzasController#index as */*
+  [1m[36mPizza Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:4:in `index'
+Cargando pizzas, Total: 35
+  [1m[36mPizza Load (0.1ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:5:in `index'
+Completed 200 OK in 16ms (Views: 13.8ms | ActiveRecord: 0.3ms | Allocations: 4813)
+
+
+Started GET "/pizzas" for ::1 at 2024-05-20 21:53:38 +0200
+Processing by PizzasController#index as */*
+  [1m[36mPizza Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:4:in `index'
+Cargando pizzas, Total: 35
+  [1m[36mPizza Load (0.1ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:5:in `index'
+Completed 200 OK in 13ms (Views: 10.2ms | ActiveRecord: 0.3ms | Allocations: 4813)
+
+
+Started GET "/pizzas" for ::1 at 2024-05-20 21:53:39 +0200
+Processing by PizzasController#index as */*
+  [1m[36mPizza Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:4:in `index'
+Cargando pizzas, Total: 35
+  [1m[36mPizza Load (0.1ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:5:in `index'
+Completed 200 OK in 11ms (Views: 7.6ms | ActiveRecord: 0.3ms | Allocations: 4813)
+
+
+Started GET "/pizzas" for ::1 at 2024-05-20 21:53:39 +0200
+Processing by PizzasController#index as */*
+  [1m[36mPizza Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:4:in `index'
+Cargando pizzas, Total: 35
+  [1m[36mPizza Load (0.1ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:5:in `index'
+Completed 200 OK in 18ms (Views: 15.7ms | ActiveRecord: 0.3ms | Allocations: 4813)
+
+
+Started GET "/pizzas" for ::1 at 2024-05-20 21:53:39 +0200
+Processing by PizzasController#index as */*
+  [1m[36mPizza Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:4:in `index'
+Cargando pizzas, Total: 35
+  [1m[36mPizza Load (0.1ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:5:in `index'
+Completed 200 OK in 16ms (Views: 13.4ms | ActiveRecord: 0.2ms | Allocations: 4813)
+
+
+Started GET "/pizzas" for ::1 at 2024-05-20 21:53:39 +0200
+Processing by PizzasController#index as */*
+  [1m[36mPizza Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:4:in `index'
+Cargando pizzas, Total: 35
+  [1m[36mPizza Load (0.1ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:5:in `index'
+Completed 200 OK in 18ms (Views: 15.3ms | ActiveRecord: 0.2ms | Allocations: 4813)
+
+
+Started GET "/pizzas" for ::1 at 2024-05-20 21:53:39 +0200
+Processing by PizzasController#index as */*
+  [1m[36mPizza Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:4:in `index'
+Cargando pizzas, Total: 35
+  [1m[36mPizza Load (0.1ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:5:in `index'
+Completed 200 OK in 13ms (Views: 9.9ms | ActiveRecord: 0.3ms | Allocations: 4813)
+
+
+Started GET "/pizzas" for ::1 at 2024-05-20 21:53:39 +0200
+Processing by PizzasController#index as */*
+  [1m[36mPizza Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:4:in `index'
+Cargando pizzas, Total: 35
+  [1m[36mPizza Load (0.1ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:5:in `index'
+Completed 200 OK in 11ms (Views: 7.1ms | ActiveRecord: 0.3ms | Allocations: 4813)
+
+
+Started GET "/pizzas" for ::1 at 2024-05-20 21:53:39 +0200
+Processing by PizzasController#index as */*
+  [1m[36mPizza Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:4:in `index'
+Cargando pizzas, Total: 35
+  [1m[36mPizza Load (0.1ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:5:in `index'
+Completed 200 OK in 10ms (Views: 7.2ms | ActiveRecord: 0.2ms | Allocations: 4813)
+
+
+Started GET "/pizzas" for ::1 at 2024-05-20 21:53:39 +0200
+Processing by PizzasController#index as */*
+  [1m[36mPizza Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:4:in `index'
+Cargando pizzas, Total: 35
+  [1m[36mPizza Load (0.2ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:5:in `index'
+Completed 200 OK in 12ms (Views: 7.0ms | ActiveRecord: 0.4ms | Allocations: 4813)
+
+
+Started GET "/pizzas" for ::1 at 2024-05-20 21:53:39 +0200
+Processing by PizzasController#index as */*
+  [1m[36mPizza Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:4:in `index'
+Cargando pizzas, Total: 35
+  [1m[36mPizza Load (0.6ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:5:in `index'
+Completed 200 OK in 16ms (Views: 12.9ms | ActiveRecord: 0.7ms | Allocations: 4813)
+
+
+Started GET "/pizzas" for ::1 at 2024-05-20 21:53:39 +0200
+Processing by PizzasController#index as */*
+  [1m[36mPizza Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:4:in `index'
+Cargando pizzas, Total: 35
+  [1m[36mPizza Load (0.1ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:5:in `index'
+Completed 200 OK in 16ms (Views: 13.8ms | ActiveRecord: 0.2ms | Allocations: 4813)
+
+
+Started PUT "/pedidos/33" for ::1 at 2024-05-20 21:54:06 +0200
+Processing by PedidosController#update as */*
+  Parameters: {"direccion"=>"3", "numero_telefono"=>"4", "id"=>"33", "pedido"=>{"numero_telefono"=>"4", "direccion"=>"3"}}
+  [1m[36mPedido Load (0.2ms)[0m  [1m[34mSELECT "pedidos".* FROM "pedidos" WHERE "pedidos"."id" = ? LIMIT ?[0m  [["id", 33], ["LIMIT", 1]]
+  ↳ app/controllers/pedidos_controller.rb:23:in `update'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/pedidos_controller.rb:24:in `update'
+  [1m[36mPedido Update (2.1ms)[0m  [1m[33mUPDATE "pedidos" SET "numero_telefono" = ?, "updated_at" = ? WHERE "pedidos"."id" = ?[0m  [["numero_telefono", "4"], ["updated_at", "2024-05-20 19:54:06.202533"], ["id", 33]]
+  ↳ app/controllers/pedidos_controller.rb:24:in `update'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/pedidos_controller.rb:24:in `update'
+Completed 200 OK in 12ms (Views: 1.3ms | ActiveRecord: 2.4ms | Allocations: 2670)
+
+
+Started GET "/pedidos" for ::1 at 2024-05-20 21:54:06 +0200
+Processing by PedidosController#index as */*
+  [1m[36mPedido Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "pedidos"[0m
+  ↳ app/controllers/pedidos_controller.rb:8:in `index'
+Cargando todos los pedidos, Total: 33
+  [1m[36mPedido Load (0.3ms)[0m  [1m[34mSELECT "pedidos".* FROM "pedidos"[0m
+  ↳ app/controllers/pedidos_controller.rb:10:in `index'
+Completed 200 OK in 16ms (Views: 13.8ms | ActiveRecord: 0.4ms | Allocations: 4733)
+
+
+Started GET "/pizzas" for ::1 at 2024-05-20 21:54:06 +0200
+Processing by PizzasController#index as */*
+  [1m[36mPizza Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:4:in `index'
+Cargando pizzas, Total: 35
+  [1m[36mPizza Load (0.1ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:5:in `index'
+Completed 200 OK in 18ms (Views: 16.2ms | ActiveRecord: 0.2ms | Allocations: 4813)
+
+
+Started GET "/pizzas" for ::1 at 2024-05-20 21:54:06 +0200
+Processing by PizzasController#index as */*
+  [1m[36mPizza Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:4:in `index'
+Cargando pizzas, Total: 35
+  [1m[36mPizza Load (1.2ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:5:in `index'
+Completed 200 OK in 25ms (Views: 20.8ms | ActiveRecord: 1.2ms | Allocations: 4813)
+
+
+Started GET "/pizzas" for ::1 at 2024-05-20 21:54:06 +0200
+Processing by PizzasController#index as */*
+  [1m[36mPizza Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:4:in `index'
+Cargando pizzas, Total: 35
+  [1m[36mPizza Load (0.1ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:5:in `index'
+Completed 200 OK in 17ms (Views: 14.4ms | ActiveRecord: 0.2ms | Allocations: 4813)
+
+
+Started GET "/pizzas" for ::1 at 2024-05-20 21:54:06 +0200
+Processing by PizzasController#index as */*
+  [1m[36mPizza Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:4:in `index'
+Cargando pizzas, Total: 35
+  [1m[36mPizza Load (0.3ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:5:in `index'
+Completed 200 OK in 16ms (Views: 13.9ms | ActiveRecord: 0.4ms | Allocations: 4813)
+
+
+Started GET "/pizzas" for ::1 at 2024-05-20 21:54:06 +0200
+Processing by PizzasController#index as */*
+  [1m[36mPizza Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:4:in `index'
+Cargando pizzas, Total: 35
+  [1m[36mPizza Load (0.1ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:5:in `index'
+Completed 200 OK in 16ms (Views: 13.8ms | ActiveRecord: 0.2ms | Allocations: 4813)
+
+
+Started GET "/pizzas" for ::1 at 2024-05-20 21:54:06 +0200
+Processing by PizzasController#index as */*
+  [1m[36mPizza Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:4:in `index'
+Cargando pizzas, Total: 35
+  [1m[36mPizza Load (0.1ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:5:in `index'
+Completed 200 OK in 17ms (Views: 15.1ms | ActiveRecord: 0.2ms | Allocations: 4813)
+
+
+Started GET "/pizzas" for ::1 at 2024-05-20 21:54:07 +0200
+Processing by PizzasController#index as */*
+  [1m[36mPizza Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:4:in `index'
+Cargando pizzas, Total: 35
+  [1m[36mPizza Load (0.1ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:5:in `index'
+Completed 200 OK in 13ms (Views: 11.3ms | ActiveRecord: 0.2ms | Allocations: 4813)
+
+
+Started GET "/pizzas" for ::1 at 2024-05-20 21:54:07 +0200
+Processing by PizzasController#index as */*
+  [1m[36mPizza Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:4:in `index'
+Cargando pizzas, Total: 35
+  [1m[36mPizza Load (0.4ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:5:in `index'
+Completed 200 OK in 16ms (Views: 14.3ms | ActiveRecord: 0.5ms | Allocations: 4813)
+
+
+Started GET "/pizzas" for ::1 at 2024-05-20 21:54:07 +0200
+Processing by PizzasController#index as */*
+  [1m[36mPizza Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:4:in `index'
+Cargando pizzas, Total: 35
+  [1m[36mPizza Load (0.1ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:5:in `index'
+Completed 200 OK in 14ms (Views: 12.0ms | ActiveRecord: 0.2ms | Allocations: 4813)
+
+
+Started GET "/pizzas" for ::1 at 2024-05-20 21:54:07 +0200
+Processing by PizzasController#index as */*
+  [1m[36mPizza Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:4:in `index'
+Cargando pizzas, Total: 35
+  [1m[36mPizza Load (0.2ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:5:in `index'
+Completed 200 OK in 23ms (Views: 17.2ms | ActiveRecord: 0.6ms | Allocations: 4813)
+
+
+Started GET "/pizzas" for ::1 at 2024-05-20 21:54:07 +0200
+Processing by PizzasController#index as */*
+  [1m[36mPizza Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:4:in `index'
+Cargando pizzas, Total: 35
+  [1m[36mPizza Load (0.2ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:5:in `index'
+Completed 200 OK in 18ms (Views: 13.4ms | ActiveRecord: 0.3ms | Allocations: 4813)
+
+
+Started GET "/pizzas" for ::1 at 2024-05-20 21:54:07 +0200
+Processing by PizzasController#index as */*
+  [1m[36mPizza Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:4:in `index'
+Cargando pizzas, Total: 35
+  [1m[36mPizza Load (0.1ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:5:in `index'
+Completed 200 OK in 8ms (Views: 6.7ms | ActiveRecord: 0.2ms | Allocations: 4813)
+
+
+Started GET "/pizzas" for ::1 at 2024-05-20 21:54:07 +0200
+Processing by PizzasController#index as */*
+  [1m[36mPizza Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:4:in `index'
+Cargando pizzas, Total: 35
+  [1m[36mPizza Load (0.2ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:5:in `index'
+Completed 200 OK in 15ms (Views: 9.2ms | ActiveRecord: 0.4ms | Allocations: 4813)
+
+
+Started GET "/pizzas" for ::1 at 2024-05-20 21:54:07 +0200
+Processing by PizzasController#index as */*
+  [1m[36mPizza Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:4:in `index'
+Cargando pizzas, Total: 35
+  [1m[36mPizza Load (0.1ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:5:in `index'
+Completed 200 OK in 20ms (Views: 18.3ms | ActiveRecord: 0.2ms | Allocations: 4813)
+
+
+Started GET "/pizzas" for ::1 at 2024-05-20 21:54:07 +0200
+Processing by PizzasController#index as */*
+  [1m[36mPizza Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:4:in `index'
+Cargando pizzas, Total: 35
+  [1m[36mPizza Load (0.1ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:5:in `index'
+Completed 200 OK in 17ms (Views: 14.9ms | ActiveRecord: 0.2ms | Allocations: 4816)
+
+
+Started GET "/pizzas" for ::1 at 2024-05-20 21:54:08 +0200
+Processing by PizzasController#index as */*
+  [1m[36mPizza Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:4:in `index'
+Cargando pizzas, Total: 35
+  [1m[36mPizza Load (0.2ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:5:in `index'
+Completed 200 OK in 118ms (Views: 114.6ms | ActiveRecord: 0.4ms | Allocations: 4813)
+
+
+Started GET "/pizzas" for ::1 at 2024-05-20 21:54:08 +0200
+Processing by PizzasController#index as */*
+  [1m[36mPizza Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:4:in `index'
+Cargando pizzas, Total: 35
+  [1m[36mPizza Load (0.2ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:5:in `index'
+Completed 200 OK in 20ms (Views: 16.5ms | ActiveRecord: 0.3ms | Allocations: 4813)
+
+
+Started GET "/pizzas" for ::1 at 2024-05-20 21:54:08 +0200
+Processing by PizzasController#index as */*
+  [1m[36mPizza Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:4:in `index'
+Cargando pizzas, Total: 35
+  [1m[36mPizza Load (0.1ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:5:in `index'
+Completed 200 OK in 15ms (Views: 12.7ms | ActiveRecord: 0.2ms | Allocations: 4813)
+
+
+Started GET "/pizzas" for ::1 at 2024-05-20 21:54:08 +0200
+Processing by PizzasController#index as */*
+  [1m[36mPizza Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:4:in `index'
+Cargando pizzas, Total: 35
+  [1m[36mPizza Load (0.2ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:5:in `index'
+Completed 200 OK in 20ms (Views: 16.1ms | ActiveRecord: 0.4ms | Allocations: 4813)
+
+
+Started GET "/pizzas" for ::1 at 2024-05-20 21:54:08 +0200
+Processing by PizzasController#index as */*
+  [1m[36mPizza Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:4:in `index'
+Cargando pizzas, Total: 35
+  [1m[36mPizza Load (0.3ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:5:in `index'
+Completed 200 OK in 14ms (Views: 11.6ms | ActiveRecord: 0.4ms | Allocations: 4813)
+
+
+Started GET "/pizzas" for ::1 at 2024-05-20 21:54:08 +0200
+Processing by PizzasController#index as */*
+  [1m[36mPizza Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:4:in `index'
+Cargando pizzas, Total: 35
+  [1m[36mPizza Load (0.1ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:5:in `index'
+Completed 200 OK in 9ms (Views: 7.5ms | ActiveRecord: 0.2ms | Allocations: 4813)
+
+
+Started GET "/pizzas" for ::1 at 2024-05-20 21:54:08 +0200
+Processing by PizzasController#index as */*
+  [1m[36mPizza Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:4:in `index'
+Cargando pizzas, Total: 35
+  [1m[36mPizza Load (0.1ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:5:in `index'
+Completed 200 OK in 22ms (Views: 18.9ms | ActiveRecord: 0.3ms | Allocations: 4813)
+
+
+Started GET "/pizzas" for ::1 at 2024-05-20 21:54:08 +0200
+Processing by PizzasController#index as */*
+  [1m[36mPizza Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:4:in `index'
+Cargando pizzas, Total: 35
+  [1m[36mPizza Load (0.1ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:5:in `index'
+Completed 200 OK in 15ms (Views: 13.2ms | ActiveRecord: 0.2ms | Allocations: 4813)
+
+
+Started GET "/pizzas" for ::1 at 2024-05-20 21:54:09 +0200
+Processing by PizzasController#index as */*
+  [1m[36mPizza Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:4:in `index'
+Cargando pizzas, Total: 35
+  [1m[36mPizza Load (0.4ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:5:in `index'
+Completed 200 OK in 16ms (Views: 10.5ms | ActiveRecord: 0.5ms | Allocations: 4813)
+
+
+Started GET "/pizzas" for ::1 at 2024-05-20 21:54:09 +0200
+Processing by PizzasController#index as */*
+  [1m[36mPizza Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:4:in `index'
+Cargando pizzas, Total: 35
+  [1m[36mPizza Load (0.1ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:5:in `index'
+Completed 200 OK in 12ms (Views: 9.0ms | ActiveRecord: 0.3ms | Allocations: 4813)
+
+
+Started GET "/pizzas" for ::1 at 2024-05-20 21:54:09 +0200
+Processing by PizzasController#index as */*
+  [1m[36mPizza Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:4:in `index'
+Cargando pizzas, Total: 35
+  [1m[36mPizza Load (0.8ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:5:in `index'
+Completed 200 OK in 28ms (Views: 22.0ms | ActiveRecord: 1.0ms | Allocations: 4813)
+
+
+Started GET "/pizzas" for ::1 at 2024-05-20 21:54:09 +0200
+Processing by PizzasController#index as */*
+  [1m[36mPizza Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:4:in `index'
+Cargando pizzas, Total: 35
+  [1m[36mPizza Load (0.2ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:5:in `index'
+Completed 200 OK in 17ms (Views: 15.1ms | ActiveRecord: 0.3ms | Allocations: 4813)
+
+
+Started GET "/pizzas" for ::1 at 2024-05-20 21:54:09 +0200
+Processing by PizzasController#index as */*
+  [1m[36mPizza Count (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:4:in `index'
+Cargando pizzas, Total: 35
+  [1m[36mPizza Load (0.1ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:5:in `index'
+Completed 200 OK in 11ms (Views: 7.3ms | ActiveRecord: 0.6ms | Allocations: 4813)
+
+
