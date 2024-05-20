@@ -5594,3 +5594,174 @@ Cargando pizzas, Total: 5
 Completed 200 OK in 21ms (Views: 12.5ms | ActiveRecord: 0.9ms | Allocations: 1744)
 
 
+Started GET "/pedidos" for ::1 at 2024-05-20 16:08:01 +0200
+Processing by PedidosController#index as HTML
+  [1m[36mPedido Count (7.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "pedidos"[0m
+  ↳ app/controllers/pedidos_controller.rb:8:in `index'
+Cargando todos los pedidos, Total: 5
+  [1m[36mPedido Load (0.6ms)[0m  [1m[34mSELECT "pedidos".* FROM "pedidos"[0m
+  ↳ app/controllers/pedidos_controller.rb:10:in `index'
+Completed 200 OK in 35ms (Views: 15.4ms | ActiveRecord: 12.1ms | Allocations: 2050)
+
+
+Started GET "/pedidos" for ::1 at 2024-05-20 16:08:06 +0200
+Processing by PedidosController#index as HTML
+  [1m[36mPedido Count (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "pedidos"[0m
+  ↳ app/controllers/pedidos_controller.rb:8:in `index'
+Cargando todos los pedidos, Total: 5
+  [1m[36mPedido Load (0.2ms)[0m  [1m[34mSELECT "pedidos".* FROM "pedidos"[0m
+  ↳ app/controllers/pedidos_controller.rb:10:in `index'
+Completed 200 OK in 24ms (Views: 12.2ms | ActiveRecord: 0.7ms | Allocations: 1768)
+
+
+Started GET "/pedidos" for ::1 at 2024-05-20 16:14:24 +0200
+Processing by PedidosController#index as */*
+  [1m[36mPedido Count (7.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "pedidos"[0m
+  ↳ app/controllers/pedidos_controller.rb:8:in `index'
+Cargando todos los pedidos, Total: 5
+  [1m[36mPedido Load (0.6ms)[0m  [1m[34mSELECT "pedidos".* FROM "pedidos"[0m
+  ↳ app/controllers/pedidos_controller.rb:10:in `index'
+Completed 200 OK in 37ms (Views: 15.7ms | ActiveRecord: 11.2ms | Allocations: 2054)
+
+
+Started GET "/pizzas" for ::1 at 2024-05-20 16:14:24 +0200
+Processing by PizzasController#index as */*
+  [1m[36mPizza Count (1.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:4:in `index'
+Cargando pizzas, Total: 5
+  [1m[36mPizza Load (0.6ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:5:in `index'
+Completed 200 OK in 26ms (Views: 15.1ms | ActiveRecord: 1.6ms | Allocations: 1777)
+
+
+Started GET "/pizzas" for ::1 at 2024-05-20 16:14:25 +0200
+Processing by PizzasController#index as */*
+  [1m[36mPizza Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:4:in `index'
+Cargando pizzas, Total: 5
+  [1m[36mPizza Load (0.3ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:5:in `index'
+Completed 200 OK in 29ms (Views: 17.0ms | ActiveRecord: 0.5ms | Allocations: 1744)
+
+
+Started GET "/pizzas" for ::1 at 2024-05-20 16:14:25 +0200
+Processing by PizzasController#index as */*
+  [1m[36mPizza Count (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:4:in `index'
+Cargando pizzas, Total: 5
+  [1m[36mPizza Load (0.2ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:5:in `index'
+Completed 200 OK in 46ms (Views: 19.8ms | ActiveRecord: 0.6ms | Allocations: 1747)
+
+
+Started GET "/pedidos" for ::1 at 2024-05-20 16:14:33 +0200
+Processing by PedidosController#index as */*
+  [1m[36mPedido Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "pedidos"[0m
+  ↳ app/controllers/pedidos_controller.rb:8:in `index'
+Cargando todos los pedidos, Total: 5
+  [1m[36mPedido Load (0.3ms)[0m  [1m[34mSELECT "pedidos".* FROM "pedidos"[0m
+  ↳ app/controllers/pedidos_controller.rb:10:in `index'
+Completed 200 OK in 23ms (Views: 12.1ms | ActiveRecord: 0.6ms | Allocations: 1772)
+
+
+Started GET "/pizzas" for ::1 at 2024-05-20 16:14:33 +0200
+Processing by PizzasController#index as */*
+  [1m[36mPizza Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:4:in `index'
+Cargando pizzas, Total: 5
+  [1m[36mPizza Load (0.5ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:5:in `index'
+Completed 200 OK in 20ms (Views: 13.2ms | ActiveRecord: 0.7ms | Allocations: 1744)
+
+
+Started GET "/pizzas" for ::1 at 2024-05-20 16:14:34 +0200
+Processing by PizzasController#index as */*
+  [1m[36mPizza Count (1.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:4:in `index'
+Cargando pizzas, Total: 5
+  [1m[36mPizza Load (0.2ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:5:in `index'
+Completed 200 OK in 24ms (Views: 14.6ms | ActiveRecord: 1.3ms | Allocations: 1744)
+
+
+Started POST "/pedidos" for ::1 at 2024-05-20 16:15:18 +0200
+Processing by PedidosController#create as */*
+  Parameters: {"id"=>1, "numero_telefono"=>"3", "direccion"=>"3", "tarjeta"=>"3", "usuario"=>"Antonio", "costeTotal"=>nil, "pedido"=>{"id"=>1, "numero_telefono"=>"3", "direccion"=>"3", "tarjeta"=>"3", "usuario"=>"Antonio", "costeTotal"=>nil}}
+[31mUnpermitted parameter: :id. Context: { controller: PedidosController, action: create, request: #<ActionDispatch::Request:0x000001b6f6897408>, params: {"id"=>1, "numero_telefono"=>"3", "direccion"=>"3", "tarjeta"=>"3", "usuario"=>"Antonio", "costeTotal"=>nil, "controller"=>"pedidos", "action"=>"create", "pedido"=>{"id"=>1, "numero_telefono"=>"3", "direccion"=>"3", "tarjeta"=>"3", "usuario"=>"Antonio", "costeTotal"=>nil}} }[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/pedidos_controller.rb:15:in `create'
+  [1m[36mPedido Create (11.0ms)[0m  [1m[32mINSERT INTO "pedidos" ("numero_telefono", "direccion", "tarjeta", "created_at", "updated_at", "usuario", "costeTotal") VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["numero_telefono", "3"], ["direccion", "3"], ["tarjeta", "3"], ["created_at", "2024-05-20 14:15:18.604668"], ["updated_at", "2024-05-20 14:15:18.604668"], ["usuario", "Antonio"], ["costeTotal", nil]]
+  ↳ app/controllers/pedidos_controller.rb:15:in `create'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/pedidos_controller.rb:15:in `create'
+Completed 201 Created in 37ms (Views: 2.5ms | ActiveRecord: 11.6ms | Allocations: 2186)
+
+
+Started POST "/pizzas" for ::1 at 2024-05-20 16:15:18 +0200
+Processing by PizzasController#create as */*
+  Parameters: {"pedido_id"=>6, "nombre"=>"Pizza Burrata Pesto", "tamano"=>"Mediano", "coste"=>9, "pizza"=>{"nombre"=>"Pizza Burrata Pesto", "tamano"=>"Mediano", "coste"=>9, "pedido_id"=>6}}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/pizzas_controller.rb:10:in `create'
+  [1m[36mPedido Load (6.9ms)[0m  [1m[34mSELECT "pedidos".* FROM "pedidos" WHERE "pedidos"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/pizzas_controller.rb:10:in `create'
+  [1m[36mPizza Create (0.6ms)[0m  [1m[32mINSERT INTO "pizzas" ("nombre", "tamano", "coste", "pedido_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["nombre", "Pizza Burrata Pesto"], ["tamano", "Mediano"], ["coste", 9.0], ["pedido_id", 6], ["created_at", "2024-05-20 14:15:18.914760"], ["updated_at", "2024-05-20 14:15:18.914760"]]
+  ↳ app/controllers/pizzas_controller.rb:10:in `create'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/pizzas_controller.rb:10:in `create'
+Completed 201 Created in 31ms (Views: 1.5ms | ActiveRecord: 7.8ms | Allocations: 3031)
+
+
+Started PUT "/pedidos/6" for ::1 at 2024-05-20 16:15:18 +0200
+Processing by PedidosController#update as */*
+  Parameters: {"costeTotal"=>9, "id"=>"6", "pedido"=>{"costeTotal"=>9}}
+  [1m[36mPedido Load (0.2ms)[0m  [1m[34mSELECT "pedidos".* FROM "pedidos" WHERE "pedidos"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/pedidos_controller.rb:23:in `update'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/pedidos_controller.rb:24:in `update'
+  [1m[36mPedido Update (6.3ms)[0m  [1m[33mUPDATE "pedidos" SET "updated_at" = ?, "costeTotal" = ? WHERE "pedidos"."id" = ?[0m  [["updated_at", "2024-05-20 14:15:19.220427"], ["costeTotal", 9.0], ["id", 6]]
+  ↳ app/controllers/pedidos_controller.rb:24:in `update'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/pedidos_controller.rb:24:in `update'
+Completed 200 OK in 28ms (Views: 2.8ms | ActiveRecord: 7.2ms | Allocations: 2654)
+
+
+Started GET "/pedidos" for ::1 at 2024-05-20 16:15:23 +0200
+Processing by PedidosController#index as */*
+  [1m[36mPedido Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "pedidos"[0m
+  ↳ app/controllers/pedidos_controller.rb:8:in `index'
+Cargando todos los pedidos, Total: 6
+  [1m[36mPedido Load (0.3ms)[0m  [1m[34mSELECT "pedidos".* FROM "pedidos"[0m
+  ↳ app/controllers/pedidos_controller.rb:10:in `index'
+Completed 200 OK in 94ms (Views: 15.7ms | ActiveRecord: 0.6ms | Allocations: 1879)
+
+
+Started GET "/pizzas" for ::1 at 2024-05-20 16:15:23 +0200
+Processing by PizzasController#index as */*
+  [1m[36mPizza Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:4:in `index'
+Cargando pizzas, Total: 6
+  [1m[36mPizza Load (0.5ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:5:in `index'
+Completed 200 OK in 19ms (Views: 13.6ms | ActiveRecord: 0.7ms | Allocations: 1846)
+
+
+Started GET "/pizzas" for ::1 at 2024-05-20 16:15:23 +0200
+Processing by PizzasController#index as */*
+  [1m[36mPizza Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:4:in `index'
+Cargando pizzas, Total: 6
+  [1m[36mPizza Load (0.2ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:5:in `index'
+Completed 200 OK in 21ms (Views: 13.7ms | ActiveRecord: 0.5ms | Allocations: 1846)
+
+
+Started GET "/pizzas" for ::1 at 2024-05-20 16:15:24 +0200
+Processing by PizzasController#index as */*
+  [1m[36mPizza Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:4:in `index'
+Cargando pizzas, Total: 6
+  [1m[36mPizza Load (0.2ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:5:in `index'
+Completed 200 OK in 19ms (Views: 12.3ms | ActiveRecord: 0.5ms | Allocations: 1846)
+
+

@@ -1,3 +1,4 @@
+import 'package:ejercicio_grupal/menu_editar_pizza.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -41,6 +42,15 @@ class _PedidoEditarState extends State<PedidoEditar> {
             ...widget.pizzas.map((pizza) => ListTile(
               title: Text('${pizza['nombre']} (${pizza['tamano']})', style:const TextStyle(fontWeight: FontWeight.bold)),
               subtitle: Text('Coste: ${pizza['coste']}'),
+              trailing: IconButton(
+                icon:const Icon(Icons.edit),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => MenuEditarPizza(pizza: pizza)),
+                  );
+                },
+              ),
             )),
             const SizedBox(height: 20),
             ElevatedButton(
