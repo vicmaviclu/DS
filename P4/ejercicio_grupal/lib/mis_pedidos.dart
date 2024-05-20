@@ -61,48 +61,7 @@ class _MisPedidosState extends State<MisPedidos> {
     return difference.inMinutes <= 10;
   }
 
-  Widget buildPedidoCard(pedido, pizzaSnapshot) {
-    return Card(
-      margin:const EdgeInsets.all(8.0),
-      child: Column(
-        children: [
-          ListTile(
-            leading:const Icon(Icons.shopping_cart, color: Colors.green),
-            title: Text('Pedido ${pedido['id']}', style:const TextStyle(fontWeight: FontWeight.bold)),
-            subtitle: buildPedidoDetails(pedido),
-            trailing: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                IconButton(
-                  icon:const Icon(Icons.edit, color: Colors.blue),
-                  onPressed: canEE(pedido['created_at']) ? () async {
-                    final pizzas = await fetchPizzas(pedido['id']);
-                    if (mounted) { // Check if the widget is still mounted
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => PedidoEditar(pedido: pedido, pizzas: pizzas, onConfirm: (){setState(() {});},)),
-                      );
-                    }
-                  } : null,
-                ),
-                IconButton(
-                  icon:const Icon(Icons.delete, color: Colors.red),
-                  onPressed: canEE(pedido['created_at']) ? () async {
-                    await deletePedido(pedido['id']);
-                    setState(() {});  
-                  } : null,
-                ),
-              ],
-            ),
-          ),
-          ...pizzaSnapshot.data!.map((pizza) => ListTile(
-            title: Text('${pizza['nombre']} (${pizza['tamano']})'),
-            subtitle: Text('Coste: ${pizza['coste']}'),
-          )).toList(),
-        ],
-      ),
-    );
-  }
+
 
   Widget buildPedidoDetails(pedido) {
     return Column(
@@ -116,45 +75,94 @@ class _MisPedidosState extends State<MisPedidos> {
     );
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title:const Text('Mis Pedidos'),
-      ),
-      body: FutureBuilder<List<dynamic>>(
-        future: fetchPedidos(),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(child: CircularProgressIndicator());
-          } else if (snapshot.hasError) {
-            return Center(child: Text('Error: ${snapshot.error}'));
-          } else {
-            if (snapshot.data!.isEmpty) {
-              return const Center(child: Text('No hay ningún pedido para este usuario'));
-            } else {
-              return ListView.builder(
-                itemCount: snapshot.data!.length,
-                itemBuilder: (context, index) {
-                  var pedido = snapshot.data![index];
-                  return FutureBuilder<List<dynamic>>(
-                    future: fetchPizzas(pedido['id']),
-                    builder: (context, pizzaSnapshot) {
-                      if (pizzaSnapshot.connectionState == ConnectionState.waiting) {
-                        return const CircularProgressIndicator();
-                      } else if (pizzaSnapshot.hasError) {
-                        return Text('Error: ${pizzaSnapshot.error}');
-                      } else {
-                        return buildPedidoCard(pedido, pizzaSnapshot);
-                      }
-                    },
-                  );
-                },
-              );
-            }
-          }
-        },
-      ),
-    );
+  Future<List<dynamic>> fetchPedidosWithPizzas() async {
+    final response = await http.get(Uri.parse('http://localhost:3000/pedidos'));
+
+    if (response.statusCode == 200) {
+      List<dynamic> pedidos = jsonDecode(response.body);
+      pedidos = pedidos.where((pedido) => pedido['usuario'] == widget.currentUser).toList();
+
+      for (var pedido in pedidos) {
+        pedido['pizzas'] = await fetchPizzas(pedido['id']);
+        pedido['numero_pedido'] = pedido['id']; // Add this line
+      }
+
+      return pedidos;
+    } else {
+      throw Exception('Failed to load pedidos');
+    }
   }
+
+@override
+Widget build(BuildContext context) {
+  return Scaffold(
+    appBar: AppBar(
+      title:const Text('Mis Pedidos'),
+    ),
+    body: FutureBuilder<List<dynamic>>(
+      future: fetchPedidosWithPizzas(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(child: CircularProgressIndicator());
+        } else if (snapshot.hasError) {
+          return Center(child: Text('Error: ${snapshot.error}'));
+        } else {
+          if (snapshot.data!.isEmpty) {
+            return const Center(child: Text('No hay ningún pedido para este usuario'));
+          } else {
+            return ListView.builder(
+              itemCount: snapshot.data!.length,
+              itemBuilder: (context, index) {
+                var pedido = snapshot.data![index];
+                return buildPedidoCard(pedido, pedido['pizzas']);
+              },
+            );
+          }
+        }
+      },
+    ),
+  );
+}
+
+Widget buildPedidoCard(pedido, pizzas) {
+  return Card(
+    margin:const EdgeInsets.all(8.0),
+    child: Column(
+      children: [
+        ListTile(
+          leading:const Icon(Icons.shopping_cart, color: Colors.green),
+          title: Text('Pedido ${pedido['id']}', style:const TextStyle(fontWeight: FontWeight.bold)),
+          subtitle: buildPedidoDetails(pedido),
+          trailing: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              IconButton(
+                icon:const Icon(Icons.edit, color: Colors.blue),
+                onPressed: canEE(pedido['created_at']) ? () async {
+                  if (mounted) { // Check if the widget is still mounted
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => PedidoEditar(pedido: pedido, pizzas: pizzas, onConfirm: (){setState(() {});},)),
+                    );
+                  }
+                } : null,
+              ),
+              IconButton(
+                icon:const Icon(Icons.delete, color: Colors.red),
+                onPressed: canEE(pedido['created_at']) ? () async {
+                  await deletePedido(pedido['id']);
+                  setState(() {});  
+                } : null,
+              ),
+            ],
+          ),
+        ),
+        ...pizzas.map((pizza) => ListTile(
+          title: Text('${pizza['nombre']} (${pizza['tamano']})'),
+          subtitle: Text('Coste: ${pizza['coste']}'),
+        )).toList(),
+      ],
+    ),
+  );
+}
 }
