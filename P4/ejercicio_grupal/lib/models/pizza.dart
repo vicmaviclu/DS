@@ -22,7 +22,7 @@ class Pizza {
   double get getPrecio => precio;
   List<String> get getIngredientes => ingredientes;
   String get getTamano => tamano;
-  //List<String> get getIngredientesAdicionales => ingredientesAdicionales;
+  List<String> get getIngredientesAdicionales => ingredientesAdicionales;
 
   Future<void> anadirPizza(String apiUrl) async {
     final response = await http.post(
