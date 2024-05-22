@@ -89,16 +89,16 @@ class _MyHomePageState extends State<MyHomePage> {
         child: ElevatedButton(
           onPressed: () { 
             if(texto == 'Carta')  {       
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => MenuCarta()),
-            );
-            }if(texto == 'Hacer pedido'){
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => MenuCarta()),
+              );
+            } else if(texto == 'Hacer pedido'){
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => MenuPedido(currentUser: currentUser)),
               );
-            }else{
+            } else {
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => MisPedidos(currentUser: currentUser)),

@@ -9,7 +9,7 @@ class PedidosController < ApplicationController
         end
         render json: @pedidos
       end
-  
+
     def create
       @pedido = Pedido.new(pedido_params)
       if @pedido.save
@@ -18,7 +18,7 @@ class PedidosController < ApplicationController
         render json: @pedido.errors, status: :unprocessable_entity
       end
     end
-  
+
     def update
       @pedido = Pedido.find(params[:id])
       if @pedido.update(pedido_params)
@@ -27,7 +27,13 @@ class PedidosController < ApplicationController
         render json: @pedido.errors, status: :unprocessable_entity
       end
     end
-  
+
+    def show
+      @pedido = Pedido.find(params[:id])
+      render json: @pedido
+    end
+
+
     def destroy
       pedido = Pedido.find(params[:id])
       if pedido.destroy
@@ -36,9 +42,9 @@ class PedidosController < ApplicationController
         render json: { error: "Failed to delete" }, status: :unprocessable_entity
       end
     end
-  
+
     private
-  
+
     def pedido_params
       params.require(:pedido).permit(:numero_telefono, :direccion, :tarjeta, :usuario, :costeTotal)
     end
