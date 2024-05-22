@@ -30544,3 +30544,271 @@ Processing by PedidosController#update as HTML
 Completed 200 OK in 14ms (Views: 0.6ms | ActiveRecord: 2.7ms | Allocations: 2627)
 
 
+Started POST "/pizzas" for 127.0.0.1 at 2024-05-22 19:57:06 +0200
+Processing by PizzasController#create as HTML
+  Parameters: {"pedido_id"=>nil, "nombre"=>"Pepperoni", "tamano"=>"Mediana", "coste"=>8.5, "pizza"=>{"nombre"=>"Pepperoni", "tamano"=>"Mediana", "coste"=>8.5, "pedido_id"=>nil}}
+Completed 422 Unprocessable Entity in 1ms (Views: 0.4ms | ActiveRecord: 0.0ms | Allocations: 564)
+
+
+Started POST "/pizzas" for 127.0.0.1 at 2024-05-22 19:57:06 +0200
+Processing by PizzasController#create as HTML
+  Parameters: {"pedido_id"=>nil, "nombre"=>"Pepperoni", "tamano"=>"Mediana", "coste"=>8.5, "pizza"=>{"nombre"=>"Pepperoni", "tamano"=>"Mediana", "coste"=>8.5, "pedido_id"=>nil}}
+Completed 422 Unprocessable Entity in 1ms (Views: 0.3ms | ActiveRecord: 0.0ms | Allocations: 515)
+
+
+Started POST "/pizzas" for 127.0.0.1 at 2024-05-22 19:57:06 +0200
+Processing by PizzasController#create as HTML
+  Parameters: {"pedido_id"=>nil, "nombre"=>"Pepperoni", "tamano"=>"Mediana", "coste"=>8.5, "pizza"=>{"nombre"=>"Pepperoni", "tamano"=>"Mediana", "coste"=>8.5, "pedido_id"=>nil}}
+Completed 422 Unprocessable Entity in 2ms (Views: 1.0ms | ActiveRecord: 0.0ms | Allocations: 515)
+
+
+Started POST "/pizzas" for 127.0.0.1 at 2024-05-22 19:57:06 +0200
+Processing by PizzasController#create as HTML
+  Parameters: {"pedido_id"=>nil, "nombre"=>"Pepperoni", "tamano"=>"Mediana", "coste"=>8.5, "pizza"=>{"nombre"=>"Pepperoni", "tamano"=>"Mediana", "coste"=>8.5, "pedido_id"=>nil}}
+Completed 422 Unprocessable Entity in 1ms (Views: 0.3ms | ActiveRecord: 0.0ms | Allocations: 515)
+
+
+Started POST "/pizzas" for 127.0.0.1 at 2024-05-22 19:57:06 +0200
+Processing by PizzasController#create as HTML
+  Parameters: {"pedido_id"=>nil, "nombre"=>"Pepperoni", "tamano"=>"Mediana", "coste"=>8.5, "pizza"=>{"nombre"=>"Pepperoni", "tamano"=>"Mediana", "coste"=>8.5, "pedido_id"=>nil}}
+Completed 422 Unprocessable Entity in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 515)
+
+
+Started POST "/pizzas" for 127.0.0.1 at 2024-05-22 19:57:06 +0200
+Processing by PizzasController#create as HTML
+  Parameters: {"pedido_id"=>nil, "nombre"=>"Pepperoni", "tamano"=>"Mediana", "coste"=>8.5, "pizza"=>{"nombre"=>"Pepperoni", "tamano"=>"Mediana", "coste"=>8.5, "pedido_id"=>nil}}
+Completed 422 Unprocessable Entity in 1ms (Views: 0.4ms | ActiveRecord: 0.0ms | Allocations: 515)
+
+
+Started POST "/pizzas" for 127.0.0.1 at 2024-05-22 19:57:06 +0200
+Processing by PizzasController#create as HTML
+  Parameters: {"pedido_id"=>nil, "nombre"=>"Pepperoni", "tamano"=>"Mediana", "coste"=>8.5, "pizza"=>{"nombre"=>"Pepperoni", "tamano"=>"Mediana", "coste"=>8.5, "pedido_id"=>nil}}
+Completed 422 Unprocessable Entity in 1ms (Views: 0.3ms | ActiveRecord: 0.0ms | Allocations: 515)
+
+
+Started POST "/pedidos" for 127.0.0.1 at 2024-05-22 19:57:35 +0200
+Started GET "/pedidos/77" for 127.0.0.1 at 2024-05-22 19:57:35 +0200
+Started POST "/pedidos" for 127.0.0.1 at 2024-05-22 19:57:35 +0200
+Processing by PedidosController#create as HTML
+  Parameters: {"id"=>77, "numero_telefono"=>"1234567890", "direccion"=>"123 Calle Falsa", "tarjeta"=>"1234567812345678", "usuario"=>"usuario", "costeTotal"=>nil, "pedido"=>{"id"=>77, "numero_telefono"=>"1234567890", "direccion"=>"123 Calle Falsa", "tarjeta"=>"1234567812345678", "usuario"=>"usuario", "costeTotal"=>nil}}
+[31mUnpermitted parameter: :id. Context: { controller: PedidosController, action: create, request: #<ActionDispatch::Request:0x000001748f75bca0>, params: {"id"=>77, "numero_telefono"=>"1234567890", "direccion"=>"123 Calle Falsa", "tarjeta"=>"1234567812345678", "usuario"=>"usuario", "costeTotal"=>nil, "controller"=>"pedidos", "action"=>"create", "pedido"=>{"id"=>77, "numero_telefono"=>"1234567890", "direccion"=>"123 Calle Falsa", "tarjeta"=>"1234567812345678", "usuario"=>"usuario", "costeTotal"=>nil}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/pedidos_controller.rb:15:in `create'
+  [1m[36mPedido Create (4.0ms)[0m  [1m[32mINSERT INTO "pedidos" ("numero_telefono", "direccion", "tarjeta", "created_at", "updated_at", "usuario", "costeTotal") VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["numero_telefono", "1234567890"], ["direccion", "123 Calle Falsa"], ["tarjeta", "1234567812345678"], ["created_at", "2024-05-22 17:57:35.224387"], ["updated_at", "2024-05-22 17:57:35.224387"], ["usuario", "usuario"], ["costeTotal", nil]]
+  ↳ app/controllers/pedidos_controller.rb:15:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/pedidos_controller.rb:15:in `create'
+Completed 201 Created in 13ms (Views: 1.4ms | ActiveRecord: 4.1ms | Allocations: 2199)
+
+
+Processing by PedidosController#create as HTML
+  Parameters: {"id"=>77, "numero_telefono"=>"1234567890", "direccion"=>"123 Calle Falsa", "tarjeta"=>"1234567812345678", "usuario"=>"usuario", "costeTotal"=>nil, "pedido"=>{"id"=>77, "numero_telefono"=>"1234567890", "direccion"=>"123 Calle Falsa", "tarjeta"=>"1234567812345678", "usuario"=>"usuario", "costeTotal"=>nil}}
+[31mUnpermitted parameter: :id. Context: { controller: PedidosController, action: create, request: #<ActionDispatch::Request:0x000001748d6b6ab8>, params: {"id"=>77, "numero_telefono"=>"1234567890", "direccion"=>"123 Calle Falsa", "tarjeta"=>"1234567812345678", "usuario"=>"usuario", "costeTotal"=>nil, "controller"=>"pedidos", "action"=>"create", "pedido"=>{"id"=>77, "numero_telefono"=>"1234567890", "direccion"=>"123 Calle Falsa", "tarjeta"=>"1234567812345678", "usuario"=>"usuario", "costeTotal"=>nil}} }[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/pedidos_controller.rb:15:in `create'
+  [1m[36mPedido Create (1.5ms)[0m  [1m[32mINSERT INTO "pedidos" ("numero_telefono", "direccion", "tarjeta", "created_at", "updated_at", "usuario", "costeTotal") VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["numero_telefono", "1234567890"], ["direccion", "123 Calle Falsa"], ["tarjeta", "1234567812345678"], ["created_at", "2024-05-22 17:57:35.239795"], ["updated_at", "2024-05-22 17:57:35.239795"], ["usuario", "usuario"], ["costeTotal", nil]]
+  ↳ app/controllers/pedidos_controller.rb:15:in `create'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/pedidos_controller.rb:15:in `create'
+Completed 201 Created in 10ms (Views: 0.6ms | ActiveRecord: 1.7ms | Allocations: 2204)
+
+
+Processing by PedidosController#show as HTML
+  Parameters: {"id"=>"77"}
+  [1m[36mPedido Load (0.1ms)[0m  [1m[34mSELECT "pedidos".* FROM "pedidos" WHERE "pedidos"."id" = ? LIMIT ?[0m  [["id", 77], ["LIMIT", 1]]
+  ↳ app/controllers/pedidos_controller.rb:32:in `show'
+Completed 404 Not Found in 2ms (ActiveRecord: 0.1ms | Allocations: 600)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Pedido with 'id'=77):
+  
+app/controllers/pedidos_controller.rb:32:in `show'
+Started POST "/pizzas" for 127.0.0.1 at 2024-05-22 19:57:35 +0200
+Processing by PizzasController#create as HTML
+  Parameters: {"pedido_id"=>9, "nombre"=>"Pizza Margarita", "tamano"=>"Mediana", "coste"=>8.5, "pizza"=>{"nombre"=>"Pizza Margarita", "tamano"=>"Mediana", "coste"=>8.5, "pedido_id"=>9}}
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/pizzas_controller.rb:10:in `create'
+  [1m[36mPedido Load (2.1ms)[0m  [1m[34mSELECT "pedidos".* FROM "pedidos" WHERE "pedidos"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/pizzas_controller.rb:10:in `create'
+  [1m[36mPizza Create (0.3ms)[0m  [1m[32mINSERT INTO "pizzas" ("nombre", "tamano", "coste", "pedido_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["nombre", "Pizza Margarita"], ["tamano", "Mediana"], ["coste", 8.5], ["pedido_id", 9], ["created_at", "2024-05-22 17:57:35.450634"], ["updated_at", "2024-05-22 17:57:35.450634"]]
+  ↳ app/controllers/pizzas_controller.rb:10:in `create'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/pizzas_controller.rb:10:in `create'
+Completed 201 Created in 12ms (Views: 1.3ms | ActiveRecord: 2.6ms | Allocations: 3024)
+
+
+Started POST "/pizzas" for 127.0.0.1 at 2024-05-22 19:57:35 +0200
+Started POST "/pedidos" for 127.0.0.1 at 2024-05-22 19:57:35 +0200
+Started POST "/pedidos" for 127.0.0.1 at 2024-05-22 19:57:35 +0200
+Started POST "/pedidos" for 127.0.0.1 at 2024-05-22 19:57:35 +0200
+Started POST "/pedidos" for 127.0.0.1 at 2024-05-22 19:57:35 +0200
+Processing by PizzasController#create as HTML
+  Parameters: {"pedido_id"=>10, "nombre"=>"Pizza Pepperoni", "tamano"=>"Mediana", "coste"=>9.0, "pizza"=>{"nombre"=>"Pizza Pepperoni", "tamano"=>"Mediana", "coste"=>9.0, "pedido_id"=>10}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/pizzas_controller.rb:10:in `create'
+  [1m[36mPedido Load (2.9ms)[0m  [1m[34mSELECT "pedidos".* FROM "pedidos" WHERE "pedidos"."id" = ? LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/pizzas_controller.rb:10:in `create'
+  [1m[36mPizza Create (0.2ms)[0m  [1m[32mINSERT INTO "pizzas" ("nombre", "tamano", "coste", "pedido_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["nombre", "Pizza Pepperoni"], ["tamano", "Mediana"], ["coste", 9.0], ["pedido_id", 10], ["created_at", "2024-05-22 17:57:35.697138"], ["updated_at", "2024-05-22 17:57:35.697138"]]
+  ↳ app/controllers/pizzas_controller.rb:10:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/pizzas_controller.rb:10:in `create'
+Completed 201 Created in 18ms (Views: 0.8ms | ActiveRecord: 3.3ms | Allocations: 3029)
+
+
+Processing by PedidosController#create as HTML
+  Parameters: {"id"=>77, "numero_telefono"=>"1234567890", "direccion"=>"123 Calle Falsa", "tarjeta"=>"1234567812345678", "usuario"=>"usuario", "costeTotal"=>nil, "pedido"=>{"id"=>77, "numero_telefono"=>"1234567890", "direccion"=>"123 Calle Falsa", "tarjeta"=>"1234567812345678", "usuario"=>"usuario", "costeTotal"=>nil}}
+[31mUnpermitted parameter: :id. Context: { controller: PedidosController, action: create, request: #<ActionDispatch::Request:0x000001748db05cb8>, params: {"id"=>77, "numero_telefono"=>"1234567890", "direccion"=>"123 Calle Falsa", "tarjeta"=>"1234567812345678", "usuario"=>"usuario", "costeTotal"=>nil, "controller"=>"pedidos", "action"=>"create", "pedido"=>{"id"=>77, "numero_telefono"=>"1234567890", "direccion"=>"123 Calle Falsa", "tarjeta"=>"1234567812345678", "usuario"=>"usuario", "costeTotal"=>nil}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/pedidos_controller.rb:15:in `create'
+  [1m[36mPedido Create (2.3ms)[0m  [1m[32mINSERT INTO "pedidos" ("numero_telefono", "direccion", "tarjeta", "created_at", "updated_at", "usuario", "costeTotal") VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["numero_telefono", "1234567890"], ["direccion", "123 Calle Falsa"], ["tarjeta", "1234567812345678"], ["created_at", "2024-05-22 17:57:35.730845"], ["updated_at", "2024-05-22 17:57:35.730845"], ["usuario", "usuario"], ["costeTotal", nil]]
+  ↳ app/controllers/pedidos_controller.rb:15:in `create'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/pedidos_controller.rb:15:in `create'
+Completed 201 Created in 11ms (Views: 1.0ms | ActiveRecord: 2.5ms | Allocations: 2277)
+
+
+Started GET "/pedidos/77" for 127.0.0.1 at 2024-05-22 19:57:35 +0200
+Processing by PedidosController#create as HTML
+  Parameters: {"id"=>77, "numero_telefono"=>"1234567890", "direccion"=>"123 Calle Falsa", "tarjeta"=>"1234567812345678", "usuario"=>"usuario", "costeTotal"=>nil, "pedido"=>{"id"=>77, "numero_telefono"=>"1234567890", "direccion"=>"123 Calle Falsa", "tarjeta"=>"1234567812345678", "usuario"=>"usuario", "costeTotal"=>nil}}
+[31mUnpermitted parameter: :id. Context: { controller: PedidosController, action: create, request: #<ActionDispatch::Request:0x000001748d12c278>, params: {"id"=>77, "numero_telefono"=>"1234567890", "direccion"=>"123 Calle Falsa", "tarjeta"=>"1234567812345678", "usuario"=>"usuario", "costeTotal"=>nil, "controller"=>"pedidos", "action"=>"create", "pedido"=>{"id"=>77, "numero_telefono"=>"1234567890", "direccion"=>"123 Calle Falsa", "tarjeta"=>"1234567812345678", "usuario"=>"usuario", "costeTotal"=>nil}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/pedidos_controller.rb:15:in `create'
+  [1m[36mPedido Create (4.7ms)[0m  [1m[32mINSERT INTO "pedidos" ("numero_telefono", "direccion", "tarjeta", "created_at", "updated_at", "usuario", "costeTotal") VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["numero_telefono", "1234567890"], ["direccion", "123 Calle Falsa"], ["tarjeta", "1234567812345678"], ["created_at", "2024-05-22 17:57:35.755935"], ["updated_at", "2024-05-22 17:57:35.755935"], ["usuario", "usuario"], ["costeTotal", nil]]
+  ↳ app/controllers/pedidos_controller.rb:15:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/pedidos_controller.rb:15:in `create'
+Completed 201 Created in 20ms (Views: 0.9ms | ActiveRecord: 4.8ms | Allocations: 2231)
+
+
+Processing by PedidosController#create as HTML
+  Parameters: {"id"=>77, "numero_telefono"=>"1234567890", "direccion"=>"123 Calle Falsa", "tarjeta"=>"1234567812345678", "usuario"=>"usuario", "costeTotal"=>nil, "pedido"=>{"id"=>77, "numero_telefono"=>"1234567890", "direccion"=>"123 Calle Falsa", "tarjeta"=>"1234567812345678", "usuario"=>"usuario", "costeTotal"=>nil}}
+[31mUnpermitted parameter: :id. Context: { controller: PedidosController, action: create, request: #<ActionDispatch::Request:0x000001748eea7348>, params: {"id"=>77, "numero_telefono"=>"1234567890", "direccion"=>"123 Calle Falsa", "tarjeta"=>"1234567812345678", "usuario"=>"usuario", "costeTotal"=>nil, "controller"=>"pedidos", "action"=>"create", "pedido"=>{"id"=>77, "numero_telefono"=>"1234567890", "direccion"=>"123 Calle Falsa", "tarjeta"=>"1234567812345678", "usuario"=>"usuario", "costeTotal"=>nil}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/pedidos_controller.rb:15:in `create'
+  [1m[36mPedido Create (2.4ms)[0m  [1m[32mINSERT INTO "pedidos" ("numero_telefono", "direccion", "tarjeta", "created_at", "updated_at", "usuario", "costeTotal") VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["numero_telefono", "1234567890"], ["direccion", "123 Calle Falsa"], ["tarjeta", "1234567812345678"], ["created_at", "2024-05-22 17:57:35.773773"], ["updated_at", "2024-05-22 17:57:35.773773"], ["usuario", "usuario"], ["costeTotal", nil]]
+  ↳ app/controllers/pedidos_controller.rb:15:in `create'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/pedidos_controller.rb:15:in `create'
+Completed 201 Created in 12ms (Views: 1.2ms | ActiveRecord: 2.5ms | Allocations: 2249)
+
+
+Processing by PedidosController#create as HTML
+  Parameters: {"id"=>77, "numero_telefono"=>"1234567890", "direccion"=>"123 Calle Falsa", "tarjeta"=>"1234567812345678", "usuario"=>"usuario", "costeTotal"=>nil, "pedido"=>{"id"=>77, "numero_telefono"=>"1234567890", "direccion"=>"123 Calle Falsa", "tarjeta"=>"1234567812345678", "usuario"=>"usuario", "costeTotal"=>nil}}
+[31mUnpermitted parameter: :id. Context: { controller: PedidosController, action: create, request: #<ActionDispatch::Request:0x000001748e6b4230>, params: {"id"=>77, "numero_telefono"=>"1234567890", "direccion"=>"123 Calle Falsa", "tarjeta"=>"1234567812345678", "usuario"=>"usuario", "costeTotal"=>nil, "controller"=>"pedidos", "action"=>"create", "pedido"=>{"id"=>77, "numero_telefono"=>"1234567890", "direccion"=>"123 Calle Falsa", "tarjeta"=>"1234567812345678", "usuario"=>"usuario", "costeTotal"=>nil}} }[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/pedidos_controller.rb:15:in `create'
+  [1m[36mPedido Create (1.3ms)[0m  [1m[32mINSERT INTO "pedidos" ("numero_telefono", "direccion", "tarjeta", "created_at", "updated_at", "usuario", "costeTotal") VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["numero_telefono", "1234567890"], ["direccion", "123 Calle Falsa"], ["tarjeta", "1234567812345678"], ["created_at", "2024-05-22 17:57:35.789739"], ["updated_at", "2024-05-22 17:57:35.789739"], ["usuario", "usuario"], ["costeTotal", nil]]
+  ↳ app/controllers/pedidos_controller.rb:15:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/pedidos_controller.rb:15:in `create'
+Completed 201 Created in 9ms (Views: 0.5ms | ActiveRecord: 1.5ms | Allocations: 2213)
+
+
+Started PUT "/pedidos/10" for 127.0.0.1 at 2024-05-22 19:57:35 +0200
+Started POST "/pizzas" for 127.0.0.1 at 2024-05-22 19:57:35 +0200
+Started POST "/pizzas" for 127.0.0.1 at 2024-05-22 19:57:35 +0200
+Processing by PedidosController#show as HTML
+  Parameters: {"id"=>"77"}
+  [1m[36mPedido Load (0.1ms)[0m  [1m[34mSELECT "pedidos".* FROM "pedidos" WHERE "pedidos"."id" = ? LIMIT ?[0m  [["id", 77], ["LIMIT", 1]]
+  ↳ app/controllers/pedidos_controller.rb:32:in `show'
+Completed 404 Not Found in 4ms (ActiveRecord: 0.1ms | Allocations: 615)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Pedido with 'id'=77):
+  
+app/controllers/pedidos_controller.rb:32:in `show'
+Processing by PizzasController#create as HTML
+  Parameters: {"pedido_id"=>11, "nombre"=>"Pizza Margarita", "tamano"=>"Mediana", "coste"=>8.5, "pizza"=>{"nombre"=>"Pizza Margarita", "tamano"=>"Mediana", "coste"=>8.5, "pedido_id"=>11}}
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/pizzas_controller.rb:10:in `create'
+  [1m[36mPedido Load (5.0ms)[0m  [1m[34mSELECT "pedidos".* FROM "pedidos" WHERE "pedidos"."id" = ? LIMIT ?[0m  [["id", 11], ["LIMIT", 1]]
+  ↳ app/controllers/pizzas_controller.rb:10:in `create'
+  [1m[36mPizza Create (0.2ms)[0m  [1m[32mINSERT INTO "pizzas" ("nombre", "tamano", "coste", "pedido_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["nombre", "Pizza Margarita"], ["tamano", "Mediana"], ["coste", 8.5], ["pedido_id", 11], ["created_at", "2024-05-22 17:57:36.081356"], ["updated_at", "2024-05-22 17:57:36.081356"]]
+  ↳ app/controllers/pizzas_controller.rb:10:in `create'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/pizzas_controller.rb:10:in `create'
+Completed 201 Created in 15ms (Views: 0.8ms | ActiveRecord: 5.4ms | Allocations: 3735)
+
+
+Processing by PedidosController#update as HTML
+  Parameters: {"costeTotal"=>19.5, "id"=>"10", "pedido"=>{"costeTotal"=>19.5}}
+  [1m[36mPedido Load (0.1ms)[0m  [1m[34mSELECT "pedidos".* FROM "pedidos" WHERE "pedidos"."id" = ? LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/pedidos_controller.rb:23:in `update'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/pedidos_controller.rb:24:in `update'
+  [1m[36mPedido Update (2.1ms)[0m  [1m[33mUPDATE "pedidos" SET "updated_at" = ?, "costeTotal" = ? WHERE "pedidos"."id" = ?[0m  [["updated_at", "2024-05-22 17:57:36.095940"], ["costeTotal", 19.5], ["id", 10]]
+  ↳ app/controllers/pedidos_controller.rb:24:in `update'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/pedidos_controller.rb:24:in `update'
+Completed 200 OK in 14ms (Views: 1.3ms | ActiveRecord: 2.4ms | Allocations: 3870)
+
+
+Processing by PizzasController#create as HTML
+  Parameters: {"pedido_id"=>14, "nombre"=>"Pizza Margarita", "tamano"=>"Mediana", "coste"=>8.5, "pizza"=>{"nombre"=>"Pizza Margarita", "tamano"=>"Mediana", "coste"=>8.5, "pedido_id"=>14}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/pizzas_controller.rb:10:in `create'
+  [1m[36mPedido Load (2.8ms)[0m  [1m[34mSELECT "pedidos".* FROM "pedidos" WHERE "pedidos"."id" = ? LIMIT ?[0m  [["id", 14], ["LIMIT", 1]]
+  ↳ app/controllers/pizzas_controller.rb:10:in `create'
+  [1m[36mPizza Create (0.1ms)[0m  [1m[32mINSERT INTO "pizzas" ("nombre", "tamano", "coste", "pedido_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["nombre", "Pizza Margarita"], ["tamano", "Mediana"], ["coste", 8.5], ["pedido_id", 14], ["created_at", "2024-05-22 17:57:36.116981"], ["updated_at", "2024-05-22 17:57:36.116981"]]
+  ↳ app/controllers/pizzas_controller.rb:10:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/pizzas_controller.rb:10:in `create'
+Completed 201 Created in 15ms (Views: 1.2ms | ActiveRecord: 3.2ms | Allocations: 3209)
+
+
+Started POST "/pizzas" for 127.0.0.1 at 2024-05-22 19:57:36 +0200
+Started POST "/pizzas" for 127.0.0.1 at 2024-05-22 19:57:36 +0200
+Started POST "/pedidos" for 127.0.0.1 at 2024-05-22 19:57:36 +0200
+Started POST "/pedidos" for 127.0.0.1 at 2024-05-22 19:57:36 +0200
+Processing by PizzasController#create as HTML
+  Parameters: {"pedido_id"=>12, "nombre"=>"Pizza Pepperoni", "tamano"=>"Mediana", "coste"=>9.0, "pizza"=>{"nombre"=>"Pizza Pepperoni", "tamano"=>"Mediana", "coste"=>9.0, "pedido_id"=>12}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/pizzas_controller.rb:10:in `create'
+  [1m[36mPedido Load (2.4ms)[0m  [1m[34mSELECT "pedidos".* FROM "pedidos" WHERE "pedidos"."id" = ? LIMIT ?[0m  [["id", 12], ["LIMIT", 1]]
+  ↳ app/controllers/pizzas_controller.rb:10:in `create'
+  [1m[36mPizza Create (0.2ms)[0m  [1m[32mINSERT INTO "pizzas" ("nombre", "tamano", "coste", "pedido_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["nombre", "Pizza Pepperoni"], ["tamano", "Mediana"], ["coste", 9.0], ["pedido_id", 12], ["created_at", "2024-05-22 17:57:36.378924"], ["updated_at", "2024-05-22 17:57:36.378924"]]
+  ↳ app/controllers/pizzas_controller.rb:10:in `create'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/pizzas_controller.rb:10:in `create'
+Completed 201 Created in 19ms (Views: 0.5ms | ActiveRecord: 2.8ms | Allocations: 3059)
+
+
+Processing by PizzasController#create as HTML
+  Parameters: {"pedido_id"=>14, "nombre"=>"Pizza Pepperoni", "tamano"=>"Mediana", "coste"=>9.0, "pizza"=>{"nombre"=>"Pizza Pepperoni", "tamano"=>"Mediana", "coste"=>9.0, "pedido_id"=>14}}
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/pizzas_controller.rb:10:in `create'
+  [1m[36mPedido Load (2.4ms)[0m  [1m[34mSELECT "pedidos".* FROM "pedidos" WHERE "pedidos"."id" = ? LIMIT ?[0m  [["id", 14], ["LIMIT", 1]]
+  ↳ app/controllers/pizzas_controller.rb:10:in `create'
+  [1m[36mPizza Create (0.2ms)[0m  [1m[32mINSERT INTO "pizzas" ("nombre", "tamano", "coste", "pedido_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["nombre", "Pizza Pepperoni"], ["tamano", "Mediana"], ["coste", 9.0], ["pedido_id", 14], ["created_at", "2024-05-22 17:57:36.433658"], ["updated_at", "2024-05-22 17:57:36.433658"]]
+  ↳ app/controllers/pizzas_controller.rb:10:in `create'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/pizzas_controller.rb:10:in `create'
+Completed 201 Created in 11ms (Views: 0.5ms | ActiveRecord: 2.8ms | Allocations: 3071)
+
+
+Processing by PedidosController#create as HTML
+  Parameters: {"id"=>77, "numero_telefono"=>"1234567890", "direccion"=>"123 Calle Falsa", "tarjeta"=>"1234567812345678", "usuario"=>"usuario", "costeTotal"=>nil, "pedido"=>{"id"=>77, "numero_telefono"=>"1234567890", "direccion"=>"123 Calle Falsa", "tarjeta"=>"1234567812345678", "usuario"=>"usuario", "costeTotal"=>nil}}
+[31mUnpermitted parameter: :id. Context: { controller: PedidosController, action: create, request: #<ActionDispatch::Request:0x000001749012a510>, params: {"id"=>77, "numero_telefono"=>"1234567890", "direccion"=>"123 Calle Falsa", "tarjeta"=>"1234567812345678", "usuario"=>"usuario", "costeTotal"=>nil, "controller"=>"pedidos", "action"=>"create", "pedido"=>{"id"=>77, "numero_telefono"=>"1234567890", "direccion"=>"123 Calle Falsa", "tarjeta"=>"1234567812345678", "usuario"=>"usuario", "costeTotal"=>nil}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/pedidos_controller.rb:15:in `create'
+  [1m[36mPedido Create (1.6ms)[0m  [1m[32mINSERT INTO "pedidos" ("numero_telefono", "direccion", "tarjeta", "created_at", "updated_at", "usuario", "costeTotal") VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["numero_telefono", "1234567890"], ["direccion", "123 Calle Falsa"], ["tarjeta", "1234567812345678"], ["created_at", "2024-05-22 17:57:36.450297"], ["updated_at", "2024-05-22 17:57:36.450297"], ["usuario", "usuario"], ["costeTotal", nil]]
+  ↳ app/controllers/pedidos_controller.rb:15:in `create'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/pedidos_controller.rb:15:in `create'
+Completed 201 Created in 7ms (Views: 0.5ms | ActiveRecord: 1.7ms | Allocations: 2196)
+
+
+Processing by PedidosController#create as HTML
+  Parameters: {"id"=>77, "numero_telefono"=>"1234567890", "direccion"=>"123 Calle Falsa", "tarjeta"=>"1234567812345678", "usuario"=>"usuario", "costeTotal"=>nil, "pedido"=>{"id"=>77, "numero_telefono"=>"1234567890", "direccion"=>"123 Calle Falsa", "tarjeta"=>"1234567812345678", "usuario"=>"usuario", "costeTotal"=>nil}}
+[31mUnpermitted parameter: :id. Context: { controller: PedidosController, action: create, request: #<ActionDispatch::Request:0x00000174901bc1b8>, params: {"id"=>77, "numero_telefono"=>"1234567890", "direccion"=>"123 Calle Falsa", "tarjeta"=>"1234567812345678", "usuario"=>"usuario", "costeTotal"=>nil, "controller"=>"pedidos", "action"=>"create", "pedido"=>{"id"=>77, "numero_telefono"=>"1234567890", "direccion"=>"123 Calle Falsa", "tarjeta"=>"1234567812345678", "usuario"=>"usuario", "costeTotal"=>nil}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/pedidos_controller.rb:15:in `create'
+  [1m[36mPedido Create (1.7ms)[0m  [1m[32mINSERT INTO "pedidos" ("numero_telefono", "direccion", "tarjeta", "created_at", "updated_at", "usuario", "costeTotal") VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["numero_telefono", "1234567890"], ["direccion", "123 Calle Falsa"], ["tarjeta", "1234567812345678"], ["created_at", "2024-05-22 17:57:36.461165"], ["updated_at", "2024-05-22 17:57:36.461165"], ["usuario", "usuario"], ["costeTotal", nil]]
+  ↳ app/controllers/pedidos_controller.rb:15:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/pedidos_controller.rb:15:in `create'
+Completed 201 Created in 8ms (Views: 0.5ms | ActiveRecord: 1.9ms | Allocations: 2182)
+
+
