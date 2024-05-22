@@ -29697,3 +29697,24 @@ Cargando ingredientes extra, Total: 2
 Completed 200 OK in 16ms (Views: 8.3ms | ActiveRecord: 0.7ms | Allocations: 1448)
 
 
+Started GET "/pedidos" for ::1 at 2024-05-22 16:07:14 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by PedidosController#index as HTML
+  [1m[36mPedido Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "pedidos"[0m
+  ↳ app/controllers/pedidos_controller.rb:8:in `index'
+Cargando todos los pedidos, Total: 1
+  [1m[36mPedido Load (0.2ms)[0m  [1m[34mSELECT "pedidos".* FROM "pedidos"[0m
+  ↳ app/controllers/pedidos_controller.rb:10:in `index'
+Completed 200 OK in 111ms (Views: 27.1ms | ActiveRecord: 4.6ms | Allocations: 18782)
+
+
+Started GET "/pizza_ingredientes_extra" for ::1 at 2024-05-22 16:07:17 +0200
+Processing by PizzaIngredientesExtraController#index as HTML
+  [1m[36mPizzaIngredienteExtra Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "pizza_ingrediente_extras"[0m
+  ↳ app/controllers/pizza_ingredientes_extra_controller.rb:4:in `index'
+Cargando ingredientes extra, Total: 2
+  [1m[36mPizzaIngredienteExtra Load (0.2ms)[0m  [1m[34mSELECT "pizza_ingrediente_extras".* FROM "pizza_ingrediente_extras"[0m
+  ↳ app/controllers/pizza_ingredientes_extra_controller.rb:5:in `index'
+Completed 200 OK in 42ms (Views: 19.2ms | ActiveRecord: 2.0ms | Allocations: 6540)
+
+
