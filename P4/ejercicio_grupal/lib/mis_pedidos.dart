@@ -75,23 +75,38 @@ class _MisPedidosState extends State<MisPedidos> {
     );
   }
 
-  Future<List<dynamic>> fetchPedidosWithPizzas() async {
-    final response = await http.get(Uri.parse('http://localhost:3000/pedidos'));
+Future<List<dynamic>> fetchIngredientesExtra(int pizzaId) async {
+  final response = await http.get(Uri.parse('http://localhost:3000/pizza_ingredientes_extra'));
 
-    if (response.statusCode == 200) {
-      List<dynamic> pedidos = jsonDecode(response.body);
-      pedidos = pedidos.where((pedido) => pedido['usuario'] == widget.currentUser).toList();
-
-      for (var pedido in pedidos) {
-        pedido['pizzas'] = await fetchPizzas(pedido['id']);
-        pedido['numero_pedido'] = pedido['id']; // Add this line
-      }
-
-      return pedidos;
-    } else {
-      throw Exception('Failed to load pedidos');
-    }
+  if (response.statusCode == 200) {
+    List<dynamic> ingredientesExtra = jsonDecode(response.body);
+    return ingredientesExtra.where((ingredienteExtra) => ingredienteExtra['pizza_id'] == pizzaId).toList();
+  } else {
+    throw Exception('Failed to load ingredientes extra');
   }
+}
+
+Future<List<dynamic>> fetchPedidosWithPizzas() async {
+  final response = await http.get(Uri.parse('http://localhost:3000/pedidos'));
+
+  if (response.statusCode == 200) {
+    List<dynamic> pedidos = jsonDecode(response.body);
+    pedidos = pedidos.where((pedido) => pedido['usuario'] == widget.currentUser).toList();
+
+    for (var pedido in pedidos) {
+      pedido['pizzas'] = await fetchPizzas(pedido['id']);
+      pedido['numero_pedido'] = pedido['id']; // Add this line
+
+      for (var pizza in pedido['pizzas']) {
+        pizza['ingredientesExtra'] = await fetchIngredientesExtra(pizza['id']);
+      }
+    }
+
+    return pedidos;
+  } else {
+    throw Exception('Failed to load pedidos');
+  }
+}
 
 @override
 Widget build(BuildContext context) {
@@ -157,9 +172,16 @@ Widget buildPedidoCard(pedido, pizzas) {
             ],
           ),
         ),
-        ...pizzas.map((pizza) => ListTile(
-          title: Text('${pizza['nombre']} (${pizza['tamano']})'),
-          subtitle: Text('Coste: ${pizza['coste']}'),
+        ...pizzas.map((pizza) => Column(
+          children: [
+            ListTile(
+              title: Text('${pizza['nombre']} (${pizza['tamano']})'),
+              subtitle: Text('Coste: ${pizza['coste']}'),
+            ),
+            ListTile(
+              title: Text('Extras: ${pizza['ingredientesExtra'].isEmpty ? 'No Extras' : pizza['ingredientesExtra'].map((ingredienteExtra) => ingredienteExtra['nombre']).join(', ')}'),
+            ),
+          ],
         )).toList(),
       ],
     ),

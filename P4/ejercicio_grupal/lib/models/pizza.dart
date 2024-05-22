@@ -24,19 +24,43 @@ class Pizza {
   String get getTamano => tamano;
   List<String> get getIngredientesAdicionales => ingredientesAdicionales;
 
-  Future<void> anadirPizza(String apiUrl) async {
-    final response = await http.post(
-      Uri.parse('$apiUrl/pizzas'),
-      headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF-8',
-      },
-      body: jsonEncode(this.toJson()),
-    );
+Future<void> anadirPizza(String apiUrl) async {
+  final response = await http.post(
+    Uri.parse('$apiUrl/pizzas'),
+    headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+    },
+    body: jsonEncode(this.toJson()),
+  );
 
-    if (response.statusCode != 201) {
-      throw Exception('Failed to save pizza: ${response.body}');
-    }
+  if (response.statusCode != 201) {
+    throw Exception('Failed to save pizza: ${response.body}');
   }
+
+  // Parse the response body to get the id of the newly added pizza
+  final pizzaData = jsonDecode(response.body);
+  this.id = pizzaData['id'];
+
+  // Add each extra ingredient to the database
+  for (var ingredienteExtra in this.ingredientesAdicionales) {
+    await anadirIngredienteExtra(apiUrl, this.id!, ingredienteExtra);
+  }
+}
+
+Future<void> anadirIngredienteExtra(String apiUrl, int pizzaId, String ingredienteExtra) async {
+  final response = await http.post(
+    Uri.parse('$apiUrl/pizza_ingredientes_extra'),
+    headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+    },
+    body: jsonEncode({'pizza_ingrediente_extra': {'nombre': ingredienteExtra, 'pizza_id': pizzaId}}),
+  );
+
+  if (response.statusCode != 201) {
+    throw Exception('Failed to add extra ingredient: ${response.body}');
+  }
+}
+
   Map<String, dynamic> toJson() {
     return {
       // 'id': id, // Comenta o elimina esta línea

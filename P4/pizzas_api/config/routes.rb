@@ -9,4 +9,5 @@ Rails.application.routes.draw do
   # root "posts#index"
   resources :pedidos, only: [:index, :create, :update, :destroy]
   resources :pizzas, only: [:index, :create, :update, :destroy]
+  resources :pizza_ingredientes_extra , only: [:index,:show, :create, :update, :destroy]
 end

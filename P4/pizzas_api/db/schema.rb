@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_20_160100) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_21_105357) do
   create_table "ingrediente_extras", force: :cascade do |t|
     t.string "nombre"
     t.datetime "created_at", null: false
@@ -19,6 +19,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_20_160100) do
 
   create_table "ingredientes", force: :cascade do |t|
     t.string "nombre"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "ingredientes_adicionales", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "ingredientes_extras", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -35,10 +45,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_20_160100) do
 
   create_table "pizza_ingrediente_extras", force: :cascade do |t|
     t.integer "pizza_id", null: false
-    t.integer "ingrediente_extra_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["ingrediente_extra_id"], name: "index_pizza_ingrediente_extras_on_ingrediente_extra_id"
+    t.string "nombre"
     t.index ["pizza_id"], name: "index_pizza_ingrediente_extras_on_pizza_id"
   end
 
@@ -51,6 +60,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_20_160100) do
     t.index ["pizza_id"], name: "index_pizza_ingredientes_on_pizza_id"
   end
 
+  create_table "pizza_ingredientes_extra", force: :cascade do |t|
+    t.integer "pizza_id", null: false
+    t.string "ingrediente", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "nombre"
+    t.index ["pizza_id"], name: "index_pizza_ingredientes_extra_on_pizza_id"
+  end
+
   create_table "pizzas", force: :cascade do |t|
     t.string "nombre"
     t.string "tamano"
@@ -61,9 +79,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_20_160100) do
     t.index ["pedido_id"], name: "index_pizzas_on_pedido_id"
   end
 
-  add_foreign_key "pizza_ingrediente_extras", "ingrediente_extras"
   add_foreign_key "pizza_ingrediente_extras", "pizzas"
   add_foreign_key "pizza_ingredientes", "ingredientes"
   add_foreign_key "pizza_ingredientes", "pizzas"
+  add_foreign_key "pizza_ingredientes_extra", "pizzas"
   add_foreign_key "pizzas", "pedidos"
 end

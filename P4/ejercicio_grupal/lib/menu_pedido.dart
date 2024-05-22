@@ -157,7 +157,9 @@ class _MenuPedidoState extends State<MenuPedido> {
   void anadirPizza(){
     Pizza pizza = PizzaFactory.createPizza(pizzaSeleccionada!, tamanoSeleccionado!);
     if (ingredientesAdicionalesSeleccionados.isNotEmpty) {
-      PizzaExtras.anadirExtras(pizza, ingredientesAdicionalesSeleccionados);
+      for (var ingrediente in ingredientesAdicionalesSeleccionados) {
+        PizzaExtras.anadirExtras(pizza, ingrediente);
+      }
     }
     pizzas.add(pizza);
     clearPizza();

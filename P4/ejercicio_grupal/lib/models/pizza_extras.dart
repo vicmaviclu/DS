@@ -8,7 +8,7 @@ import '../decorator/pizza_adicional_cebolla.dart';
 
 class PizzaExtras {
   static void anadirExtras(
-      Pizza pizza, List<String> ingredientesAdicionalesSeleccionados) {
+      Pizza pizza, String ingredienteSeleccionado) {
     final ingredientesAMetodos = {
       'Aceitunas': (Pizza p) => PizzaAdicionalAceituna(p),
       'Champiñones': (Pizza p) => PizzaAdicionalChampinones(p),
@@ -17,11 +17,9 @@ class PizzaExtras {
       'Extra queso': (Pizza p) => PizzaAdicionalQueso(p),
     };
 
-    for (var ingrediente in ingredientesAdicionalesSeleccionados) {
-      if (ingredientesAMetodos.containsKey(ingrediente)) {
-        pizza = ingredientesAMetodos[ingrediente]!(pizza);
+      if (ingredientesAMetodos.containsKey(ingredienteSeleccionado)) {
+        pizza = ingredientesAMetodos[ingredienteSeleccionado]!(pizza);
       }
-    }
 
     actualizar(pizza as PizzaDecorator);
   }

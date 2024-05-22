@@ -43,9 +43,10 @@ class Pedido {
 
     // Luego, crea las Pizzas y asigna el numeroPedido
     for (var pizza in pizzas) {
-      totalCost += pizza.getCoste(pizza.tamano);
       pizza.pedido_id = this.numeroPedido;
+      totalCost += pizza.getCoste(pizza.tamano);
       await pizza.anadirPizza(apiUrl); 
+
     }
 
     // Actualiza el coste total del pedido en la base de datos
@@ -57,6 +58,7 @@ class Pedido {
     sistemaPagos.coste = (totalCost);
     _pedidoRealizado = true;
   }
+
 
   Future<void> anadirPedido() async {
     final response = await http.post(
@@ -89,7 +91,7 @@ class Pedido {
   Map<String, dynamic> toJson() {
     return {
       'id': numeroPedido,
-      'numero_elefono': numeroTelefono,
+      'numero_telefono': numeroTelefono,
       'direccion': direccion,
       'tarjeta': tarjeta,
       'usuario': usuario,
