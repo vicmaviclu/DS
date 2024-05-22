@@ -25,8 +25,7 @@ class Pedido {
     required this.usuario,
     int? numeroPedido,
     this.costeTotal,
-  })  : sistemaEnvios =
-          SistemaEnvios(direccion: direccion, numeroTelefono: numeroTelefono),
+  })  : sistemaEnvios = SistemaEnvios(direccion: direccion, numeroTelefono: numeroTelefono),
         sistemaPagos = SistemaPagos(tarjeta: tarjeta) {
     this.numeroPedido = numeroPedido ?? ++_contadorPedidos;
   }
@@ -36,20 +35,15 @@ class Pedido {
   bool get pedidoRealizado => _pedidoRealizado;
 
   Future<void> hacerPedido() async {
-    // Primero, crea el Pedido y genera el numeroPedido
     await anadirPedido(); 
 
     double totalCost = 0;
-
-    // Luego, crea las Pizzas y asigna el numeroPedido
     for (var pizza in pizzas) {
       pizza.pedido_id = this.numeroPedido;
       totalCost += pizza.getCoste(pizza.tamano);
       await pizza.anadirPizza(apiUrl); 
-
     }
 
-    // Actualiza el coste total del pedido en la base de datos
     this.costeTotal = totalCost;
     await actualizarCosteTotalPedido(apiUrl, this.numeroPedido, totalCost);
 
@@ -59,7 +53,6 @@ class Pedido {
     _pedidoRealizado = true;
   }
 
-
   Future<void> anadirPedido() async {
     final response = await http.post(
       Uri.parse('$apiUrl/pedidos'),
@@ -68,9 +61,11 @@ class Pedido {
       },
       body: jsonEncode(this.toJson()),
     );
+
     if (response.statusCode != 201) {
       throw Exception('Failed to save order: ${response.body}');
     }
+
     this.numeroPedido = jsonDecode(response.body)['id']; 
   }
 
@@ -98,6 +93,7 @@ class Pedido {
       'costeTotal': costeTotal,
     };
   }
+
   factory Pedido.fromJson(Map<String, dynamic> json) {
     return Pedido(
       numeroTelefono: json['numero_telefono'],

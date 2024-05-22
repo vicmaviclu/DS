@@ -37,11 +37,9 @@ Future<void> anadirPizza(String apiUrl) async {
     throw Exception('Failed to save pizza: ${response.body}');
   }
 
-  // Parse the response body to get the id of the newly added pizza
   final pizzaData = jsonDecode(response.body);
   this.id = pizzaData['id'];
 
-  // Add each extra ingredient to the database
   for (var ingredienteExtra in this.ingredientesAdicionales) {
     await anadirIngredienteExtra(apiUrl, this.id!, ingredienteExtra);
   }
@@ -63,12 +61,11 @@ Future<void> anadirIngredienteExtra(String apiUrl, int pizzaId, String ingredien
 
   Map<String, dynamic> toJson() {
     return {
-      // 'id': id, // Comenta o elimina esta línea
+      // 'id': id, 
       'pedido_id': pedido_id,
       'nombre': nombre,
       'tamano': tamano,
       'coste': precio,
-      // Resto de los campos de la pizza...
     };
   }
 

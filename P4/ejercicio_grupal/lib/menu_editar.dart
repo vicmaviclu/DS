@@ -24,10 +24,10 @@ class _PedidoEditarState extends State<PedidoEditar> {
     super.initState();
     direccionController = TextEditingController(text: widget.pedido['direccion']);
     telefonoController = TextEditingController(text: widget.pedido['numero_telefono']);
-    fetchPizzaIngredientesExtra();
+    conseguirIngredeintesExtra();
   }
 
-  Future<void> fetchPizzaIngredientesExtra() async {
+  Future<void> conseguirIngredeintesExtra() async {
     for (var pizza in widget.pizzas) {
       final response = await http.get(Uri.parse('http://localhost:3000/pizza_ingredientes_extra/${pizza['id']}'));
       if (response.statusCode == 200) {
@@ -39,76 +39,78 @@ class _PedidoEditarState extends State<PedidoEditar> {
     setState(() {});
   }
 
-@override
-Widget build(BuildContext context) {
-  return Scaffold(
-    appBar: AppBar(
-      title: Text('Pedido ${widget.pedido['id']} Modo Edición'),
-    ),
-    body: Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: pizzaIngredientesExtra.isEmpty
-        ? CircularProgressIndicator() // Show loading indicator while data is loading
-        : Column(
-            children: [
-              ListTile(
-                subtitle: buildPedidoDetails(),
-              ),
-              ...widget.pizzas.asMap().entries.map((entry) => ListTile(
-                title: Text('${entry.value['nombre']} (${entry.value['tamano']})', style:const TextStyle(fontWeight: FontWeight.bold)),
-                subtitle: Text('Coste: ${entry.value['coste']}\nExtras: ${pizzaIngredientesExtra[entry.key].map((ingredienteExtra) => ingredienteExtra['nombre']).join(', ')}'),
-                trailing: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    IconButton(
-                      icon:const Icon(Icons.edit),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => MenuEditarPizza(pizza: entry.value)),
-                        );
-                      },
-                    ),
-                    if (widget.pizzas.length > 1) // Only show delete button if there is more than one pizza
-IconButton(
-  icon:const Icon(Icons.delete),
-  onPressed: () async {
-    await deletePizzaIngredientesExtra(entry.value['id']);
-    await updatePedidoCoste();
-    setState(() {}); // This will trigger a rebuild of the UI
-  },
-),
-                  ],
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Pedido ${widget.pedido['id']} Modo Edición'),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: pizzaIngredientesExtra.isEmpty
+          ? CircularProgressIndicator() 
+          : Column(
+              children: [
+                ListTile(
+                  subtitle: buildPedido(),
                 ),
-              )),
-              const SizedBox(height: 20),
-ElevatedButton(
-  onPressed: () async {
-    if (direccionController.text.isNotEmpty && telefonoController.text.isNotEmpty) {
-      await updatePedido();
-      widget.onConfirm(); 
-      Navigator.pop(context, true); // Pass a return value to the previous page
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('La dirección y el teléfono no pueden estar vacíos'),
-        ),
-      );                
-    }
-  },
-                style: ButtonStyle(
-                  padding: MaterialStateProperty.all<EdgeInsets>(const EdgeInsets.symmetric(horizontal: 50, vertical: 20)),
-                  textStyle: MaterialStateProperty.all<TextStyle>(const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                ...widget.pizzas.asMap().entries.map((entry) => ListTile(
+                  title: Text('${entry.value['nombre']} (${entry.value['tamano']})', style:const TextStyle(fontWeight: FontWeight.bold)),
+                  subtitle: Text('Coste: ${entry.value['coste']}\nExtras: ${pizzaIngredientesExtra[entry.key].map((ingredienteExtra) => ingredienteExtra['nombre']).join(', ')}'),
+                  trailing: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      IconButton(
+                        icon:const Icon(Icons.edit),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => MenuEditarPizza(pizza: entry.value)),
+                          ).then((_) {
+                            setState(() {});
+                          });
+                        },
+                      ),
+                      if (widget.pizzas.length > 1) 
+                        IconButton(
+                          icon:const Icon(Icons.delete),
+                          onPressed: () async {
+                            await deletePizzaIngredientesExtra(entry.value['id']);
+                            await updatePedidoCoste();
+                            setState(() {}); 
+                          },
+                        ),
+                    ],
+                  ),
+                )),
+                const SizedBox(height: 20),
+                ElevatedButton(
+                  onPressed: () async {
+                    if (direccionController.text.isNotEmpty && telefonoController.text.isNotEmpty) {
+                      await updatePedido();
+                      widget.onConfirm(); 
+                      Navigator.pop(context, true); 
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text('La dirección y el teléfono no pueden estar vacíos'),
+                        ),
+                      );                
+                    }
+                  },
+                  style: ButtonStyle(
+                    padding: MaterialStateProperty.all<EdgeInsets>(const EdgeInsets.symmetric(horizontal: 50, vertical: 20)),
+                    textStyle: MaterialStateProperty.all<TextStyle>(const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                  ),
+                  child:const Text('Confirmar')
                 ),
-                child:const Text('Confirmar')
-              ),
-            ],
-          ),
-    ),
-  );
-}
+              ],
+            ),
+      ),
+    );
+  }
 
-  Widget buildPedidoDetails() {
+  Widget buildPedido() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -129,12 +131,12 @@ ElevatedButton(
         ),
         const SizedBox(height: 10),
         Text('Tarjeta: ${widget.pedido['tarjeta']}', style:const TextStyle(fontWeight: FontWeight.bold)),
-        Text('Coste Total: ${widget.pedido['costeTotal']}', style:const TextStyle(fontWeight: FontWeight.bold)), // Display total cost
+        Text('Coste Total: ${widget.pedido['costeTotal']}', style:const TextStyle(fontWeight: FontWeight.bold)), 
       ],
     );
   }
 
-  Future<List<dynamic>> fetchPizzaIngredientesExtraById(int pizzaId) async {
+  Future<List<dynamic>> conseguirIngredientesExtraByPizzaId(int pizzaId) async {
     final response = await http.get(Uri.parse('http://localhost:3000/pizza_ingredientes_extra/${pizzaId}'));
     
     if (response.statusCode == 200) {
@@ -145,13 +147,11 @@ ElevatedButton(
   }
 
   Future<void> deletePizzaIngredientesExtra(int pizzaId) async {
-    // Fetch all pizzaIngredientesExtra for the current pizza
-    List<dynamic> ingredientesExtraToDelete = await fetchPizzaIngredientesExtraById(pizzaId);
+    List<dynamic> ingredientesExtraToDelete = await conseguirIngredientesExtraByPizzaId(pizzaId);
 
     for (var ingredienteExtra in ingredientesExtraToDelete) {
-      // Delete each ingredienteExtra
       final response = await http.delete(
-        Uri.parse('http://localhost:3000/pizza_ingredientes_extra/${ingredienteExtra['id']}'), // Use ingredienteExtra id here
+        Uri.parse('http://localhost:3000/pizza_ingredientes_extra/${ingredienteExtra['id']}'), 
       );
 
       if (response.statusCode != 200) {
@@ -159,26 +159,24 @@ ElevatedButton(
       }
     }
 
-    // Fetch all pizzaIngredientesExtra again to update the list
     await deletePizza(pizzaId);
   }
 
-Future<void> deletePizza(int pizzaId) async {
-  final response = await http.delete(
-    Uri.parse('http://localhost:3000/pizzas/${pizzaId}'), // Use pizzaId here
-  );
+  Future<void> deletePizza(int pizzaId) async {
+    final response = await http.delete(
+      Uri.parse('http://localhost:3000/pizzas/${pizzaId}'), 
+    );
 
-  if (response.statusCode != 200) {
-    throw Exception('Failed to delete pizza');
+    if (response.statusCode != 200) {
+      throw Exception('Failed to delete pizza');
+    }
+
+    setState(() {
+      widget.pizzas.removeWhere((pizza) => pizza['id'] == pizzaId);
+    });
   }
-
-  // Remove the pizza from the list
-  setState(() {
-    widget.pizzas.removeWhere((pizza) => pizza['id'] == pizzaId);
-  });
-}
   
-  Future<List<dynamic>> fetchPizzas(int pedidoId) async {
+  Future<List<dynamic>> conseguirPizzas(int pedidoId) async {
     final response = await http.get(Uri.parse('http://localhost:3000/pizzas'));
 
     if (response.statusCode == 200) {
@@ -206,26 +204,23 @@ Future<void> deletePizza(int pizzaId) async {
     }
   }
 
-Future<void> updatePedidoCoste() async {
-  // Fetch all pizzas for the current pedido
-  List<dynamic> pizzas = await fetchPizzas(widget.pedido['id']);
+  Future<void> updatePedidoCoste() async {
+    List<dynamic> pizzas = await conseguirPizzas(widget.pedido['id']);
 
-  // Calculate the total cost
-  double totalCost = pizzas.fold(0.0, (sum, pizza) => sum + double.parse(pizza['coste'].toString()));
+    double totalCost = pizzas.fold(0.0, (sum, pizza) => sum + double.parse(pizza['coste'].toString()));
 
-  final response = await http.put(
-    Uri.parse('http://localhost:3000/pedidos/${widget.pedido['id']}'),
-    headers: <String, String>{
-      'Content-Type': 'application/json; charset=UTF-8',
-    },
-    body: jsonEncode(<String, String>{
-      'costeTotal': totalCost.toStringAsFixed(2),
-    }),
-  );
+    final response = await http.put(
+      Uri.parse('http://localhost:3000/pedidos/${widget.pedido['id']}'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, String>{
+        'costeTotal': totalCost.toStringAsFixed(2),
+      }),
+    );
 
-  if (response.statusCode != 200) {
-    throw Exception('Failed to update pedido');
+    if (response.statusCode != 200) {
+      throw Exception('Failed to update pedido');
+    }
   }
-
-}
 }
