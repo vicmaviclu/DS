@@ -29203,3 +29203,29 @@ Processing by PizzaIngredientesExtraController#show as */*
 Completed 200 OK in 10ms (Views: 4.3ms | ActiveRecord: 1.0ms | Allocations: 1361)
 
 
+Started GET "/pizza_ingredientes_extra" for ::1 at 2024-05-22 13:18:47 +0200
+Processing by PizzaIngredientesExtraController#index as HTML
+  [1m[36mPizzaIngredienteExtra Count (7.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "pizza_ingrediente_extras"[0m
+  ↳ app/controllers/pizza_ingredientes_extra_controller.rb:4:in `index'
+Cargando ingredientes extra, Total: 6
+  [1m[36mPizzaIngredienteExtra Load (0.3ms)[0m  [1m[34mSELECT "pizza_ingrediente_extras".* FROM "pizza_ingrediente_extras"[0m
+  ↳ app/controllers/pizza_ingredientes_extra_controller.rb:5:in `index'
+Completed 200 OK in 18ms (Views: 7.2ms | ActiveRecord: 13.7ms | Allocations: 2078)
+
+
+  [1m[36mPizzaIngredienteExtra Delete All (0.3ms)[0m  [1m[31mDELETE FROM "pizza_ingrediente_extras"[0m
+  [1m[35m (0.1ms)[0m  [1m[33mUPDATE sqlite_sequence SET seq = 0 WHERE name = 'pizza_ingredientes_extra'[0m
+  [1m[36mPizza Delete All (0.3ms)[0m  [1m[31mDELETE FROM "pizzas"[0m
+  [1m[35m (0.1ms)[0m  [1m[33mUPDATE sqlite_sequence SET seq = 0 WHERE name = 'pizza'[0m
+  [1m[36mPedido Delete All (0.2ms)[0m  [1m[31mDELETE FROM "pedidos"[0m
+  [1m[35m (0.2ms)[0m  [1m[33mUPDATE sqlite_sequence SET seq = 0 WHERE name = 'pedidos'[0m
+Started GET "/pizza_ingredientes_extra" for ::1 at 2024-05-22 13:19:11 +0200
+Processing by PizzaIngredientesExtraController#index as HTML
+  [1m[36mPizzaIngredienteExtra Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "pizza_ingrediente_extras"[0m
+  ↳ app/controllers/pizza_ingredientes_extra_controller.rb:4:in `index'
+Cargando ingredientes extra, Total: 0
+  [1m[36mPizzaIngredienteExtra Load (0.1ms)[0m  [1m[34mSELECT "pizza_ingrediente_extras".* FROM "pizza_ingrediente_extras"[0m
+  ↳ app/controllers/pizza_ingredientes_extra_controller.rb:5:in `index'
+Completed 200 OK in 4ms (Views: 1.3ms | ActiveRecord: 0.2ms | Allocations: 1221)
+
+
