@@ -29567,3 +29567,133 @@ Processing by PizzaIngredientesExtraController#show as */*
 Completed 200 OK in 14ms (Views: 8.9ms | ActiveRecord: 0.5ms | Allocations: 1457)
 
 
+Started GET "/pizza_ingredientes_extra/84" for ::1 at 2024-05-22 15:46:46 +0200
+Processing by PizzaIngredientesExtraController#show as */*
+  Parameters: {"id"=>"84"}
+  [1m[36mPizza Load (0.4ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas" WHERE "pizzas"."id" = ? LIMIT ?[0m  [["id", 84], ["LIMIT", 1]]
+  ↳ app/controllers/pizza_ingredientes_extra_controller.rb:9:in `show'
+  [1m[36mPizzaIngredienteExtra Load (0.2ms)[0m  [1m[34mSELECT "pizza_ingrediente_extras".* FROM "pizza_ingrediente_extras" WHERE "pizza_ingrediente_extras"."pizza_id" = ?[0m  [["pizza_id", 84]]
+  ↳ app/controllers/pizza_ingredientes_extra_controller.rb:11:in `show'
+Completed 200 OK in 17ms (Views: 10.1ms | ActiveRecord: 0.6ms | Allocations: 1457)
+
+
+Started GET "/pedidos" for ::1 at 2024-05-22 15:50:17 +0200
+Processing by PedidosController#index as */*
+  [1m[36mPedido Count (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "pedidos"[0m
+  ↳ app/controllers/pedidos_controller.rb:8:in `index'
+Cargando todos los pedidos, Total: 1
+  [1m[36mPedido Load (0.2ms)[0m  [1m[34mSELECT "pedidos".* FROM "pedidos"[0m
+  ↳ app/controllers/pedidos_controller.rb:10:in `index'
+Completed 200 OK in 18ms (Views: 6.8ms | ActiveRecord: 0.7ms | Allocations: 1345)
+
+
+Started GET "/pizzas" for ::1 at 2024-05-22 15:50:17 +0200
+Processing by PizzasController#index as */*
+  [1m[36mPizza Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:4:in `index'
+Cargando pizzas, Total: 1
+  [1m[36mPizza Load (0.5ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:5:in `index'
+Completed 200 OK in 14ms (Views: 8.7ms | ActiveRecord: 0.7ms | Allocations: 1336)
+
+
+Started GET "/pizza_ingredientes_extra" for ::1 at 2024-05-22 15:50:17 +0200
+Processing by PizzaIngredientesExtraController#index as */*
+  [1m[36mPizzaIngredienteExtra Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "pizza_ingrediente_extras"[0m
+  ↳ app/controllers/pizza_ingredientes_extra_controller.rb:4:in `index'
+Cargando ingredientes extra, Total: 2
+  [1m[36mPizzaIngredienteExtra Load (0.3ms)[0m  [1m[34mSELECT "pizza_ingrediente_extras".* FROM "pizza_ingrediente_extras"[0m
+  ↳ app/controllers/pizza_ingredientes_extra_controller.rb:5:in `index'
+Completed 200 OK in 15ms (Views: 9.2ms | ActiveRecord: 0.5ms | Allocations: 1427)
+
+
+Started GET "/pizza_ingredientes_extra/84" for ::1 at 2024-05-22 15:50:19 +0200
+Processing by PizzaIngredientesExtraController#show as */*
+  Parameters: {"id"=>"84"}
+  [1m[36mPizza Load (0.2ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas" WHERE "pizzas"."id" = ? LIMIT ?[0m  [["id", 84], ["LIMIT", 1]]
+  ↳ app/controllers/pizza_ingredientes_extra_controller.rb:9:in `show'
+  [1m[36mPizzaIngredienteExtra Load (0.1ms)[0m  [1m[34mSELECT "pizza_ingrediente_extras".* FROM "pizza_ingrediente_extras" WHERE "pizza_ingrediente_extras"."pizza_id" = ?[0m  [["pizza_id", 84]]
+  ↳ app/controllers/pizza_ingredientes_extra_controller.rb:11:in `show'
+Completed 200 OK in 11ms (Views: 5.6ms | ActiveRecord: 0.3ms | Allocations: 1457)
+
+
+Started GET "/pizza_ingredientes_extra/84" for ::1 at 2024-05-22 15:50:22 +0200
+Processing by PizzaIngredientesExtraController#show as */*
+  Parameters: {"id"=>"84"}
+  [1m[36mPizza Load (0.2ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas" WHERE "pizzas"."id" = ? LIMIT ?[0m  [["id", 84], ["LIMIT", 1]]
+  ↳ app/controllers/pizza_ingredientes_extra_controller.rb:9:in `show'
+  [1m[36mPizzaIngredienteExtra Load (0.1ms)[0m  [1m[34mSELECT "pizza_ingrediente_extras".* FROM "pizza_ingrediente_extras" WHERE "pizza_ingrediente_extras"."pizza_id" = ?[0m  [["pizza_id", 84]]
+  ↳ app/controllers/pizza_ingredientes_extra_controller.rb:11:in `show'
+Completed 200 OK in 14ms (Views: 9.5ms | ActiveRecord: 0.4ms | Allocations: 1457)
+
+
+Started GET "/pizza_ingredientes_extra/84" for ::1 at 2024-05-22 15:50:27 +0200
+Processing by PizzaIngredientesExtraController#show as */*
+  Parameters: {"id"=>"84"}
+  [1m[36mPizza Load (0.2ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas" WHERE "pizzas"."id" = ? LIMIT ?[0m  [["id", 84], ["LIMIT", 1]]
+  ↳ app/controllers/pizza_ingredientes_extra_controller.rb:9:in `show'
+  [1m[36mPizzaIngredienteExtra Load (0.3ms)[0m  [1m[34mSELECT "pizza_ingrediente_extras".* FROM "pizza_ingrediente_extras" WHERE "pizza_ingrediente_extras"."pizza_id" = ?[0m  [["pizza_id", 84]]
+  ↳ app/controllers/pizza_ingredientes_extra_controller.rb:11:in `show'
+Completed 200 OK in 16ms (Views: 8.9ms | ActiveRecord: 0.5ms | Allocations: 1457)
+
+
+Started GET "/pizzas" for ::1 at 2024-05-22 15:51:01 +0200
+Processing by PizzasController#index as HTML
+  [1m[36mPizza Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:4:in `index'
+Cargando pizzas, Total: 1
+  [1m[36mPizza Load (0.1ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:5:in `index'
+Completed 200 OK in 5ms (Views: 2.4ms | ActiveRecord: 0.3ms | Allocations: 1332)
+
+
+Started GET "/pedidos" for ::1 at 2024-05-22 15:51:12 +0200
+Processing by PedidosController#index as */*
+  [1m[36mPedido Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "pedidos"[0m
+  ↳ app/controllers/pedidos_controller.rb:8:in `index'
+Cargando todos los pedidos, Total: 1
+  [1m[36mPedido Load (0.3ms)[0m  [1m[34mSELECT "pedidos".* FROM "pedidos"[0m
+  ↳ app/controllers/pedidos_controller.rb:10:in `index'
+Completed 200 OK in 16ms (Views: 7.7ms | ActiveRecord: 0.7ms | Allocations: 1345)
+
+
+Started GET "/pizzas" for ::1 at 2024-05-22 15:51:12 +0200
+Processing by PizzasController#index as */*
+  [1m[36mPizza Count (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:4:in `index'
+Cargando pizzas, Total: 1
+  [1m[36mPizza Load (0.2ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:5:in `index'
+Completed 200 OK in 16ms (Views: 6.6ms | ActiveRecord: 0.8ms | Allocations: 1336)
+
+
+Started GET "/pizza_ingredientes_extra" for ::1 at 2024-05-22 15:51:12 +0200
+Processing by PizzaIngredientesExtraController#index as */*
+  [1m[36mPizzaIngredienteExtra Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "pizza_ingrediente_extras"[0m
+  ↳ app/controllers/pizza_ingredientes_extra_controller.rb:4:in `index'
+Cargando ingredientes extra, Total: 2
+  [1m[36mPizzaIngredienteExtra Load (0.8ms)[0m  [1m[34mSELECT "pizza_ingrediente_extras".* FROM "pizza_ingrediente_extras"[0m
+  ↳ app/controllers/pizza_ingredientes_extra_controller.rb:5:in `index'
+Completed 200 OK in 16ms (Views: 8.7ms | ActiveRecord: 1.3ms | Allocations: 1427)
+
+
+Started GET "/pizzas" for ::1 at 2024-05-22 15:59:32 +0200
+Processing by PizzasController#index as HTML
+  [1m[36mPizza Count (5.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:4:in `index'
+Cargando pizzas, Total: 1
+  [1m[36mPizza Load (0.4ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:5:in `index'
+Completed 200 OK in 19ms (Views: 5.8ms | ActiveRecord: 9.6ms | Allocations: 1642)
+
+
+Started GET "/pizza_ingredientes_extra" for ::1 at 2024-05-22 15:59:38 +0200
+Processing by PizzaIngredientesExtraController#index as HTML
+  [1m[36mPizzaIngredienteExtra Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "pizza_ingrediente_extras"[0m
+  ↳ app/controllers/pizza_ingredientes_extra_controller.rb:4:in `index'
+Cargando ingredientes extra, Total: 2
+  [1m[36mPizzaIngredienteExtra Load (0.5ms)[0m  [1m[34mSELECT "pizza_ingrediente_extras".* FROM "pizza_ingrediente_extras"[0m
+  ↳ app/controllers/pizza_ingredientes_extra_controller.rb:5:in `index'
+Completed 200 OK in 16ms (Views: 8.3ms | ActiveRecord: 0.7ms | Allocations: 1448)
+
+
