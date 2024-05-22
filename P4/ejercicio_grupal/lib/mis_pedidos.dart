@@ -35,15 +35,41 @@ class _MisPedidosState extends State<MisPedidos> {
     }
   }
 
-  Future<void> deletePizzas(int pedidoId) async {
+
+  Future<List<dynamic>> conseguirIngredientesExtraByPizzaId(int pizzaId) async {
+    final response = await http.get(Uri.parse('http://localhost:3000/pizza_ingredientes_extra/${pizzaId}'));
+    
+    if (response.statusCode == 200) {
+      return jsonDecode(response.body);
+    } else {
+      throw Exception('Failed to load pizza ingredientes extra');
+    }
+  }
+
+  Future<void> deletePizzaIngredientesExtra(int pizzaId) async {
+    List<dynamic> ingredientesExtraToDelete = await conseguirIngredientesExtraByPizzaId(pizzaId);
+
+    for (var ingredienteExtra in ingredientesExtraToDelete) {
+      final response = await http.delete(
+        Uri.parse('http://localhost:3000/pizza_ingredientes_extra/${ingredienteExtra['id']}'), 
+      );
+
+      if (response.statusCode != 200) {
+        throw Exception('Failed to delete pizza ingredientes extra');
+      }
+    }
+  }
+
+Future<void> deletePizzas(int pedidoId) async {
     final pizzas = await conseguirPizzas(pedidoId);
     for (var pizza in pizzas) {
+      await deletePizzaIngredientesExtra(pizza['id']);
       final response = await http.delete(Uri.parse('http://localhost:3000/pizzas/${pizza['id']}'));
       if (response.statusCode != 200) {
         throw Exception('Failed to delete pizza');
       }
     }
-  }
+}
 
   Future<void> deletePedido(int id) async {
     await deletePizzas(id);
@@ -72,16 +98,6 @@ class _MisPedidosState extends State<MisPedidos> {
     );
   }
 
-  Future<List<dynamic>> conseguirIngredientesExtraByPizzaId(int pizzaId) async {
-    final response = await http.get(Uri.parse('http://localhost:3000/pizza_ingredientes_extra'));
-
-    if (response.statusCode == 200) {
-      List<dynamic> ingredientesExtra = jsonDecode(response.body);
-      return ingredientesExtra.where((ingredienteExtra) => ingredienteExtra['pizza_id'] == pizzaId).toList();
-    } else {
-      throw Exception('Failed to load ingredientes extra');
-    }
-  }
 
   Future<List<dynamic>> conseguirPedidosWithPizzas() async {
     final response = await http.get(Uri.parse('http://localhost:3000/pedidos'));

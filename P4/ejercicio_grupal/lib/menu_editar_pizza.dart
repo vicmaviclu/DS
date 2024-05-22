@@ -4,8 +4,10 @@ import 'dart:convert';
 
 class MenuEditarPizza extends StatefulWidget {
   final Map<String, dynamic> pizza;
+    final Function onConfirm;
 
-  MenuEditarPizza({Key? key, required this.pizza}) : super(key: key);
+
+  MenuEditarPizza({Key? key, required this.pizza, required this.onConfirm}) : super(key: key);
 
   @override
   _MenuEditarPizzaState createState() => _MenuEditarPizzaState();
@@ -99,19 +101,45 @@ class _MenuEditarPizzaState extends State<MenuEditarPizza> {
     }
   }
 
-  Future<void> handleConfirm() async {
-    for (var ingrediente in ingredientesSeleccionados.entries) {
-      if (ingrediente.value) {
-        List<dynamic> ingredientesExtra = await conseguirIngredientesExtraByPizzaId(widget.pizza['id']);
-        bool ingredienteExists = ingredientesExtra.any((i) => i['nombre'] == ingrediente.key);
-        if (!ingredienteExists) {
-          await anadirIngredienteExtra(widget.pizza['id'], ingrediente.key);
-        }
-      } else {
-        await deletePizzaIngredientesExtra(widget.pizza['id'], ingrediente.key);
-      }
+Future<void> updateCoste(int pizzaId, double nuevoCoste) async {
+  final response = await http.put(
+    Uri.parse('http://localhost:3000/pizzas/$pizzaId'),
+    headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+    },
+    body: jsonEncode(<String, double>{
+      'coste': nuevoCoste,
+    }),
+  );
+
+  if (response.statusCode != 200) {
+    throw Exception('Failed to update pizza cost');
+  }
+}
+
+Future<void> handleConfirm() async {
+  double costeExtra = 0.0;
+
+  for (var ingrediente in ingredientesSeleccionados.entries) {
+    List<dynamic> ingredientesExtra = await conseguirIngredientesExtraByPizzaId(widget.pizza['id']);
+    bool ingredienteExists = ingredientesExtra.any((i) => i['nombre'] == ingrediente.key);
+
+    if (ingrediente.value && !ingredienteExists) {
+      await anadirIngredienteExtra(widget.pizza['id'], ingrediente.key);
+      costeExtra += 0.5;
+    } else if (!ingrediente.value && ingredienteExists) {
+      await deletePizzaIngredientesExtra(widget.pizza['id'], ingrediente.key);
+      costeExtra -= 0.5;
     }
   }
+
+  if (costeExtra != 0) {
+    double costeActual = double.parse(widget.pizza['coste']); // Convertir a double
+    await updateCoste(widget.pizza['id'], costeActual + costeExtra);
+          widget.onConfirm();
+
+  }
+}
 
   @override
   Widget build(BuildContext context) {

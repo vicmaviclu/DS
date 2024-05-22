@@ -65,10 +65,14 @@ class _PedidoEditarState extends State<PedidoEditar> {
                         onPressed: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => MenuEditarPizza(pizza: entry.value)),
-                          ).then((_) {
-                            setState(() {});
-                          });
+                            MaterialPageRoute(builder: (context) => MenuEditarPizza(
+                              pizza: entry.value,
+                              onConfirm: () async {
+                                await updatePedidoCoste();
+                                setState(() {});
+                              },
+                            )),
+                          );
                         },
                       ),
                       if (widget.pizzas.length > 1) 
