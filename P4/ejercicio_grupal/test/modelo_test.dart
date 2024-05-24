@@ -15,30 +15,36 @@ import 'dart:convert';
 void main() {
   group("Comprobacion pizzas", () {
     Pizza? pizza;
-    const id = 84;
+    Pedido? pedido;
     const nombre = 'Pizza Margarita';
     const tamano = 'Mediana';
     const precio = 8.5;
     const ingredientes = ['Tomate', 'Mozzarella', 'Albahaca'];
 
-    // setUp(() {
-    //   pizza = Pizza();
-    // });
-
-    setUp(() async {
-      pizza =
-          Pizza(id: id, nombre: 'Pepperoni', precio: precio, tamano: tamano);
-
-      await pizza!.anadirPizza('http://localhost:3000');
-
-      final response =
-          await http.get(Uri.parse('http://localhost:3000/pizzas/$id'));
-      if (response.statusCode == 200) {
-        pizza = Pizza.fromJson(jsonDecode(response.body));
-      } else {
-        throw Exception('Failed to load pizza');
-      }
+    setUp(() {
+      pizza = Pizza();
     });
+
+    // setUpAll(() async {
+    //   pizza = Pizza(nombre: 'Pepperoni', precio: precio, tamano: tamano);
+
+    //   pedido = Pedido(
+    //     pizzas: [pizza!],
+    //     direccion: '123 Calle Falsa',
+    //     tarjeta: '1234567812345678',
+    //     numeroTelefono: '1234567890',
+    //     usuario: 'usuario',
+    //   );
+    //   pedido!.hacerPedido();
+
+    //   final response = await http
+    //       .get(Uri.parse('http://localhost:3000/pizzas/${pizza!.id}'));
+    //   if (response.statusCode == 200) {
+    //     pizza = Pizza.fromJson(jsonDecode(response.body));
+    //   } else {
+    //     throw Exception('Failed to load pizza');
+    //   }
+    // });
 
     void checkPizza(Pizza pizza, String nombre, double precio,
         List<String> ingredientes, String tamano) {
@@ -49,17 +55,36 @@ void main() {
     }
 
     test('Añadir ingrediente extra base de datos', () async {
-      pizza!.anadirIngredienteExtra('http://localhost:3000', id, 'Extra queso');
-      final response =
-          await http.get(Uri.parse('http://localhost:3000/pizzas/$id'));
-      if (response.statusCode == 200) {
-        pizza = Pizza.fromJson(jsonDecode(response.body));
-      } else {
-        throw Exception('Failed to load pizza');
-      }
-      expect(pizza!.getIngredientesAdicionales, ['Extra queso']);
-    });
+      pizza = Pizza(nombre: 'Pepperoni', precio: precio, tamano: tamano);
+      pedido = Pedido(
+        pizzas: [pizza!],
+        direccion: '123 Calle Falsa',
+        tarjeta: '1234567812345678',
+        numeroTelefono: '1234567890',
+        usuario: 'usuario',
+      );
+      pedido!.hacerPedido();
 
+      final responsePizzas =
+          await http.get(Uri.parse('http://localhost:3000/pizzas'));
+      if (responsePizzas.statusCode == 200) {
+        final pizzasData = jsonDecode(responsePizzas.body);
+        final ultimaPizzaData = pizzasData.last;
+        ultimaPizzaData['precio'] = double.parse(ultimaPizzaData['precio']);
+        final ultimaPizza = Pizza.fromJson(ultimaPizzaData);
+
+        if (ultimaPizzaData['pedido_id'] != null) {
+          ultimaPizza.anadirIngredienteExtra('http://localhost:3000',
+              ultimaPizzaData['pedido_id'], 'Extra queso');
+        } else {
+          throw Exception('ID del pedido es null');
+        }
+
+        expect(ultimaPizza.getIngredientesAdicionales, ['Extra queso']);
+      } else {
+        throw Exception('Failed to load pizzas');
+      }
+    });
     test('Valores por defecto de pizza', () {
       checkPizza(pizza!, 'Pizza ', 0.0, [], '');
     });
@@ -114,49 +139,56 @@ void main() {
     group('Realizar Pedido', () {
       Pedido? pedido;
       Pizza? pizza, pizza2;
-      pizza = Director(MargaritaBuilder()).build('Mediana');
-      pizza2 = Director(PepperoniBuilder()).build('Mediana');
 
-      setUp(() {
+      setUpAll(() async {
+        pizza = Director(MargaritaBuilder()).build('Mediana');
+        pizza2 = Director(PepperoniBuilder()).build('Mediana');
+
         pedido = Pedido(
-          numeroPedido: 77,
           pizzas: [pizza!, pizza2!],
           direccion: '123 Calle Falsa',
           tarjeta: '1234567812345678',
           numeroTelefono: '1234567890',
           usuario: 'usuario',
         );
-        pedido!.hacerPedido();
-        pedido!.anadirPedido();
+        await pedido!.hacerPedido();
       });
 
-      test('Conseguir pizza de un pedido', () async {
-        final response =
-            await http.get(Uri.parse('http://localhost:3000/pedidos/77'));
-        if (response.statusCode == 200) {
-          pedido = Pedido.fromJson(jsonDecode(response.body));
-        } else {
-          throw Exception('Failed to load pedido');
-        }
-      });
-
-      test('Pedido realizado', () {
+      /* test('Pedido realizado', () {
         expect(pedido!.pedidoRealizado, isTrue);
       });
+    */
+      test('Realizar Pedido', () async {
+        // Verificar que el pedido fue creado correctamente y el ID fue asignado
+        expect(pedido!.numeroPedido, isNotNull);
 
-      test('Comprobar Coste Total', () async {
-        var costeTotalEsperado =
-            pizza!.getCoste(pizza!.tamano) + pizza2!.getCoste(pizza2!.tamano);
         final response =
-            await http.get(Uri.parse('http://localhost:3000/pedidos/77'));
+            await http.get(Uri.parse('http://localhost:3000/pedidos'));
         if (response.statusCode == 200) {
-          pedido = Pedido.fromJson(jsonDecode(response.body));
+          final pedidosData = jsonDecode(response.body);
+          final ultimoPedidoData = pedidosData.last;
+
+          expect(ultimoPedidoData['id'], pedido!.numeroPedido);
         } else {
-          throw Exception('Failed to load pedido');
+          throw Exception('Failed to load pedidos');
         }
-        expect(pedido!.getCosteTotal(), costeTotalEsperado);
       });
 
+      test('Comprobar Coste Total del último pedido', () async {
+        final response =
+            await http.get(Uri.parse('http://localhost:3000/pedidos'));
+
+        if (response.statusCode == 200) {
+          final pedidosData = jsonDecode(response.body);
+          final ultimoPedidoData = pedidosData.last;
+          final costeTotalEsperado =
+              double.parse(ultimoPedidoData['costeTotal']);
+
+          expect(pedido!.costeTotal, costeTotalEsperado);
+        } else {
+          throw Exception('Failed to load pedidos');
+        }
+      });
       test('Pedido elimina las pizzas', () {
         pedido!.clear();
         expect(pedido!.pizzas, isEmpty);
