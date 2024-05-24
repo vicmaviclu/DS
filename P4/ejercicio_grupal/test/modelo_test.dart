@@ -70,16 +70,14 @@ void main() {
       if (responsePizzas.statusCode == 200) {
         final pizzasData = jsonDecode(responsePizzas.body);
         final ultimaPizzaData = pizzasData.last;
-        ultimaPizzaData['precio'] = double.parse(ultimaPizzaData['precio']);
-        final ultimaPizza = Pizza.fromJson(ultimaPizzaData);
+        ultimaPizzaData['coste'] = double.parse(ultimaPizzaData['coste']);
+        var ultimaPizza = Pizza.fromJson(ultimaPizzaData);
 
         if (ultimaPizzaData['pedido_id'] != null) {
+          ultimaPizza.addIngrediente('Extra queso');
           ultimaPizza.anadirIngredienteExtra('http://localhost:3000',
               ultimaPizzaData['pedido_id'], 'Extra queso');
-        } else {
-          throw Exception('ID del pedido es null');
         }
-
         expect(ultimaPizza.getIngredientesAdicionales, ['Extra queso']);
       } else {
         throw Exception('Failed to load pizzas');
